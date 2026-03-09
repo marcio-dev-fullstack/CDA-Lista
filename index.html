@@ -150,20 +150,29 @@
     dados.sort((a, b) => a.n.localeCompare(b.n));
 
     function renderizar(lista) {
-        const grid = document.getElementById('lista-empresas');
-        grid.innerHTML = "";
-        lista.forEach(emp => {
-            const logoUrl = `https://api.dicebear.com/7.x/initials/svg?seed=${encodeURIComponent(emp.n)}&backgroundColor=007bff,3498db,2c3e50&fontSize=40`;
-            grid.innerHTML += `
-                <div class="card">
-                    <div class="logo-box"><img src="${logoUrl}" alt="Logo"></div>
-                    <div class="nome">${emp.n}</div>
-                    <div class="ramo">${emp.r}</div>
-                    <div class="info">📍 ${emp.e}</div>
-                    <div class="info">📞 ${emp.t}</div>
-                </div>`;
-        });
-    }
+    const grid = document.getElementById('lista-empresas');
+    grid.innerHTML = "";
+    
+    // Lista de cores aleatórias para as logos
+    const cores = ["2ecc71", "e67e22", "9b59b6", "e74c3c", "1abc9c", "34495e", "f1c40f", "d35400", "27ae60", "2980b9"];
+
+    lista.forEach(emp => {
+        // Escolhe uma cor aleatória da lista acima para o fundo da logo
+        const corAleatoria = cores[Math.floor(Math.random() * cores.length)];
+        
+        // Link da logo com a cor sorteada e iniciais brancas
+        const logoUrl = `https://api.dicebear.com/7.x/initials/svg?seed=${encodeURIComponent(emp.n)}&backgroundColor=${corAleatoria}&fontFamily=Arial&fontWeight=700&fontColor=ffffff`;
+        
+        grid.innerHTML += `
+            <div class="card">
+                <div class="logo-box"><img src="${logoUrl}" alt="Logo"></div>
+                <div class="nome">${emp.n}</div>
+                <div class="ramo">${emp.r}</div>
+                <div class="info">📍 ${emp.e}</div>
+                <div class="info">📞 ${emp.t}</div>
+            </div>`;
+    });
+}
 
     function filtrarEmpresas() {
         const termo = document.getElementById('inputBusca').value.toLowerCase();
