@@ -9,6 +9,7 @@
             --primary: #1a73e8;
             --bg: #f8f9fa;
             --text: #333;
+            --whatsapp: #25d366;
         }
 
         body { 
@@ -23,7 +24,6 @@
         }
 
         .container { flex: 1; padding: 20px; }
-
         .header { text-align: center; max-width: 800px; margin: 0 auto 30px; }
         
         #busca {
@@ -74,9 +74,48 @@
         }
 
         .card-img { max-width: 100%; max-height: 100%; object-fit: contain; }
-
         .card-info { padding: 15px; text-align: center; }
         .card-info h3 { margin: 5px 0; color: var(--primary); }
+
+        /* Rodapé Atualizado */
+        footer {
+            margin-top: 50px;
+            padding: 30px;
+            background: #333;
+            color: white;
+            text-align: center;
+            border-radius: 15px 15px 0 0;
+        }
+
+        footer p { margin: 8px 0; }
+        footer a { color: var(--primary); text-decoration: none; font-weight: bold; }
+
+        /* Botão Flutuante do WhatsApp */
+        .btn-zap-flutuante {
+            position: fixed;
+            width: 60px;
+            height: 60px;
+            bottom: 25px;
+            right: 25px;
+            background-color: var(--whatsapp);
+            color: #FFF;
+            border-radius: 50px;
+            text-align: center;
+            font-size: 30px;
+            box-shadow: 2px 2px 10px rgba(0,0,0,0.2);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            transition: transform 0.3s;
+        }
+
+        .btn-zap-flutuante:hover {
+            transform: scale(1.1);
+        }
+
+        .btn-zap-flutuante svg { width: 35px; height: 35px; fill: white; }
     </style>
 </head>
 <body>
@@ -91,25 +130,20 @@
         <div class="grid-empresas" id="lista-grid"></div>
     </div>
 
-    <footer style="
-        margin-top: 50px;
-        padding: 30px;
-        background: #333;
-        color: white;
-        text-align: center;
-        border-radius: 15px 15px 0 0;
-    ">
-        <p style="margin: 5px 0;"><strong>CDA Lista Comercial</strong></p>        
+    <footer>
+        <p><strong>CDA Lista Comercial</strong></p>        
+        <p>(62) 99646-6033</p>
+        <p>© 2026 Todos os direitos reservados</p>
         <p style="font-size: 0.9em; color: #bbb;">
-            Desenvolvido por: <a href="https://raz.com.br" target="_blank" style="color: #1a73e8; text-decoration: none; font-weight: bold;">RAZGO</a>
+            Desenvolvido por: <a href="https://raz.com.br" target="_blank">RAZGO</a>
         </p>
-        <div style="margin-top: 15px;">
-            <a href="https://wa.me/5562996466033" target="_blank" style="color: #25d366; text-decoration: none; font-weight: bold; margin: 0 10px;">
-                WhatsApp Suporte
-            </a>
-        </div>        
-        <p style="margin-top: 20px; font-size: 0.8em; color: #888;">&copy; 2026 Todos os direitos reservados.</p>
     </footer>
+
+    <a href="https://wa.me/5562996466033" class="btn-zap-flutuante" target="_blank" title="Falar no WhatsApp">
+        <svg viewBox="0 0 32 32">
+            <path d="M16 0c-8.837 0-16 7.163-16 16 0 2.825 0.733 5.476 2.016 7.781l-2.016 7.219 7.391-1.94c2.207 1.127 4.71 1.767 7.369 1.767 8.837 0 16-7.163 16-16s-7.163-16-16-16zM16 29.333c-2.408 0-4.664-0.612-6.637-1.685l-0.476-0.259-4.385 1.151 1.171-4.192-0.285-0.453c-1.189-1.896-1.888-4.14-1.888-6.547 0-7.359 5.987-13.345 13.345-13.345s13.345 5.987 13.345 13.345-5.987 13.345-13.345 13.345zM22.459 18.915c-0.355-0.177-2.101-1.037-2.435-1.157-0.332-0.12-0.575-0.177-0.816 0.177s-0.933 1.157-1.144 1.396c-0.211 0.239-0.421 0.271-0.776 0.092-0.355-0.177-1.497-0.552-2.853-1.759-1.055-0.94-1.767-2.101-1.973-2.456-0.207-0.355-0.023-0.547 0.156-0.723 0.161-0.159 0.355-0.421 0.533-0.633s0.236-0.355 0.355-0.591c0.12-0.239 0.060-0.448-0.031-0.627s-0.816-1.971-1.117-2.696c-0.293-0.707-0.591-0.612-0.816-0.624-0.211-0.011-0.451-0.013-0.691-0.013s-0.631 0.089-0.961 0.448c-0.332 0.355-1.268 1.241-1.268 3.027s1.301 3.509 1.481 3.748c0.18 0.239 2.56 3.909 6.2 5.476 0.865 0.373 1.54 0.596 2.067 0.764 0.871 0.276 1.663 0.237 2.289 0.144 0.699-0.104 2.101-0.859 2.397-1.688 0.297-0.831 0.297-1.54 0.208-1.688s-0.324-0.244-0.68-0.423z"></path>
+        </svg>
+    </a>
 
     <script>
         const empresas = [
