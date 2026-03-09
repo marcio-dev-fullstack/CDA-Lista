@@ -3,120 +3,221 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Guia Comercial - Conceição do Araguaia</title>
+    <title>CDA-Lista | Guia de Empresas</title>
     <style>
         :root {
             --primary: #2c3e50;
-            --accent: #27ae60;
-            --light: #f4f7f6;
+            --accent: #3498db;
+            --bg: #f4f7f6;
+            --card-bg: #ffffff;
         }
 
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: var(--light); margin: 0; padding: 20px; }
-        h1 { text-align: center; color: var(--primary); }
-
-        /* Estilo da Lista */
-        .search-container { max-width: 600px; margin: 20px auto; }
-        #searchBar { width: 100%; padding: 12px; border-radius: 8px; border: 1px solid #ddd; }
-
-        .lista-empresas { max-width: 800px; margin: 0 auto; display: grid; gap: 10px; }
-        .empresa-item { 
-            background: white; padding: 15px; border-radius: 8px; 
-            cursor: pointer; display: flex; align-items: center;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1); transition: 0.3s;
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background-color: var(--bg);
+            margin: 0;
+            padding: 20px;
         }
-        .empresa-item:hover { transform: scale(1.02); border-left: 5px solid var(--accent); }
-        .empresa-item img { width: 50px; height: 50px; border-radius: 50%; margin-right: 15px; object-fit: cover; }
 
-        /* Estilo do Modal (Janela) */
-        .modal { display: none; position: fixed; z-index: 1; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); }
-        .modal-content { 
-            background: white; margin: 10% auto; padding: 20px; width: 90%; max-width: 500px; 
-            border-radius: 12px; position: relative; text-align: center;
+        .container {
+            max-width: 1200px;
+            margin: auto;
         }
-        .close { position: absolute; right: 20px; top: 10px; font-size: 28px; cursor: pointer; }
-        .modal-img { width: 100%; max-height: 250px; object-fit: cover; border-radius: 8px; margin-bottom: 15px; }
-        .status-tag { display: inline-block; padding: 5px 10px; border-radius: 20px; font-size: 12px; background: #e0f2f1; color: var(--accent); }
+
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        h1 { color: var(--primary); }
+
+        .grid-empresas {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border-radius: 10px;
+            padding: 15px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            transition: 0.3s;
+        }
+
+        .card:hover { transform: translateY(-5px); box-shadow: 0 8px 15px rgba(0,0,0,0.1); }
+
+        .logo-box {
+            width: 80px;
+            height: 80px;
+            background: #eee;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 15px;
+            overflow: hidden;
+            border: 2px solid var(--accent);
+        }
+
+        .logo-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .nome { font-weight: bold; font-size: 1.1em; color: var(--primary); margin-bottom: 5px; text-transform: uppercase; }
+        .ramo { color: var(--accent); font-size: 0.9em; font-weight: bold; margin-bottom: 10px; }
+        .info { font-size: 0.85em; color: #666; margin: 2px 0; }
+        .whatsapp { color: #27ae60; font-weight: bold; text-decoration: none; margin-top: 10px; font-size: 0.9em; }
     </style>
 </head>
 <body>
 
-    <h1>🏢 Guia Comercial CDA</h1>
+<div class="container">
+    <header>
+        <h1>Guia de Empresas - Conceição do Araguaia</h1>
+        <p>100 empresas cadastradas em ordem alfabética</p>
+    </header>
 
-    <div class="search-container">
-        <input type="text" id="searchBar" placeholder="Buscar empresa ou atividade..." onkeyup="filtrar()">
-    </div>
+    <div class="grid-empresas">
+        <script>
+            // Dados das empresas para gerar os cards automaticamente
+            const empresas = [
+                {n: "Academia Força Viva", r: "Fitness", e: "Av. Frei Gil de Vila Nova", t: "(94) 991**-****"},
+                {n: "Adjacências Construção", r: "Engenharia", e: "Centro", t: "(94) 991**-****"},
+                {n: "Advocacia Associada", r: "Jurídico", e: "Próximo ao Fórum", t: "(94) 991**-****"},
+                {n: "Agência de Empregos CDA", r: "Serviços", e: "Centro", t: "(94) 991**-****"},
+                {n: "Agência de Viagens Tur", r: "Turismo", e: "Av. J.K", t: "(94) 991**-****"},
+                {n: "AgroForte Araguaia", r: "Agronegócio", e: "Av. J.K, Centro", t: "(94) 991**-****"},
+                {n: "Assistência Técnica TV", r: "Serviços", e: "Bairro Emerenciana", t: "(94) 991**-****"},
+                {n: "Atelier de Costura Fio", r: "Serviços", e: "Bairro Vila Cruzeiro", t: "(94) 991**-****"},
+                {n: "Auto Escola Piloto", r: "Educação", e: "Centro", t: "(94) 991**-****"},
+                {n: "Auto Peças Norte", r: "Automotivo", e: "Rodovia PA-287", t: "(94) 991**-****"},
+                {n: "Bar do Peixe", r: "Gastronomia", e: "Beira Rio", t: "(94) 991**-****"},
+                {n: "Barbearia Old School", r: "Estética", e: "Rua 12", t: "(94) 991**-****"},
+                {n: "Borracharia do Pneu", r: "Automotivo", e: "PA-287", t: "(94) 991**-****"},
+                {n: "Boutique Estilo", r: "Vestuário", e: "Av. 7 de Setembro", t: "(94) 991**-****"},
+                {n: "Buffet Festa Legal", r: "Eventos", e: "Bairro Canecão", t: "(94) 991**-****"},
+                {n: "Carpintaria do Norte", r: "Indústria", e: "Setor Aeroporto", t: "(94) 991**-****"},
+                {n: "Casa de Carnes Prime", r: "Alimentos", e: "Av. J.K", t: "(94) 991**-****"},
+                {n: "Casa de Rações Rural", r: "Agro", e: "Entrada da Cidade", t: "(94) 991**-****"},
+                {n: "Centro Automotivo CDA", r: "Automotivo", e: "Rodovia", t: "(94) 991**-****"},
+                {n: "Cervejaria Artesanal Pará", r: "Indústria", e: "Bairro Beira Rio", t: "(94) 991**-****"},
+                {n: "Chaveiro Rapidez", r: "Serviços", e: "Centro", t: "(94) 991**-****"},
+                {n: "Choperia Beira Rio", r: "Gastronomia", e: "Av. Beira Rio", t: "(94) 991**-****"},
+                {n: "Clínica de Estética Bio", r: "Saúde", e: "Centro", t: "(94) 991**-****"},
+                {n: "Clínica de Fisioterapia", r: "Saúde", e: "Centro", t: "(94) 991**-****"},
+                {n: "Clínica Sorriso", r: "Odontologia", e: "Centro", t: "(94) 991**-****"},
+                {n: "Clube de Tiro Araguaia", r: "Lazer", e: "Zona Rural", t: "(94) 991**-****"},
+                {n: "Construa CDA", r: "Engenharia", e: "Av. Magalhães Barata", t: "(94) 991**-****"},
+                {n: "Consultoria em Agronegócio", r: "Agro", e: "Av. J.K", t: "(94) 991**-****"},
+                {n: "Consultório Veterinário Amigo", r: "Pet", e: "Centro", t: "(94) 991**-****"},
+                {n: "Curso de Inglês Speak", r: "Educação", e: "Centro", t: "(94) 991**-****"},
+                {n: "Depósito de Bebidas", r: "Comércio", e: "Av. 7 de Setembro", t: "(94) 991**-****"},
+                {n: "Distribuidora de Água Pura", r: "Comércio", e: "Centro", t: "(94) 991**-****"},
+                {n: "Distribuidora de Gás Chama", r: "Comércio", e: "Bairro São Luiz", t: "(94) 991**-****"},
+                {n: "Doceria Delícia", r: "Alimentos", e: "Próximo à Praça", t: "(94) 991**-****"},
+                {n: "Drogaria Araguaia", r: "Saúde", e: "Praça da Matriz", t: "(94) 991**-****"},
+                {n: "Escola de Música Notas", r: "Educação", e: "Centro", t: "(94) 991**-****"},
+                {n: "Escritório Contábil Oliveira", r: "Serviços", e: "Centro", t: "(94) 991**-****"},
+                {n: "Escritório de Arquitetura Plan", r: "Engenharia", e: "Centro", t: "(94) 991**-****"},
+                {n: "Estacionamento Central", r: "Serviços", e: "Rua 11", t: "(94) 991**-****"},
+                {n: "Estúdio de Pilates Equilíbrio", r: "Saúde", e: "Centro", t: "(94) 991**-****"},
+                {n: "Estúdio de Tatuagem Ink", r: "Estética", e: "Rua 14", t: "(94) 991**-****"},
+                {n: "Fábrica de Gelo Norte", r: "Indústria", e: "Beira Rio", t: "(94) 991**-****"},
+                {n: "Floricultura Jardim", r: "Comércio", e: "Av. J.K", t: "(94) 991**-****"},
+                {n: "Frigorífico Boi Gordo", r: "Pecuária", e: "Zona Rural", t: "(94) 991**-****"},
+                {n: "Funilaria e Pintura Brilho", r: "Automotivo", e: "Vila Nova", t: "(94) 991**-****"},
+                {n: "Gráfica Araguaia", r: "Serviços", e: "Rua 10", t: "(94) 991**-****"},
+                {n: "Gráfica Rápida Digital", r: "Serviços", e: "Centro", t: "(94) 991**-****"},
+                {n: "Hotel Rio Araguaia", r: "Hotelaria", e: "Av. Beira Rio", t: "(94) 991**-****"},
+                {n: "Imobiliária Norte", r: "Imóveis", e: "Av. J.K", t: "(94) 991**-****"},
+                {n: "Informática CDA", r: "Tecnologia", e: "Rua da República", t: "(94) 991**-****"},
+                {n: "Instaladora de Ar Condicionado", r: "Serviços", e: "Centro", t: "(94) 991**-****"},
+                {n: "KM Projetos", r: "Engenharia", e: "Vila Cruzeiro", t: "(94) 991**-****"},
+                {n: "Laboratório BioExame", r: "Saúde", e: "Centro", t: "(94) 991**-****"},
+                {n: "Lan House Conecta", r: "Tecnologia", e: "Bairro Canecão", t: "(94) 991**-****"},
+                {n: "Lanchonete Burguer", r: "Gastronomia", e: "Praça da Matriz", t: "(94) 991**-****"},
+                {n: "Lavanderia Limpa Mais", r: "Serviços", e: "Centro", t: "(94) 991**-****"},
+                {n: "Livraria Saber", r: "Educação", e: "Centro", t: "(94) 991**-****"},
+                {n: "Loja de Brinquedos Diver", r: "Varejo", e: "Rua do Comércio", t: "(94) 991**-****"},
+                {n: "Loja de Calçados Passos", r: "Varejo", e: "Rua 15", t: "(94) 991**-****"},
+                {n: "Loja de Cosméticos Flora", r: "Varejo", e: "Centro", t: "(94) 991**-****"},
+                {n: "Loja de Decoração Lar", r: "Varejo", e: "Rua da República", t: "(94) 991**-****"},
+                {n: "Loja de Ferramentas Forte", r: "Construção", e: "Centro", t: "(94) 991**-****"},
+                {n: "Loja de Informática Net", r: "Tecnologia", e: "Rua da República", t: "(94) 991**-****"},
+                {n: "Loja de Pesca Rio", r: "Lazer", e: "Beira Rio", t: "(94) 991**-****"},
+                {n: "Loja de Presentes Mimos", r: "Varejo", e: "Rua da República", t: "(94) 991**-****"},
+                {n: "Loja de Suplementos Fit", r: "Saúde", e: "Centro", t: "(94) 991**-****"},
+                {n: "Loja de Tintas Cores", r: "Construção", e: "Centro", t: "(94) 991**-****"},
+                {n: "Loja de Variedades 1,99", r: "Varejo", e: "Rua do Comércio", t: "(94) 991**-****"},
+                {n: "Madeireira Araguaia", r: "Madeira", e: "Saída para Redenção", t: "(94) 991**-****"},
+                {n: "Marmoraria Pedrasul", r: "Construção", e: "Setor Industrial", t: "(94) 991**-****"},
+                {n: "Materiais Elétricos Volts", r: "Construção", e: "Centro", t: "(94) 991**-****"},
+                {n: "MAZZ", r: "Educação", e: "Centro", t: "(94) 991**-****"},
+                {n: "Mazz Administradora", r: "Serviços", e: "Edifício Comercial, Centro", t: "(94) 991**-****"},
+                {n: "Mazz Tech Soluções", r: "Tecnologia", e: "Rua 15 de Novembro", t: "(94) 991**-****"},
+                {n: "Mercadinho São João", r: "Varejo", e: "Bairro Malvinas", t: "(94) 991**-****"},
+                {n: "Moda Infantil Kids", r: "Varejo", e: "Rua do Comércio", t: "(94) 991**-****"},
+                {n: "Móveis Araguaia", r: "Móveis", e: "Av. J.K", t: "(94) 991**-****"},
+                {n: "MR TREINAMENTOS", r: "Educação", e: "Centro", t: "(94) 991**-****"},
+                {n: "Oficina de Bicicletas Bike", r: "Serviços", e: "Bairro Vila Nova", t: "(94) 991**-****"},
+                {n: "Oficina do Zé", r: "Mecânica", e: "Setor Tancredo Neves", t: "(94) 991**-****"},
+                {n: "Ótica Visão Clara", r: "Saúde", e: "Av. Magalhães Barata", t: "(94) 991**-****"},
+                {n: "Padaria Pão de Mel", r: "Alimentos", e: "Bairro Emerenciana", t: "(94) 991**-****"},
+                {n: "Panificadora Central", r: "Alimentos", e: "Centro", t: "(94) 991**-****"},
+                {n: "Papelaria Escolar", r: "Comércio", e: "Próximo à Escola", t: "(94) 991**-****"},
+                {n: "Peixaria do Araguaia", r: "Alimentos", e: "Mercado Municipal", t: "(94) 991**-****"},
+                {n: "Pesqueiro Real", r: "Turismo/Lazer", e: "Beira Rio", t: "(94) 991**-****"},
+                {n: "PetShop AuAu", r: "Pet", e: "Bairro Vila Nova", t: "(94) 991**-****"},
+                {n: "Pinturas e Acabamentos Art", r: "Construção", e: "Centro", t: "(94) 991**-****"},
+                {n: "Pizzaria da Noite", r: "Gastronomia", e: "Beira Rio", t: "(94) 991**-****"},
+                {n: "Posto Central", r: "Combustíveis", e: "Av. Magalhães Barata", t: "(94) 991**-****"},
+                {n: "RAZGO", r: "Tecnologia", e: "Centro", t: "(94) 991**-****"},
+                {n: "Restaurante Sabor Paraense", r: "Gastronomia", e: "Centro", t: "(94) 991**-****"},
+                {n: "Salão de Beleza Glamour", r: "Estética", e: "Bairro Canecão", t: "(94) 991**-****"},
+                {n: "Sapataria do Povo", r: "Serviços", e: "Centro", t: "(94) 991**-****"},
+                {n: "Seguradora do Norte", r: "Serviços", e: "Av. J.K", t: "(94) 991**-****"},
+                {n: "Segurança Privada Sentinela", r: "Serviços", e: "Bairro Capelinha", t: "(94) 991**-****"},
+                {n: "Serralheria de Ferro", r: "Indústria", e: "Setor Aeroporto", t: "(94) 991**-****"},
+                {n: "Serviços de Guincho 24h", r: "Automotivo", e: "Rodovia", t: "(94) 991**-****"},
+                {n: "Som e Alarme Automotivo", r: "Serviços", e: "Vila Nova", t: "(94) 991**-****"},
+                {n: "Sorveteria Tropical", r: "Alimentos", e: "Beira Rio", t: "(94) 991**-****"},
+                {n: "Supermercado Econômico", r: "Varejo", e: "Bairro São Luiz", t: "(94) 991**-****"},
+                {n: "Transportadora Veloz", r: "Logística", e: "Setor Industrial", t: "(94) 991**-****"},
+                {n: "Venda de Celulares Smart", r: "Tecnologia", e: "Rua do Comércio", t: "(94) 991**-****"},
+                {n: "Venda de Motos Araguaia", r: "Automotivo", e: "Av. Magalhães Barata", t: "(94) 991**-****"},
+                {n: "Vidraçaria Transparente", r: "Construção", e: "Vila Cruzeiro", t: "(94) 991**-****"}
+            ];
 
-    <div id="lista" class="lista-empresas">
-        </div>
-
-    <div id="myModal" class="modal">
-        <div class="modal-content">
-            <span class="close" onclick="fecharModal()">&times;</span>
-            <img id="modalFoto" class="modal-img" src="" alt="Logo">
-            <h2 id="modalNome"></h2>
-            <p id="modalRamo" style="color: #666; font-style: italic;"></p>
-            <hr>
-            <p>📍 <strong>Endereço:</strong> <span id="modalEndereco"></span></p>
-            <p>📞 <strong>Contato:</strong> <span id="modalTelefone"></span></p>
-            <span id="modalStatus" class="status-tag"></span>
-        </div>
-    </div>
-
-    <script>
-        // Dados das Empresas (Onde você vai cadastrar as novas)
-        const empresas = [
-            { nome: "Se7e Sistemas", ramo: "Tecnologia", endereco: "Rua Bolonha, Centro", tel: "(94) 99123-4567", status: "Ativa", foto: "https://via.placeholder.com/400x250?text=Se7e+Sistemas" },
-            { nome: "Araguaia Auto Center", ramo: "Mecânica", endereco: "Av. Fernando Guilhon", tel: "(94) 3421-0000", status: "Ativa", foto: "https://via.placeholder.com/400x250?text=Auto+Center" },
-            { nome: "Carneiro Contabilidade", ramo: "Contabilidade", endereco: "Centro", tel: "(94) 99199-8744", status: "Ativa", foto: "https://via.placeholder.com/400x250?text=Contabilidade" },
-            { nome: "Astecon", ramo: "Contabilidade", endereco: "Centro", tel: "(94) 3421-2037", status: "Ativa", foto: "https://via.placeholder.com/400x250?text=Astecon" }
-        ];
-
-        const listaDiv = document.getElementById('lista');
-
-        // Função para renderizar e ordenar de A a Z
-        function renderizar(dados) {
-            listaDiv.innerHTML = "";
-            const ordenados = dados.sort((a, b) => a.nome.localeCompare(b.nome));
-            
-            ordenados.forEach((empresa, index) => {
-                listaDiv.innerHTML += `
-                    <div class="empresa-item" onclick="abrirModal(${JSON.stringify(empresa).replace(/"/g, '&quot;')})">
-                        <img src="${empresa.foto}" alt="Logo">
-                        <div>
-                            <strong>${empresa.nome}</strong><br>
-                            <small>${empresa.ramo}</small>
+            // Renderiza os cards
+            const grid = document.querySelector('.grid-empresas');
+            empresas.forEach(emp => {
+                grid.innerHTML += `
+                    <div class="card">
+                        <div class="logo-box">
+                            <img src="img/logos/${emp.n.toLowerCase().replace(/\s/g, '-')}.png" alt="Logo" onerror="this.src='https://via.placeholder.com/80?text=LOGO'">
                         </div>
+                        <div class="nome">${emp.n}</div>
+                        <div class="ramo">${emp.r}</div>
+                        <div class="info">📍 ${emp.e}</div>
+                        <div class="info">📞 ${emp.t}</div>
+                        <a href="#" class="whatsapp">WhatsApp</a>
                     </div>
                 `;
             });
-        }
+        </script>
+    </div>
 
-        // Busca em tempo real
-        function filtrar() {
-            const termo = document.getElementById('searchBar').value.toLowerCase();
-            const filtrados = empresas.filter(e => 
-                e.nome.toLowerCase().includes(termo) || e.ramo.toLowerCase().includes(termo)
-            );
-            renderizar(filtrados);
-        }
+    <footer>
+        <p style="text-align: center; margin-top: 50px; color: #999;">&copy; 2026 CDA-Lista - Desenvolvido por Márcio Rodrigues</p>
+    </footer>
+</div>
 
-        // Lógica da Janela (Modal)
-        function abrirModal(empresa) {
-            document.getElementById('modalNome').innerText = empresa.nome;
-            document.getElementById('modalRamo').innerText = empresa.ramo;
-            document.getElementById('modalEndereco').innerText = empresa.endereco;
-            document.getElementById('modalTelefone').innerText = empresa.tel;
-            document.getElementById('modalStatus').innerText = empresa.status;
-            document.getElementById('modalFoto').src = empresa.foto;
-            document.getElementById('myModal').style.display = "block";
-        }
-
-        function fecharModal() {
-            document.getElementById('myModal').style.display = "none";
-        }
-
-        // Iniciar lista
-        renderizar(empresas);
-    </script>
 </body>
 </html>
