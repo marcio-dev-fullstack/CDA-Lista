@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<<<<<<< HEAD
     <title>CDA-Lista | Guia de Empresas</title>
     <style>
         :root {
@@ -15,11 +16,27 @@
         body {
             font-family: 'Segoe UI', Arial, sans-serif;
             background-color: var(--bg);
+=======
+    <title>CDA-Lista | Cadastro de Empresas</title>
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --bg-color: #f8f9fa;
+            --text-color: #333;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+>>>>>>> 4dc5b1f66b80e53ff8e660adca53bc3fca467014
             margin: 0;
             padding: 20px;
         }
 
         .container {
+<<<<<<< HEAD
             max-width: 1200px;
             margin: auto;
         }
@@ -74,12 +91,82 @@
         .ramo { color: var(--accent); font-size: 0.9em; font-weight: bold; margin-bottom: 10px; }
         .info { font-size: 0.85em; color: #666; margin: 2px 0; }
         .whatsapp { color: #27ae60; font-weight: bold; text-decoration: none; margin-top: 10px; font-size: 0.9em; }
+=======
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            padding-bottom: 30px;
+            border-bottom: 2px solid #ddd;
+            margin-bottom: 30px;
+        }
+
+        h1 {
+            color: var(--primary-color);
+            margin-bottom: 5px;
+        }
+
+        .grid-empresas {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .card {
+            background: #fff;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: transform 0.2s;
+            border-left: 5px solid var(--accent-color);
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .nome-empresa {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: var(--primary-color);
+            text-transform: uppercase;
+            margin-bottom: 10px;
+        }
+
+        .info {
+            margin: 8px 0;
+            font-size: 0.95rem;
+        }
+
+        .label {
+            font-weight: bold;
+            color: #7f8c8d;
+        }
+
+        .contato-link {
+            display: inline-block;
+            margin-top: 10px;
+            color: #27ae60;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        footer {
+            margin-top: 50px;
+            text-align: center;
+            font-size: 0.8rem;
+            color: #95a5a6;
+        }
+>>>>>>> 4dc5b1f66b80e53ff8e660adca53bc3fca467014
     </style>
 </head>
 <body>
 
 <div class="container">
     <header>
+<<<<<<< HEAD
         <h1>Guia de Empresas - Conceição do Araguaia</h1>
         <p>100 empresas cadastradas em ordem alfabética</p>
     </header>
@@ -216,6 +303,48 @@
 
     <footer>
         <p style="text-align: center; margin-top: 50px; color: #999;">&copy; 2026 CDA-Lista - Desenvolvido por Márcio Rodrigues</p>
+=======
+        <h1>CDA - Lista de Empresas</h1>
+        <p>Atualizado em Março de 2026</p>
+    </header>
+
+    <div class="grid-empresas">
+        <div class="card">
+            <div class="nome-empresa">RAZGO</div>
+            <div class="info"><span class="label">Ramo:</span> Tecnologia</div>
+            <div class="info"><span class="label">Endereço:</span> Centro</div>
+            <div class="info"><span class="label">Contato:</span> (62) 99646-6033</div>
+            <a href="https://wa.me/5562996466033" class="contato-link" target="_blank">WhatsApp ↗</a>
+        </div>
+
+        <div class="card">
+            <div class="nome-empresa">MAZZ</div>
+            <div class="info"><span class="label">Ramo:</span> Educação</div>
+            <div class="info"><span class="label">Endereço:</span> Centro</div>
+            <div class="info"><span class="label">Contato:</span> (62) 99646-6033</div>
+            <a href="https://wa.me/5562996466033" class="contato-link" target="_blank">WhatsApp ↗</a>
+        </div>
+
+        <div class="card">
+            <div class="nome-empresa">MR TREINAMENTOS</div>
+            <div class="info"><span class="label">Ramo:</span> Educação</div>
+            <div class="info"><span class="label">Endereço:</span> Centro</div>
+            <div class="info"><span class="label">Contato:</span> (62) 99646-6033</div>
+            <a href="https://wa.me/5562996466033" class="contato-link" target="_blank">WhatsApp ↗</a>
+        </div>
+
+        <div class="card">
+            <div class="nome-empresa">KM PROJETOS</div>
+            <div class="info"><span class="label">Ramo:</span> Engenharia</div>
+            <div class="info"><span class="label">Endereço:</span> Vila Cruzeiro</div>
+            <div class="info"><span class="label">Contato:</span> (94) 99250-0073</div>
+            <a href="https://wa.me/5594992500073" class="contato-link" target="_blank">WhatsApp ↗</a>
+        </div>
+    </div>
+
+    <footer>
+        &copy; 2026 CDA-Lista - Desenvolvido por: RAZGO.
+>>>>>>> 4dc5b1f66b80e53ff8e660adca53bc3fca467014
     </footer>
 </div>
 
