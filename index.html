@@ -11,7 +11,9 @@
             --text: #333;
         }
 
-        body { font-family: 'Segoe UI', sans-serif; background: var(--bg); color: var(--text); margin: 0; padding: 20px; }
+        body { font-family: 'Segoe UI', sans-serif; background: var(--bg); color: var(--text); margin: 0; padding: 20px; display: flex; flex-direction: column; min-height: 100vh; }
+        .content { flex: 1; } /* Garante que o footer fique no fundo se tiver poucas empresas */
+
         .header { text-align: center; max-width: 800px; margin: 0 auto 30px; }
         
         #busca {
@@ -24,9 +26,10 @@
             display: block;
             margin: 10px auto;
             outline: none;
+            transition: 0.3s;
         }
+        #busca:focus { border-color: var(--primary); box-shadow: 0 0 8px rgba(26,115,232,0.2); }
 
-        /* Grid de Cards */
         .grid-empresas {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
@@ -35,11 +38,10 @@
             margin: auto;
         }
 
-        /* Estilo do Card com Imagem */
         .card {
             background: white;
             border-radius: 15px;
-            overflow: hidden; /* Garante que a imagem não saia das bordas arredondadas */
+            overflow: hidden;
             text-decoration: none;
             color: inherit;
             box-shadow: 0 4px 10px rgba(0,0,0,0.05);
@@ -58,7 +60,7 @@
         .card-img {
             width: 100%;
             height: 140px;
-            object-fit: cover; /* Corta a imagem para preencher o espaço sem distorcer */
+            object-fit: cover;
             background: #f0f0f0;
         }
 
@@ -71,58 +73,16 @@
 </head>
 <body>
 
-    <div class="header">
-        <h1>Empresas CDA</h1>
-        <p class="contador" id="contador">0 empresas cadastradas</p>
-        <input type="text" id="busca" placeholder="🔍 Buscar por nome ou setor..." onkeyup="filtrar()">
+    <div class="content">
+        <div class="header">
+            <h1>Empresas CDA</h1>
+            <p class="contador" id="contador">0 empresas cadastradas</p>
+            <input type="text" id="busca" placeholder="🔍 Buscar por nome ou setor..." onkeyup="filtrar()">
+        </div>
+
+        <div class="grid-empresas" id="lista-grid"></div>
     </div>
 
-    <div class="grid-empresas" id="lista-grid"></div>
-
-    <script>
-        // Dados com o caminho das imagens (Certifique-se que as imagens estão na pasta img/)
-        const empresas = [
-            { id: 'km-projetos', nome: 'KM PROJETOS', setor: 'Engenharia', foto: 'img/km.jpg' },
-            { id: 'mazz', nome: 'MAZZ', setor: 'Educação', foto: 'img/mazz.jpg' },
-            { id: 'mr-treinamentos', nome: 'MR TREINAMENTOS', setor: 'Educação', foto: 'img/mr.jpg' },
-            { id: 'razgo', nome: 'RAZGO', setor: 'Tecnologia', foto: 'img/razgo.jpg' }
-        ];
-
-        const grid = document.getElementById('lista-grid');
-        const contadorDiv = document.getElementById('contador');
-
-        function renderizarCards(dados) {
-            grid.innerHTML = '';
-            
-            dados.sort((a, b) => a.nome.localeCompare(b.nome)).forEach(emp => {
-                const card = document.createElement('a');
-                card.href = `empresa.html?id=${emp.id}`;
-                card.className = 'card';
-                card.innerHTML = `
-                    <img src="${emp.foto}" alt="Logo ${emp.nome}" class="card-img">
-                    <div class="card-info">
-                        <h3>${emp.nome}</h3>
-                        <p>${emp.setor}</p>
-                    </div>
-                `;
-                grid.appendChild(card);
-            });
-
-            contadorDiv.innerText = `${dados.length} empresas encontradas`;
-        }
-
-        function filtrar() {
-            const termo = document.getElementById('busca').value.toLowerCase();
-            const filtradas = empresas.filter(emp => 
-                emp.nome.toLowerCase().includes(termo) || 
-                emp.setor.toLowerCase().includes(termo)
-            );
-            renderizarCards(filtradas);
-        }
-
-        renderizarCards(empresas);
-    </script>
-</body>
     <footer style="
         margin-top: 50px;
         padding: 30px;
@@ -142,4 +102,46 @@
         </div>        
         <p style="margin-top: 20px; font-size: 0.8em; color: #888;">&copy; 2026 Todos os direitos reservados.</p>
     </footer>
+
+    <script>
+        const empresas = [
+            { id: 'km-projetos', nome: 'KM PROJETOS', setor: 'Engenharia', foto: 'img/km.jpg' },
+            { id: 'mazz', nome: 'MAZZ', setor: 'Educação', foto: 'img/mazz.jpg' },
+            { id: 'mr-treinamentos', nome: 'MR TREINAMENTOS', setor: 'Educação', foto: 'img/mr.jpg' },
+            { id: 'razgo', nome: 'RAZGO', setor: 'Tecnologia', foto: 'img/razgo.jpg' }
+        ];
+
+        const grid = document.getElementById('lista-grid');
+        const contadorDiv = document.getElementById('contador');
+
+        function renderizarCards(dados) {
+            grid.innerHTML = '';
+            dados.sort((a, b) => a.nome.localeCompare(b.nome)).forEach(emp => {
+                const card = document.createElement('a');
+                card.href = `empresa.html?id=${emp.id}`;
+                card.className = 'card';
+                card.innerHTML = `
+                    <img src="${emp.foto}" alt="Logo ${emp.nome}" class="card-img" onerror="this.src='https://via.placeholder.com/140?text=Sem+Logo'">
+                    <div class="card-info">
+                        <h3>${emp.nome}</h3>
+                        <p>${emp.setor}</p>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+            contadorDiv.innerText = `${dados.length} empresas encontradas`;
+        }
+
+        function filtrar() {
+            const termo = document.getElementById('busca').value.toLowerCase();
+            const filtradas = empresas.filter(emp => 
+                emp.nome.toLowerCase().includes(termo) || 
+                emp.setor.toLowerCase().includes(termo)
+            );
+            renderizarCards(filtradas);
+        }
+
+        renderizarCards(empresas);
+    </script>
+</body>
 </html>
