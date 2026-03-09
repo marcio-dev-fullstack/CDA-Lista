@@ -9,42 +9,75 @@
             --primary: #1a73e8;
             --bg: #f8f9fa;
             --text: #333;
+            --white: #ffffff;
         }
 
-        body { font-family: 'Segoe UI', sans-serif; background: var(--bg); color: var(--text); margin: 0; padding: 20px; display: flex; flex-direction: column; min-height: 100vh; }
-        .content { flex: 1; } /* Garante que o footer fique no fundo se tiver poucas empresas */
+        body { 
+            font-family: 'Segoe UI', sans-serif; 
+            background: var(--bg); 
+            color: var(--text); 
+            margin: 0; 
+            padding: 0; 
+            display: flex; 
+            flex-direction: column; 
+            min-height: 100vh; 
+        }
 
-        .header { text-align: center; max-width: 800px; margin: 0 auto 30px; }
+        .container { 
+            flex: 1; 
+            padding: 20px; 
+        }
+
+        .header { 
+            text-align: center; 
+            max-width: 800px; 
+            margin: 0 auto 30px; 
+        }
+
+        h1 { color: #222; margin-bottom: 5px; }
         
         #busca {
             width: 100%;
             max-width: 500px;
             padding: 15px;
             border: 2px solid #ddd;
-            border-radius: 25px;
+            border-radius: 30px;
             font-size: 16px;
             display: block;
-            margin: 10px auto;
+            margin: 20px auto;
             outline: none;
             transition: 0.3s;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
         }
-        #busca:focus { border-color: var(--primary); box-shadow: 0 0 8px rgba(26,115,232,0.2); }
 
+        #busca:focus { 
+            border-color: var(--primary); 
+            box-shadow: 0 0 10px rgba(26,115,232,0.2); 
+        }
+
+        .contador { 
+            color: #888; 
+            font-weight: bold; 
+            font-size: 0.9em; 
+        }
+
+        /* Grid de Cards */
         .grid-empresas {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-            gap: 20px;
+            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+            gap: 25px;
             max-width: 1100px;
             margin: auto;
         }
 
+        /* Estilo do Card */
         .card {
-            background: white;
+            background: var(--white);
             border-radius: 15px;
             overflow: hidden;
             text-decoration: none;
             color: inherit;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
             transition: all 0.3s ease;
             border: 1px solid #eee;
             display: flex;
@@ -53,60 +86,106 @@
 
         .card:hover {
             transform: translateY(-8px);
-            box-shadow: 0 12px 24px rgba(0,0,0,0.12);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
             border-color: var(--primary);
         }
 
-        .card-img {
+        .card-img-container {
             width: 100%;
-            height: 140px;
-            object-fit: cover;
-            background: #f0f0f0;
+            height: 160px;
+            background: #fdfdfd;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 15px;
+            box-sizing: border-box;
+            border-bottom: 1px solid #f0f0f0;
         }
 
-        .card-info { padding: 15px; text-align: center; }
-        .card-info h3 { margin: 5px 0; color: var(--primary); font-size: 1.1em; }
-        .card-info p { margin: 2px 0; color: #777; font-size: 0.85em; }
+        .card-img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain; /* Mantém a logo inteira sem cortar */
+        }
 
-        .contador { color: #888; margin-bottom: 20px; font-weight: bold; }
+        .card-info { 
+            padding: 20px; 
+            text-align: center; 
+        }
+
+        .card-info h3 { 
+            margin: 0 0 8px 0; 
+            color: var(--primary); 
+            font-size: 1.2em; 
+        }
+
+        .card-info p { 
+            margin: 0; 
+            color: #666; 
+            font-size: 0.9em; 
+            font-weight: 500;
+        }
+
+        /* Rodapé */
+        footer {
+            margin-top: 50px;
+            padding: 40px 20px;
+            background: #222;
+            color: white;
+            text-align: center;
+            border-radius: 20px 20px 0 0;
+        }
+
+        footer a { 
+            color: var(--primary); 
+            text-decoration: none; 
+            font-weight: bold; 
+        }
+
+        .btn-whatsapp {
+            display: inline-block;
+            margin-top: 15px;
+            padding: 10px 20px;
+            background: #25d366;
+            color: white;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 0.9em;
+        }
     </style>
 </head>
 <body>
 
-    <div class="content">
+    <div class="container">
         <div class="header">
             <h1>Empresas CDA</h1>
-            <p class="contador" id="contador">0 empresas cadastradas</p>
-            <input type="text" id="busca" placeholder="🔍 Buscar por nome ou setor..." onkeyup="filtrar()">
+            <p class="contador" id="contador">Carregando...</p>
+            <input type="text" id="busca" placeholder="🔍 O que você procura? (Ex: Mazz, Educação...)" onkeyup="filtrar()">
         </div>
 
-        <div class="grid-empresas" id="lista-grid"></div>
+        <div class="grid-empresas" id="lista-grid">
+            </div>
     </div>
 
-    <footer style="
-        margin-top: 50px;
-        padding: 30px;
-        background: #333;
-        color: white;
-        text-align: center;
-        border-radius: 15px 15px 0 0;
-    ">
+    <footer>
         <p style="margin: 5px 0;"><strong>CDA Lista Comercial</strong></p>        
         <p style="font-size: 0.9em; color: #bbb;">
-            Desenvolvido por: <a href="https://razgo.com.br" target="_blank" style="color: #1a73e8; text-decoration: none; font-weight: bold;">RAZGO</a>
+            Desenvolvido por: <a href="https://raz.com.br" target="_blank">RAZGO</a>
         </p>
-        <div style="margin-top: 15px;">
-            <a href="https://wa.me/5562996466033" target="_blank" style="color: #25d366; text-decoration: none; font-weight: bold; margin: 0 10px;">
+        <div>
+            <a href="https://wa.me/5562996466033" target="_blank" class="btn-whatsapp">
                 WhatsApp Suporte
             </a>
         </div>        
-        <p style="margin-top: 20px; font-size: 0.8em; color: #888;">&copy; 2026 Todos os direitos reservados.</p>
+        <p style="margin-top: 20px; font-size: 0.8em; color: #777;">&copy; 2026 Todos os direitos reservados.</p>
     </footer>
 
     <script>
+        // BANCO DE DADOS DAS EMPRESAS
         const empresas = [
             { id: 'km-projetos', nome: 'KM PROJETOS', setor: 'Engenharia', foto: 'img/km.jpg' },
-            { id: 'mazz', nome: 'MAZZ', setor: 'Educação', foto: 'img/mazz.jpg' },
+            { id: 'mazz', nome: 'MAZZ', setor: 'Educação / Tecnologia', foto: 'img/01.png' }, // Usando o nome original do arquivo que você enviou
             { id: 'mr-treinamentos', nome: 'MR TREINAMENTOS', setor: 'Educação', foto: 'img/mr.jpg' },
             { id: 'razgo', nome: 'RAZGO', setor: 'Tecnologia', foto: 'img/razgo.jpg' }
         ];
@@ -116,12 +195,16 @@
 
         function renderizarCards(dados) {
             grid.innerHTML = '';
+            
+            // Ordenar por nome
             dados.sort((a, b) => a.nome.localeCompare(b.nome)).forEach(emp => {
                 const card = document.createElement('a');
                 card.href = `empresa.html?id=${emp.id}`;
                 card.className = 'card';
                 card.innerHTML = `
-                    <img src="${emp.foto}" alt="Logo ${emp.nome}" class="card-img" onerror="this.src='https://via.placeholder.com/140?text=Sem+Logo'">
+                    <div class="card-img-container">
+                        <img src="${emp.foto}" alt="Logo ${emp.nome}" class="card-img" onerror="this.src='https://via.placeholder.com/150?text=Logo+Indisponível'">
+                    </div>
                     <div class="card-info">
                         <h3>${emp.nome}</h3>
                         <p>${emp.setor}</p>
@@ -129,9 +212,11 @@
                 `;
                 grid.appendChild(card);
             });
+
             contadorDiv.innerText = `${dados.length} empresas encontradas`;
         }
 
+        // Função de Busca Inteligente
         function filtrar() {
             const termo = document.getElementById('busca').value.toLowerCase();
             const filtradas = empresas.filter(emp => 
@@ -141,6 +226,7 @@
             renderizarCards(filtradas);
         }
 
+        // Inicialização
         renderizarCards(empresas);
     </script>
 </body>
