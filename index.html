@@ -15,8 +15,29 @@
 
         body { font-family: 'Segoe UI', Arial, sans-serif; background-color: var(--bg); margin: 0; padding: 20px; }
         .container { max-width: 1200px; margin: auto; }
-        header { text-align: center; margin-bottom: 40px; }
-        h1 { color: var(--primary); }
+        
+        header { text-align: center; margin-bottom: 20px; }
+        h1 { color: var(--primary); margin-bottom: 10px; }
+
+        /* Estilo da Barra de Busca */
+        .busca-container {
+            max-width: 600px;
+            margin: 0 auto 40px auto;
+            position: relative;
+        }
+
+        #inputBusca {
+            width: 100%;
+            padding: 15px 20px;
+            font-size: 1.1em;
+            border: 2px solid #ddd;
+            border-radius: 30px;
+            outline: none;
+            transition: 0.3s;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+
+        #inputBusca:focus { border-color: var(--accent); box-shadow: 0 4px 12px rgba(52, 152, 219, 0.2); }
 
         .grid-empresas {
             display: grid;
@@ -76,6 +97,10 @@
         <h1>Guia de Empresas - Conceição do Araguaia</h1>
     </header>
 
+    <div class="busca-container">
+        <input type="text" id="inputBusca" placeholder="🔍 Buscar por nome ou ramo (ex: tecnologia)..." onkeyup="filtrarEmpresas()">
+    </div>
+
     <div class="grid-empresas" id="lista-empresas"></div>
 
     <footer>
@@ -109,31 +134,47 @@
         {n: "Peixaria do Araguaia", r: "Alimentos", e: "Mercado Municipal", t: "(94) 991**-****"},
         {n: "Pesqueiro Real", r: "Lazer", e: "Beira Rio", t: "(94) 991**-****"},
         {n: "Supermercado Econômico", r: "Varejo", e: "Bairro São Luiz", t: "(94) 991**-****"}
-        // ... (as outras empresas seguem a mesma lógica)
     ];
 
-    // Adiciona as 100 fictícias geradas anteriormente (Simulado)
-    for(let i=1; i<=100; i++) {
-        dados.push({n: `Empresa Exemplo ${i}`, r: "Comércio", e: "Conceição do Araguaia", t: "(94) 991**-****"});
+    // Gerar empresas fictícias para completar 200 itens
+    const ramos = ["Comércio", "Serviços", "Indústria", "Beleza", "Transporte"];
+    for(let i=1; i<=180; i++) {
+        dados.push({
+            n: `Empresa Exemplo ${i}`, 
+            r: ramos[Math.floor(Math.random() * ramos.length)], 
+            e: "Conceição do Araguaia", 
+            t: "(94) 991**-****"
+        });
     }
 
-    // Ordenar Alfabeticamente
     dados.sort((a, b) => a.n.localeCompare(b.n));
 
-    const grid = document.getElementById('lista-empresas');
-    dados.forEach(emp => {
-        // Logo automática baseada nas iniciais (Serviço gratuito DiceBear)
-        const logoUrl = `https://api.dicebear.com/7.x/initials/svg?seed=${encodeURIComponent(emp.n)}&backgroundColor=007bff,3498db,2c3e50&fontSize=40`;
-        
-        grid.innerHTML += `
-            <div class="card">
-                <div class="logo-box"><img src="${logoUrl}" alt="Logo"></div>
-                <div class="nome">${emp.n}</div>
-                <div class="ramo">${emp.r}</div>
-                <div class="info">📍 ${emp.e}</div>
-                <div class="info">📞 ${emp.t}</div>
-            </div>`;
-    });
+    function renderizar(lista) {
+        const grid = document.getElementById('lista-empresas');
+        grid.innerHTML = "";
+        lista.forEach(emp => {
+            const logoUrl = `https://api.dicebear.com/7.x/initials/svg?seed=${encodeURIComponent(emp.n)}&backgroundColor=007bff,3498db,2c3e50&fontSize=40`;
+            grid.innerHTML += `
+                <div class="card">
+                    <div class="logo-box"><img src="${logoUrl}" alt="Logo"></div>
+                    <div class="nome">${emp.n}</div>
+                    <div class="ramo">${emp.r}</div>
+                    <div class="info">📍 ${emp.e}</div>
+                    <div class="info">📞 ${emp.t}</div>
+                </div>`;
+        });
+    }
+
+    function filtrarEmpresas() {
+        const termo = document.getElementById('inputBusca').value.toLowerCase();
+        const filtrados = dados.filter(emp => 
+            emp.n.toLowerCase().includes(termo) || 
+            emp.r.toLowerCase().includes(termo)
+        );
+        renderizar(filtrados);
+    }
+
+    renderizar(dados);
 </script>
 </body>
 </html>
