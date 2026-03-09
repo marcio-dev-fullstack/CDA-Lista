@@ -3,165 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CDA-Lista | Guia de Empresas</title>
+    <title>CDA Lista - Empresas</title>
     <style>
-        :root {
-            --primary: #2c3e50;
-            --accent: #3498db;
-            --bg: #f4f7f6;
-            --card-bg: #ffffff;
-            --whatsapp-color: #25d366;
-        }
-
-        body { font-family: 'Segoe UI', Arial, sans-serif; background-color: var(--bg); margin: 0; padding: 20px; }
-        .container { max-width: 1200px; margin: auto; }
-        
-        header { text-align: center; margin-bottom: 20px; }
-        h1 { color: var(--primary); margin-bottom: 5px; }
-        .slogan { font-style: italic; color: #7f8c8d; margin-bottom: 10px; font-size: 1.1em; }
-        .contador { font-weight: bold; color: var(--accent); margin-bottom: 25px; font-size: 0.9em; text-transform: uppercase; }
-
-        .busca-container { max-width: 600px; margin: 0 auto 40px auto; }
-        #inputBusca {
-            width: 100%; padding: 15px 20px; font-size: 1.1em; border: 2px solid #ddd;
-            border-radius: 30px; outline: none; transition: 0.3s; box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-        }
-        #inputBusca:focus { border-color: var(--accent); }
-
-        .grid-empresas {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 20px;
-        }
-
-        .card {
-            background: var(--card-bg); border-radius: 10px; padding: 20px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.05); display: flex;
-            flex-direction: column; align-items: center; text-align: center; transition: 0.3s;
-        }
-        .card:hover { transform: translateY(-5px); box-shadow: 0 8px 15px rgba(0,0,0,0.1); }
-
-        .logo-box {
-            width: 75px; height: 75px; border-radius: 50%; display: flex;
-            align-items: center; justify-content: center; margin-bottom: 15px;
-            overflow: hidden; border: 2px solid #fff; box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-        }
-        .logo-box img { width: 100%; height: 100%; object-fit: cover; }
-
-        .nome { font-weight: bold; font-size: 1.1em; color: var(--primary); margin-bottom: 5px; text-transform: uppercase; }
-        .ramo { color: var(--accent); font-size: 0.9em; font-weight: bold; margin-bottom: 10px; }
-        .info { font-size: 0.85em; color: #666; margin: 2px 0; }
-        
-        .zap-link {
-            color: var(--whatsapp-color); text-decoration: none; font-weight: bold;
-            display: flex; align-items: center; gap: 5px; margin-top: 10px;
-            padding: 5px 10px; border: 1px solid var(--whatsapp-color); border-radius: 5px; transition: 0.3s;
-        }
-        .zap-link:hover { background: var(--whatsapp-color); color: #fff; }
-
-        .btn-whatsapp-float {
-            position: fixed; width: 60px; height: 60px; bottom: 40px; right: 40px;
-            background-color: var(--whatsapp-color); color: #FFF; border-radius: 50px;
-            text-align: center; font-size: 30px; box-shadow: 2px 2px 3px #999;
-            z-index: 1000; display: flex; align-items: center; justify-content: center;
-        }
-
-        /* Estilo do Rodapé em uma linha */
-        footer { 
-            margin-top: 50px; text-align: center; padding: 30px; 
-            border-top: 1px solid #ddd; color: #666; font-size: 0.95em; 
-        }
-        footer p { margin: 5px 0; }
-        footer a { color: var(--accent); text-decoration: none; font-weight: bold; }
-        .footer-info { color: #888; font-size: 0.9em; }
+        body { font-family: Arial, sans-serif; padding: 20px; line-height: 1.6; }
+        h1 { color: #1a73e8; }
+        ul { list-style: none; padding: 0; }
+        li { margin-bottom: 10px; border-bottom: 1px solid #eee; padding-bottom: 5px; }
+        a { text-decoration: none; color: #333; font-weight: bold; font-size: 1.2em; }
+        a:hover { color: #1a73e8; }
     </style>
 </head>
 <body>
-
-<div class="container">
-    <header>
-        <h1>Guia de Empresas - Conceição do Araguaia</h1>
-        <div class="slogan">Conectando o comércio local ao cidadão araguaiense.</div>
-        <div class="contador" id="txtContador">Carregando empresas...</div>
-    </header>
-
-    <div class="busca-container">
-        <input type="text" id="inputBusca" placeholder="🔍 Buscar por nome ou ramo..." onkeyup="filtrarEmpresas()">
-    </div>
-
-    <div class="grid-empresas" id="lista-empresas"></div>
-
-    <footer>
-        <p>© 2026 CDA-Lista <br> Desenvolvido por: <a href="https://razgo.com.br/" target="_blank">RAZGO</a></p>
-        <p class="footer-info">
-            Contato: <a href="https://wa.me/5562996466033" style="color: #25d366;">(62) 99646-6033</a> <br> Conceição do Araguaia - PA
-        </p>
-    </footer>
-</div>
-
-<a href="https://wa.me/5594992500073" class="btn-whatsapp-float" target="_blank">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" width="35" alt="Zap">
-</a>
-
-<script>
-    const dadosCompletos = [
-        {n: "RAZGO", r: "Tecnologia", e: "Centro", t: "94992500073", f: "(94) 99250-0073"},
-        {n: "MAZZ", r: "Educação", e: "Centro", t: "62996466033", f: "(62) 99646-6033"},
-        {n: "MR TREINAMENTOS", r: "Educação", e: "Centro", t: "62996466033", f: "(62) 99646-6033"},
-        {n: "KM PROJETOS", r: "Engenharia", e: "Vila Cruzeiro", t: "94992500073", f: "(94) 99250-0073"},
-        {n: "Academia Força Viva", r: "Fitness", e: "Av. Frei Gil", t: "94991000000", f: "(94) 991**-****"},
-        {n: "AgroForte Araguaia", r: "Agronegócio", e: "Av. J.K", t: "94991000000", f: "(94) 991**-****"},
-        {n: "Construa CDA", r: "Engenharia", e: "Av. Magalhães Barata", t: "94991000000", f: "(94) 991**-****"}
-    ];
-
-    const ramos = ["Comércio", "Serviços", "Indústria", "Alimentos", "Saúde"];
-    for(let i = 1; i <= 193; i++) {
-        dadosCompletos.push({
-            n: `Empresa Parceira ${i}`, 
-            r: ramos[Math.floor(Math.random() * ramos.length)], 
-            e: "Conceição do Araguaia - PA", 
-            t: "94991000000", 
-            f: "(94) 991**-****"
-        });
-    }
-
-    dadosCompletos.sort((a, b) => a.n.localeCompare(b.n));
-
-    const coresHex = ["2ecc71", "e67e22", "9b59b6", "e74c3c", "1abc9c", "34495e", "f1c40f", "d35400", "27ae60", "2980b9"];
-
-    function renderizar(lista) {
-        const grid = document.getElementById('lista-empresas');
-        const txtContador = document.getElementById('txtContador');
-        grid.innerHTML = "";
-        txtContador.innerText = `${lista.length} empresas cadastradas`;
-
-        lista.forEach(emp => {
-            const cor = coresHex[Math.floor(Math.random() * coresHex.length)];
-            const logoUrl = `https://api.dicebear.com/7.x/initials/svg?seed=${encodeURIComponent(emp.n)}&backgroundColor=${cor}&fontFamily=Arial&fontWeight=700&fontColor=ffffff`;
-            
-            grid.innerHTML += `
-                <div class="card">
-                    <div class="logo-box"><img src="${logoUrl}" alt="Logo"></div>
-                    <div class="nome">${emp.n}</div>
-                    <div class="ramo">${emp.r}</div>
-                    <div class="info">📍 ${emp.e}</div>
-                    <a href="https://wa.me/55${emp.t}" class="zap-link" target="_blank">
-                        📞 ${emp.f}
-                    </a>
-                </div>`;
-        });
-    }
-
-    function filtrarEmpresas() {
-        const termo = document.getElementById('inputBusca').value.toLowerCase();
-        const filtrados = dadosCompletos.filter(emp => 
-            emp.n.toLowerCase().includes(termo) || 
-            emp.r.toLowerCase().includes(termo)
-        );
-        renderizar(filtrados);
-    }
-
-    renderizar(dadosCompletos);
-</script>
+    <h1>Lista de Empresas</h1>
+    <ul>
+        <li><a href="km-projetos.html">KM PROJETOS</a></li>
+        <li><a href="mazz.html">MAZZ</a></li>
+        <li><a href="mr-treinamentos.html">MR TREINAMENTOS</a></li>
+        <li><a href="razgo.html">RAZGO</a></li>
+    </ul>
 </body>
 </html>
