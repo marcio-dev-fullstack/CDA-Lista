@@ -52,19 +52,10 @@
         .ramo { color: var(--accent); font-size: 0.9em; font-weight: bold; margin-bottom: 10px; }
         .info { font-size: 0.85em; color: #666; margin: 2px 0; }
         
-        /* Estilo do link de telefone/whatsapp */
         .zap-link {
-            color: var(--whatsapp-color);
-            text-decoration: none;
-            font-weight: bold;
-            display: flex;
-            align-items: center;
-            gap: 5px;
-            margin-top: 10px;
-            padding: 5px 10px;
-            border: 1px solid var(--whatsapp-color);
-            border-radius: 5px;
-            transition: 0.3s;
+            color: var(--whatsapp-color); text-decoration: none; font-weight: bold;
+            display: flex; align-items: center; gap: 5px; margin-top: 10px;
+            padding: 5px 10px; border: 1px solid var(--whatsapp-color); border-radius: 5px; transition: 0.3s;
         }
         .zap-link:hover { background: var(--whatsapp-color); color: #fff; }
 
@@ -75,8 +66,14 @@
             z-index: 1000; display: flex; align-items: center; justify-content: center;
         }
 
-        footer { margin-top: 50px; text-align: center; padding: 30px; border-top: 1px solid #ddd; color: #666; font-size: 0.95em; line-height: 1.6; }
+        /* Estilo do Rodapé em uma linha */
+        footer { 
+            margin-top: 50px; text-align: center; padding: 30px; 
+            border-top: 1px solid #ddd; color: #666; font-size: 0.95em; 
+        }
+        footer p { margin: 5px 0; }
         footer a { color: var(--accent); text-decoration: none; font-weight: bold; }
+        .footer-info { color: #888; font-size: 0.9em; }
     </style>
 </head>
 <body>
@@ -96,8 +93,9 @@
 
     <footer>
         <p>© 2026 CDA-Lista - Desenvolvido por: <a href="https://razgo.com.br/" target="_blank">RAZGO</a></p>
-        <p>Conceição do Araguaia - PA</p>
-        <p><strong>Contato:</strong> (94) 99250-0073</p>
+        <p class="footer-info">
+            Contato: <a href="https://wa.me/5594992500073" style="color: #25d366;">(94) 99250-0073</a> | Conceição do Araguaia - PA
+        </p>
     </footer>
 </div>
 
@@ -106,8 +104,7 @@
 </a>
 
 <script>
-    // 1. Dados das Empresas (Corrigido para usar o formato 94991...)
-    const empresasPrincipais = [
+    const dadosCompletos = [
         {n: "RAZGO", r: "Tecnologia", e: "Centro", t: "94992500073", f: "(94) 99250-0073"},
         {n: "MAZZ", r: "Educação", e: "Centro", t: "62996466033", f: "(62) 99646-6033"},
         {n: "MR TREINAMENTOS", r: "Educação", e: "Centro", t: "62996466033", f: "(62) 99646-6033"},
@@ -118,9 +115,6 @@
     ];
 
     const ramos = ["Comércio", "Serviços", "Indústria", "Alimentos", "Saúde"];
-    const dadosCompletos = [...empresasPrincipais];
-
-    // Gerar até completar 200 empresas
     for(let i = 1; i <= 193; i++) {
         dadosCompletos.push({
             n: `Empresa Parceira ${i}`, 
