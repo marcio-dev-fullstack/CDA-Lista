@@ -25,10 +25,38 @@
     <script>
         // Banco de dados das empresas atualizado com o campo 'site'
         const dadosEmpresas = {
-            "km-projetos": { nome: "KM Projetos de Engenharia", ramo: "Engenharia", local: "Vila Cruzeiro", tel: "(94) 99250-0073", foto: "img/km.jpg", site: "" },
-            "mazz": { nome: "MAZZ", ramo: "Educação", local: "Centro", tel: "(62) 99646-6033", foto: "img/01.png", site: "https://raz.com.br" },
-            "mr-treinamentos": { nome: "MR Treinamentos", ramo: "Educação", local: "Centro", tel: "(62) 99646-6033", foto: "img/mr.jpg", site: "" },
-            "razgo": { nome: "RAZGO", ramo: "Tecnologia", local: "Centro", tel: "(62) 99646-6033", foto: "img/razgo.jpg", site: "https://raz.com.br" }
+            "km-projetos": { 
+                nome: "KM Projetos de Engenharia", 
+                ramo: "Engenharia", 
+                local: "Vila Cruzeiro", 
+                tel: "(94) 99250-0073", 
+                foto: "img/km.jpg", 
+                site: "https://kmprojetos.eng.br" // Adicione o site real aqui se houver
+            },
+            "mazz": { 
+                nome: "MAZZ", 
+                ramo: "Educação / Tecnologia", 
+                local: "Centro", 
+                tel: "(62) 99646-6033", 
+                foto: "img/01.png", 
+                site: "https://mazz.net.br" 
+            },
+            "mr-treinamentos": { 
+                nome: "MR Treinamentos", 
+                ramo: "Educação", 
+                local: "Centro", 
+                tel: "(62) 99646-6033", 
+                foto: "img/mr.jpg", 
+                site: "https://mrtreinamentos.online" 
+            },
+            "razgo": { 
+                nome: "RAZGO", 
+                ramo: "Tecnologia", 
+                local: "Centro", 
+                tel: "(62) 99646-6033", 
+                foto: "img/razgo.jpg", 
+                site: "https://razgo.com.br" 
+            }
         };
 
         const urlParams = new URLSearchParams(window.location.search);
