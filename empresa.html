@@ -7,10 +7,13 @@
     <style>
         body { font-family: 'Segoe UI', sans-serif; display: flex; justify-content: center; padding: 20px; background: #f4f4f9; }
         .card { background: white; padding: 30px; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.1); max-width: 400px; width: 100%; text-align: center; }
-        img { width: 100%; height: 200px; object-fit: cover; border-radius: 8px; margin-bottom: 20px; background: #eee; }
+        img { width: 100%; height: 200px; object-fit: contain; border-radius: 8px; margin-bottom: 20px; background: #fdfdfd; padding: 10px; }
         h2 { margin: 10px 0; color: #333; }
         p { color: #666; margin: 5px 0; font-size: 1.1em; }
-        .btn-voltar { display: inline-block; margin-top: 20px; text-decoration: none; color: #1a73e8; font-weight: bold; }
+        .link-site { color: #1a73e8; text-decoration: none; font-weight: bold; }
+        .link-site:hover { text-decoration: underline; }
+        .btn-voltar { display: inline-block; margin-top: 20px; text-decoration: none; color: #1a73e8; font-weight: bold; border: 1px solid #1a73e8; padding: 8px 15px; border-radius: 20px; transition: 0.3s; }
+        .btn-voltar:hover { background: #1a73e8; color: white; }
     </style>
 </head>
 <body>
@@ -20,15 +23,14 @@
     </div>
 
     <script>
-        // Banco de dados das empresas
+        // Banco de dados das empresas atualizado com o campo 'site'
         const dadosEmpresas = {
-            "km-projetos": { nome: "KM PROJETOS", ramo: "Engenharia", local: "Vila Cruzeiro", tel: "(94) 99250-0073", foto: "img/km.jpg" },
-            "mazz": { nome: "MAZZ", ramo: "Educação", local: "Centro", tel: "(62) 99646-6033", foto: "img/mazz.jpg" },
-            "mr-treinamentos": { nome: "MR TREINAMENTOS", ramo: "Educação", local: "Centro", tel: "(62) 99646-6033", foto: "img/mr.jpg" },
-            "razgo": { nome: "RAZGO", ramo: "Tecnologia", local: "Centro", tel: "(62) 99646-6033", foto: "img/razgo.jpg" }
+            "km-projetos": { nome: "KM Projetos de Engenharia", ramo: "Engenharia", local: "Vila Cruzeiro", tel: "(94) 99250-0073", foto: "img/km.jpg", site: "" },
+            "mazz": { nome: "MAZZ", ramo: "Educação", local: "Centro", tel: "(62) 99646-6033", foto: "img/01.png", site: "https://raz.com.br" },
+            "mr-treinamentos": { nome: "MR Treinamentos", ramo: "Educação", local: "Centro", tel: "(62) 99646-6033", foto: "img/mr.jpg", site: "" },
+            "razgo": { nome: "RAZGO", ramo: "Tecnologia", local: "Centro", tel: "(62) 99646-6033", foto: "img/razgo.jpg", site: "https://raz.com.br" }
         };
 
-        // Pega o ID da URL
         const urlParams = new URLSearchParams(window.location.search);
         const id = urlParams.get('id');
         const empresa = dadosEmpresas[id];
@@ -36,16 +38,21 @@
         const container = document.getElementById('conteudo');
 
         if (empresa) {
+            // Verifica se existe um site cadastrado para exibir o link
+            const linkSite = empresa.site ? `<p>🌐 Site: <a href="${empresa.site}" target="_blank" class="link-site">${empresa.site.replace('https://', '')}</a></p>` : '';
+
             container.innerHTML = `
-                <img src="${empresa.foto}" alt="Logo ${empresa.nome}">
+                <img src="${empresa.foto}" alt="Logo ${empresa.nome}" onerror="this.src='https://via.placeholder.com/200?text=Logo'">
                 <h2>${empresa.nome}</h2>
                 <p><strong>Setor:</strong> ${empresa.ramo}</p>
                 <p>📍 ${empresa.local}</p>
                 <p>📞 ${empresa.tel}</p>
+                ${linkSite}
+                <br>
                 <a href="index.html" class="btn-voltar">← Voltar para a lista</a>
             `;
         } else {
-            container.innerHTML = "<h2>Empresa não encontrada</h2><a href='index.html'>Voltar</a>";
+            container.innerHTML = "<h2>Empresa não encontrada</h2><a href='index.html' class='btn-voltar'>Voltar</a>";
         }
     </script>
 </body>
