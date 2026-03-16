@@ -5,7 +5,6 @@ const modal = document.getElementById('modalDetalhes');
 const conteudoModal = document.getElementById('conteudoEmpresa');
 const btnFechar = document.getElementById('btnFechar');
 
-// 1. Buscar dados no JSON
 async function carregar() {
     try {
         const res = await fetch('dados.json');
@@ -16,7 +15,6 @@ async function carregar() {
     }
 }
 
-// 2. Criar os cards na tela
 function renderizar(dados) {
     if (dados.length === 0) {
         listaPrincipal.innerHTML = "<p>Nenhuma empresa encontrada.</p>";
@@ -32,7 +30,6 @@ function renderizar(dados) {
     `).join('');
 }
 
-// 3. Sistema de Filtro
 function filtrar() {
     const termo = document.getElementById('inputBusca').value.toLowerCase();
     const filtrados = empresas.filter(e => 
@@ -42,7 +39,6 @@ function filtrar() {
     renderizar(filtrados);
 }
 
-// 4. Modal
 function abrirModal(id) {
     const e = empresas.find(item => item.id == id);
     if (!e) return;
@@ -62,9 +58,7 @@ function abrirModal(id) {
 
 function fecharModal() { modal.style.display = 'none'; }
 
-// Fechar eventos
 btnFechar.onclick = fecharModal;
 window.onclick = (event) => { if (event.target == modal) fecharModal(); };
 
-// Iniciar
 carregar();

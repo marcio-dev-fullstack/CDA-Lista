@@ -32,7 +32,7 @@ header {
 }
 
 /* Grid e Cards */
-.grid-empresas {
+.grid-container {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
     gap: 20px;
@@ -69,10 +69,9 @@ header {
     padding: 30px;
     border-radius: 20px;
     position: relative;
-    animation: zoomIn 0.3s ease;
+    max-height: 90vh;
+    overflow-y: auto;
 }
-
-@keyframes zoomIn { from { opacity:0; transform: scale(0.9); } to { opacity:1; transform: scale(1); } }
 
 .btn-fechar { position: absolute; top: 15px; right: 20px; font-size: 30px; cursor: pointer; color: #64748b; }
 
