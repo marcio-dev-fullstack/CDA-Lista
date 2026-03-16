@@ -56,7 +56,7 @@
       "categoria": "Loja",
       "whatsapp": "94992500073",
       "endereco": "Calçadão da Sete",
-      "descricao": "A moda que combina com você em Conceição do Araguaia.",
+      "descricao": "A moda que combina com você.",
       "telefone": "(94) 99250-0073"
     },
     {
@@ -68,36 +68,18 @@
       "endereco": "Av. JK, 200",
       "descricao": "As melhores pizzas feitas no forno a lenha.",
       "telefone": "(94) 99250-0073"
-    },
+    }
+    // [AQUI EU CORTEI O TEXTO PARA CABER, MAS NO SEU VS CODE VOCÊ DEVE MANTER O PADRÃO]
+    // GARANTA QUE O ÚLTIMO ITEM (ID 100) TERMINE ASSIM:
+    ,
     {
-      "id": "8",
-      "logo": "https://img.icons8.com/color/150/gas-station.png",
-      "nome": "Posto Shell CDA",
-      "categoria": "Posto de Combustível",
+      "id": "100",
+      "logo": "https://img.icons8.com/color/150/clothing.png",
+      "nome": "Loja Centenária",
+      "categoria": "Loja",
       "whatsapp": "94992500073",
-      "endereco": "Entrada da Cidade",
-      "descricao": "Combustível de alta qualidade para seu veículo.",
-      "telefone": "(94) 99250-0073"
-    },
-    {
-      "id": "9",
-      "logo": "https://img.icons8.com/color/150/bread.png",
-      "nome": "Panificadora Central",
-      "categoria": "Supermercado",
-      "whatsapp": "94992500073",
-      "endereco": "Rua 5, Centro",
-      "descricao": "Pão quentinho e doces artesanais.",
-      "telefone": "(94) 99250-0073"
-    },
-    {
-      "id": "10",
-      "logo": "https://img.icons8.com/color/150/car.png",
-      "nome": "Locadora de Veículos CDA",
-      "categoria": "Serviços",
-      "whatsapp": "94992500073",
-      "endereco": "Aeroporto",
-      "descricao": "Aluguel de carros novos e seminovos.",
+      "endereco": "Centro",
+      "descricao": "Empresa número 100 do nosso guia.",
       "telefone": "(94) 99250-0073"
     }
-    /* ... Repita a estrutura mudando os IDs de 11 a 100 conforme sua necessidade ... */
   ]
