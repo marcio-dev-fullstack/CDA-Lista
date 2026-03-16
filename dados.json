@@ -1,85 +1,102 @@
 [
-    {
-      "id": "1",
-      "logo": "https://img.icons8.com/color/150/restaurant.png",
-      "nome": "Restaurante Sabor do Araguaia",
-      "categoria": "Restaurante",
-      "whatsapp": "94992500073",
-      "endereco": "Av. Araguaia, 100 - Centro",
-      "descricao": "O melhor da culinária regional de Conceição do Araguaia.",
-      "telefone": "(94) 99250-0073"
-    },
-    {
-      "id": "2",
-      "logo": "https://img.icons8.com/color/150/hotel.png",
-      "nome": "Hotel Beira Rio Palace",
-      "categoria": "Hotel",
-      "whatsapp": "94992500073",
-      "endereco": "Rua da Frente, Orla de CDA",
-      "descricao": "Conforto e vista privilegiada para o Rio Araguaia.",
-      "telefone": "(94) 99250-0073"
-    },
-    {
-      "id": "3",
-      "logo": "https://img.icons8.com/color/150/shopping-cart.png",
-      "nome": "Supermercado Econômico",
-      "categoria": "Supermercado",
-      "whatsapp": "94992500073",
-      "endereco": "Av. JK, Vila Cruzeiro",
-      "descricao": "Onde seu dinheiro rende mais em CDA.",
-      "telefone": "(94) 99250-0073"
-    },
-    {
-      "id": "4",
-      "logo": "https://img.icons8.com/color/150/pill.png",
-      "nome": "Farmácia Vida",
-      "categoria": "Farmácia",
-      "whatsapp": "94992500073",
-      "endereco": "Rua 10, Centro",
-      "descricao": "Atendimento humanizado e entrega rápida.",
-      "telefone": "(94) 99250-0073"
-    },
-    {
-      "id": "5",
-      "logo": "https://img.icons8.com/color/150/mechanic.png",
-      "nome": "Oficina do João Mecânico",
-      "categoria": "Oficina",
-      "whatsapp": "94992500073",
-      "endereco": "Setor Industrial",
-      "descricao": "Especialista em motores e suspensão.",
-      "telefone": "(94) 99250-0073"
-    },
-    {
-      "id": "6",
-      "logo": "https://img.icons8.com/color/150/clothing.png",
-      "nome": "Boutique Estilo CDA",
-      "categoria": "Loja",
-      "whatsapp": "94992500073",
-      "endereco": "Calçadão da Sete",
-      "descricao": "A moda que combina com você.",
-      "telefone": "(94) 99250-0073"
-    },
-    {
-      "id": "7",
-      "logo": "https://img.icons8.com/color/150/pizza.png",
-      "nome": "Pizzaria Napolitana",
-      "categoria": "Restaurante",
-      "whatsapp": "94992500073",
-      "endereco": "Av. JK, 200",
-      "descricao": "As melhores pizzas feitas no forno a lenha.",
-      "telefone": "(94) 99250-0073"
-    }
-    // [AQUI EU CORTEI O TEXTO PARA CABER, MAS NO SEU VS CODE VOCÊ DEVE MANTER O PADRÃO]
-    // GARANTA QUE O ÚLTIMO ITEM (ID 100) TERMINE ASSIM:
-    ,
-    {
-      "id": "100",
-      "logo": "https://img.icons8.com/color/150/clothing.png",
-      "nome": "Loja Centenária",
-      "categoria": "Loja",
-      "whatsapp": "94992500073",
-      "endereco": "Centro",
-      "descricao": "Empresa número 100 do nosso guia.",
-      "telefone": "(94) 99250-0073"
-    }
-  ]
+  {
+    "id": "1",
+    "logo": "https://img.icons8.com/color/150/restaurant.png",
+    "nome": "Restaurante Sabor do Araguaia",
+    "categoria": "Restaurante",
+    "whatsapp": "94992500073",
+    "endereco": "Av. Araguaia, 100 - Centro",
+    "descricao": "O melhor da culinária regional.",
+    "telefone": "(94) 99250-0073"
+  },
+  {
+    "id": "2",
+    "logo": "https://img.icons8.com/color/150/hotel.png",
+    "nome": "Hotel Beira Rio Palace",
+    "categoria": "Hotel",
+    "whatsapp": "94992500073",
+    "endereco": "Rua da Frente, Orla",
+    "descricao": "Conforto e vista para o rio.",
+    "telefone": "(94) 99250-0073"
+  },
+  {
+    "id": "3",
+    "logo": "https://img.icons8.com/color/150/shopping-cart.png",
+    "nome": "Supermercado Econômico",
+    "categoria": "Supermercado",
+    "whatsapp": "94992500073",
+    "endereco": "Av. JK, Vila Cruzeiro",
+    "descricao": "Variedade e preço baixo.",
+    "telefone": "(94) 99250-0073"
+  },
+  {
+    "id": "4",
+    "logo": "https://img.icons8.com/color/150/pill.png",
+    "nome": "Farmácia Vida",
+    "categoria": "Farmácia",
+    "whatsapp": "94992500073",
+    "endereco": "Rua 10, Centro",
+    "descricao": "Saúde e bem-estar.",
+    "telefone": "(94) 99250-0073"
+  },
+  {
+    "id": "5",
+    "logo": "https://img.icons8.com/color/150/mechanic.png",
+    "nome": "Oficina do João",
+    "categoria": "Oficina",
+    "whatsapp": "94992500073",
+    "endereco": "Setor Industrial",
+    "descricao": "Mecânica em geral.",
+    "telefone": "(94) 99250-0073"
+  },
+  {
+    "id": "6",
+    "logo": "https://img.icons8.com/color/150/clothing.png",
+    "nome": "Boutique Estilo",
+    "categoria": "Loja",
+    "whatsapp": "94992500073",
+    "endereco": "Calçadão",
+    "descricao": "Moda masculina e feminina.",
+    "telefone": "(94) 99250-0073"
+  },
+  {
+    "id": "7",
+    "logo": "https://img.icons8.com/color/150/pizza.png",
+    "nome": "Pizzaria Napolitana",
+    "categoria": "Restaurante",
+    "whatsapp": "94992500073",
+    "endereco": "Centro",
+    "descricao": "Pizzas artesanais.",
+    "telefone": "(94) 99250-0073"
+  },
+  {
+    "id": "8",
+    "logo": "https://img.icons8.com/color/150/gas-station.png",
+    "nome": "Posto CDA",
+    "categoria": "Posto de Combustível",
+    "whatsapp": "94992500073",
+    "endereco": "Entrada da cidade",
+    "descricao": "Combustível de qualidade.",
+    "telefone": "(94) 99250-0073"
+  },
+  {
+    "id": "9",
+    "logo": "https://img.icons8.com/color/150/bread.png",
+    "nome": "Panificadora Central",
+    "categoria": "Supermercado",
+    "whatsapp": "94992500073",
+    "endereco": "Rua 5",
+    "descricao": "Pães e bolos.",
+    "telefone": "(94) 99250-0073"
+  },
+  {
+    "id": "10",
+    "logo": "https://img.icons8.com/color/150/car.png",
+    "nome": "Locadora CDA",
+    "categoria": "Serviços",
+    "whatsapp": "94992500073",
+    "endereco": "Aeroporto",
+    "descricao": "Aluguel de veículos.",
+    "telefone": "(94) 99250-0073"
+  }
+]
