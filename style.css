@@ -62,6 +62,180 @@ header h1 { font-size: 1.8rem; }
 .modal-box { 
     background: white; width: 90%; max-width: 450px; padding: 25px; 
     border-radius: 20px; position: relative; text-align: center;
+}/* --- VARIÁVEIS E BASE --- */
+:root {
+    --azul-escuro: #1e40af;
+    --azul-claro: #3b82f6;
+    --verde-zap: #25d366;
+    --dourado: #f59e0b;
+    --bg-cor: #f1f5f9;
+    --branco: #ffffff;
+}
+
+* { 
+    box-sizing: border-box; 
+    margin: 0; 
+    padding: 0; 
+    -webkit-tap-highlight-color: transparent; 
+}
+
+body { 
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; 
+    background: var(--bg-cor); 
+    color: #334155; 
+    overflow-x: hidden;
+}
+
+/* --- CABEÇALHO E LOGO --- */
+header { 
+    background: var(--azul-escuro); 
+    color: white; 
+    text-align: center; 
+    padding: 40px 20px; 
+}
+
+.logo-cabecalho {
+    max-width: 180px;
+    height: auto;
+    margin-bottom: 10px;
+}
+
+header h1 { font-size: 2rem; }
+header p { opacity: 0.9; font-size: 0.9rem; }
+
+.container { 
+    max-width: 1100px; 
+    margin: 0 auto; 
+    padding: 15px; 
+}
+
+/* --- BUSCA E ABAS --- */
+.busca-wrapper { margin: -25px auto 20px; width: 100%; max-width: 500px; }
+
+#inputBusca { 
+    width: 100%; 
+    padding: 16px 25px; 
+    border-radius: 50px; 
+    border: none; 
+    box-shadow: 0 8px 20px rgba(0,0,0,0.1); 
+    font-size: 16px; 
+    outline: none;
+}
+
+.categorias-nav {
+    display: flex;
+    gap: 10px;
+    overflow-x: auto;
+    padding: 10px 0 25px;
+    scrollbar-width: none;
+}
+.categorias-nav::-webkit-scrollbar { display: none; }
+
+.tab-btn {
+    background: var(--branco);
+    border: 2px solid var(--azul-claro);
+    color: var(--azul-escuro);
+    padding: 10px 20px;
+    border-radius: 50px;
+    cursor: pointer;
+    font-weight: bold;
+    white-space: nowrap;
+    transition: 0.3s;
+}
+
+.tab-btn.active { background: var(--azul-claro); color: white; }
+.tab-btn-fav { border-color: var(--dourado); color: var(--dourado); }
+.tab-btn-fav.active { background: var(--dourado); color: white; }
+
+/* --- GRID E CARDS --- */
+.grid-container {
+    display: grid;
+    grid-template-columns: 1fr; /* Mobile First */
+    gap: 20px;
+}
+
+@media (min-width: 600px) { .grid-container { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 1000px) { .grid-container { grid-template-columns: repeat(3, 1fr); } }
+
+.card { 
+    background: var(--branco); 
+    padding: 25px; 
+    border-radius: 20px; 
+    position: relative;
+    text-align: center; 
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    border-top: 5px solid var(--azul-claro);
+    transition: transform 0.3s;
+}
+.card:hover { transform: translateY(-5px); }
+
+.logo-card { width: 80px; height: 80px; object-fit: contain; margin-bottom: 15px; }
+
+/* Botão Favorito no Card */
+.fav-btn {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: none;
+    border: none;
+    font-size: 1.6rem;
+    cursor: pointer;
+    color: #cbd5e1;
+}
+.fav-btn.active { color: var(--dourado); }
+
+/* --- MODAL --- */
+.modal-overlay { 
+    display: none; 
+    position: fixed; 
+    top: 0; left: 0; width: 100%; height: 100%; 
+    background: rgba(0,0,0,0.85); 
+    z-index: 2000; 
+    align-items: center; justify-content: center;
+    backdrop-filter: blur(5px);
+}
+.modal-box { 
+    background: var(--branco); 
+    width: 90%; 
+    max-width: 480px; 
+    padding: 30px; 
+    border-radius: 25px; 
+    position: relative; 
+    text-align: center;
+}
+.btn-fechar { position: absolute; top: 15px; right: 20px; font-size: 35px; cursor: pointer; color: #94a3b8; }
+.link-whatsapp { 
+    display: block; 
+    background: var(--verde-zap); 
+    color: white; 
+    padding: 15px; 
+    border-radius: 15px; 
+    text-decoration: none; 
+    font-weight: bold; 
+    margin-top: 25px; 
+}
+
+/* --- WHATSAPP FLUTUANTE --- */
+.btn-zap-flutuante { 
+    position: fixed; width: 60px; height: 60px; bottom: 25px; right: 25px; 
+    background: var(--verde-zap); border-radius: 50%; display: flex; 
+    align-items: center; justify-content: center; z-index: 1001; 
+    animation: pulsar 2s infinite; 
+}
+@keyframes pulsar {
+    0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
+    70% { transform: scale(1.1); box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); }
+    100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+}
+.btn-zap-flutuante img { width: 35px; }
+
+/* --- RODAPÉ --- */
+footer { background: #0f172a; color: white; text-align: center; padding: 40px 15px; margin-top: 50px; }
+
+/* Animação Fade-in */
+@keyframes fadeInSuave {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
 }
 
 /* WhatsApp Flutuante Menor no Mobile */

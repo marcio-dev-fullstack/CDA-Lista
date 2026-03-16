@@ -3,18 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>CDA-Lista | Guia Comercial</title>
+    <title>CDA-Lista | Guia Comercial de Conceição do Araguaia</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+
     <header>
-        <h1>CDA-Lista</h1>
+        <img src="logo-cda.png" alt="CDA Lista" class="logo-cabecalho" onerror="this.style.display='none'">
+        <h1 id="titulo-fallback">CDA-Lista</h1>
         <p>O Guia Comercial de Conceição do Araguaia - PA</p>
     </header>
 
     <main class="container">
         <div class="busca-wrapper">
-            <input type="text" id="inputBusca" placeholder="Buscar por nome..." onkeyup="filtrar()">
+            <input type="text" id="inputBusca" placeholder="O que você procura em CDA?" onkeyup="filtrar()">
         </div>
 
         <div class="categorias-nav">
@@ -28,7 +30,8 @@
             <button class="tab-btn" onclick="filtrarPorCategoria('Hotel')">Hotéis</button>
         </div>
 
-        <div id="listaPrincipal" class="grid-container"></div>
+        <div id="listaPrincipal" class="grid-container">
+            </div>
     </main>
 
     <div id="modalDetalhes" class="modal-overlay">
@@ -38,13 +41,14 @@
         </div>
     </div>
 
-    <a href="https://wa.me/5594992500073" class="btn-zap-flutuante" target="_blank">
+    <a href="https://wa.me/5594992500073" class="btn-zap-flutuante" target="_blank" aria-label="Falar no WhatsApp">
         <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
     </a>
 
     <footer>
         <div class="container">
-            <p><strong>CDA Lista</strong> - Todos os direitos reservados</p>
+            <p><strong>CDA Lista</strong> - Conectando o comércio local</p>
+            <p>Conceição do Araguaia - PA</p>
             <p>📞 (94) 99250-0073</p>
         </div>
     </footer>
