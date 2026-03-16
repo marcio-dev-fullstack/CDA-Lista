@@ -3,29 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CDA-Lista | Guia Comercial</title>
+    <title>CDA-Lista | Guia Comercial de Conceição do Araguaia</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
     <header>
         <h1>CDA-Lista</h1>
-        <p>O Guia Comercial de Conceição do Araguaia - PA</p>
+        <p>Encontre o que precisa em Conceição do Araguaia - PA</p>
     </header>
 
     <main class="container">
-        <div class="busca-container">
-            <input type="text" id="inputBusca" placeholder="Buscar empresa ou serviço..." onkeyup="filtrarEmpresas()">
+        <div class="busca-wrapper">
+            <input type="text" id="inputBusca" placeholder="O que você procura? (Ex: Farmácia, Pizzaria...)" onkeyup="filtrar()">
         </div>
 
-        <div id="listaPrincipal" class="grid-container">
-            <p>Carregando empresas...</p>
+        <div id="listaPrincipal" class="grid-empresas">
+            <p class="aviso">Carregando empresas...</p>
         </div>
     </main>
 
     <div id="modalDetalhes" class="modal-overlay">
         <div class="modal-box">
-            <span class="fechar" id="btnFechar">&times;</span>
+            <span class="btn-fechar" id="btnFechar">&times;</span>
             <div id="conteudoEmpresa">
                 </div>
         </div>
