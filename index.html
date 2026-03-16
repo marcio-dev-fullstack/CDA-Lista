@@ -3,10 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CDA-Lista | Guia Comercial</title>
+    <title>CDA-Lista | Guia Comercial de Conceição do Araguaia</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+
     <header>
         <h1>CDA-Lista</h1>
         <p>O Guia Comercial de Conceição do Araguaia - PA</p>
@@ -19,23 +20,26 @@
 
         <div class="categorias-nav">
             <button class="tab-btn active" onclick="filtrarPorCategoria('Todas')">Todas</button>
+            <button class="tab-btn tab-btn-fav" onclick="mostrarFavoritos()">⭐ Favoritos</button>
             <button class="tab-btn" onclick="filtrarPorCategoria('Restaurante')">Restaurantes</button>
             <button class="tab-btn" onclick="filtrarPorCategoria('Hotel')">Hotéis</button>
             <button class="tab-btn" onclick="filtrarPorCategoria('Supermercado')">Mercados</button>
             <button class="tab-btn" onclick="filtrarPorCategoria('Farmácia')">Saúde</button>
         </div>
 
-        <div id="listaPrincipal" class="grid-container"></div>
+        <div id="listaPrincipal" class="grid-container">
+            </div>
     </main>
 
     <div id="modalDetalhes" class="modal-overlay">
         <div class="modal-box">
             <span class="btn-fechar" id="btnFechar">&times;</span>
-            <div id="conteudoEmpresa"></div>
+            <div id="conteudoEmpresa">
+                </div>
         </div>
     </div>
 
-    <a href="https://wa.me/5594992500073" class="btn-zap-flutuante" target="_blank">
+    <a href="https://wa.me/5594992500073" class="btn-zap-flutuante" target="_blank" title="Fale com o Administrador">
         <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
     </a>
 
