@@ -1,0 +1,103 @@
+[
+    {
+      "id": "1",
+      "logo": "https://img.icons8.com/color/150/restaurant.png",
+      "nome": "Restaurante Sabor do Araguaia",
+      "categoria": "Restaurante",
+      "whatsapp": "94992500073",
+      "endereco": "Av. Araguaia, 100 - Centro",
+      "descricao": "O melhor da culinária regional de Conceição do Araguaia.",
+      "telefone": "(94) 99250-0073"
+    },
+    {
+      "id": "2",
+      "logo": "https://img.icons8.com/color/150/hotel.png",
+      "nome": "Hotel Beira Rio Palace",
+      "categoria": "Hotel",
+      "whatsapp": "94992500073",
+      "endereco": "Rua da Frente, Orla de CDA",
+      "descricao": "Conforto e vista privilegiada para o Rio Araguaia.",
+      "telefone": "(94) 99250-0073"
+    },
+    {
+      "id": "3",
+      "logo": "https://img.icons8.com/color/150/shopping-cart.png",
+      "nome": "Supermercado Econômico",
+      "categoria": "Supermercado",
+      "whatsapp": "94992500073",
+      "endereco": "Av. JK, Vila Cruzeiro",
+      "descricao": "Onde seu dinheiro rende mais em CDA.",
+      "telefone": "(94) 99250-0073"
+    },
+    {
+      "id": "4",
+      "logo": "https://img.icons8.com/color/150/pill.png",
+      "nome": "Farmácia Vida",
+      "categoria": "Farmácia",
+      "whatsapp": "94992500073",
+      "endereco": "Rua 10, Centro",
+      "descricao": "Atendimento humanizado e entrega rápida.",
+      "telefone": "(94) 99250-0073"
+    },
+    {
+      "id": "5",
+      "logo": "https://img.icons8.com/color/150/mechanic.png",
+      "nome": "Oficina do João Mecânico",
+      "categoria": "Oficina",
+      "whatsapp": "94992500073",
+      "endereco": "Setor Industrial",
+      "descricao": "Especialista em motores e suspensão.",
+      "telefone": "(94) 99250-0073"
+    },
+    {
+      "id": "6",
+      "logo": "https://img.icons8.com/color/150/clothing.png",
+      "nome": "Boutique Estilo CDA",
+      "categoria": "Loja",
+      "whatsapp": "94992500073",
+      "endereco": "Calçadão da Sete",
+      "descricao": "A moda que combina com você em Conceição do Araguaia.",
+      "telefone": "(94) 99250-0073"
+    },
+    {
+      "id": "7",
+      "logo": "https://img.icons8.com/color/150/pizza.png",
+      "nome": "Pizzaria Napolitana",
+      "categoria": "Restaurante",
+      "whatsapp": "94992500073",
+      "endereco": "Av. JK, 200",
+      "descricao": "As melhores pizzas feitas no forno a lenha.",
+      "telefone": "(94) 99250-0073"
+    },
+    {
+      "id": "8",
+      "logo": "https://img.icons8.com/color/150/gas-station.png",
+      "nome": "Posto Shell CDA",
+      "categoria": "Posto de Combustível",
+      "whatsapp": "94992500073",
+      "endereco": "Entrada da Cidade",
+      "descricao": "Combustível de alta qualidade para seu veículo.",
+      "telefone": "(94) 99250-0073"
+    },
+    {
+      "id": "9",
+      "logo": "https://img.icons8.com/color/150/bread.png",
+      "nome": "Panificadora Central",
+      "categoria": "Supermercado",
+      "whatsapp": "94992500073",
+      "endereco": "Rua 5, Centro",
+      "descricao": "Pão quentinho e doces artesanais.",
+      "telefone": "(94) 99250-0073"
+    },
+    {
+      "id": "10",
+      "logo": "https://img.icons8.com/color/150/car.png",
+      "nome": "Locadora de Veículos CDA",
+      "categoria": "Serviços",
+      "whatsapp": "94992500073",
+      "endereco": "Aeroporto",
+      "descricao": "Aluguel de carros novos e seminovos.",
+      "telefone": "(94) 99250-0073"
+    }
+    /* ... Repita a estrutura mudando os IDs de 11 a 100 conforme sua necessidade ... */
+  ]
