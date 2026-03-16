@@ -10,17 +10,24 @@
 
     <header>
         <h1>CDA-Lista</h1>
-        <p>Conceição do Araguaia - PA</p>
+        <p>O Guia Comercial de Conceição do Araguaia - PA</p>
     </header>
 
-    <main id="listaPrincipal" class="grid-container">
-        <p class="loading">Carregando empresas...</p>
+    <main class="container">
+        <div class="busca-container">
+            <input type="text" id="inputBusca" placeholder="Buscar empresa ou serviço..." onkeyup="filtrarEmpresas()">
+        </div>
+
+        <div id="listaPrincipal" class="grid-container">
+            <p>Carregando empresas...</p>
+        </div>
     </main>
 
     <div id="modalDetalhes" class="modal-overlay">
         <div class="modal-box">
             <span class="fechar" id="btnFechar">&times;</span>
-            <div id="conteudoEmpresa"></div>
+            <div id="conteudoEmpresa">
+                </div>
         </div>
     </div>
 
