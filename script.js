@@ -1,60 +1,60 @@
-let database = [];
+let empresas = [];
 
 const listaPrincipal = document.getElementById('listaPrincipal');
 const modal = document.getElementById('modalDetalhes');
 const conteudoModal = document.getElementById('conteudoEmpresa');
 const btnFechar = document.getElementById('btnFechar');
 
-// 1. Carregar os dados
-async function carregarDados() {
+// 1. Buscar dados no JSON
+async function carregar() {
     try {
-        const resposta = await fetch('dados.json');
-        database = await resposta.json();
-        renderizar(database);
+        const res = await fetch('dados.json');
+        empresas = await res.json();
+        renderizar(empresas);
     } catch (err) {
-        listaPrincipal.innerHTML = "<p>Erro ao conectar com a base de dados.</p>";
+        listaPrincipal.innerHTML = "<p>Erro ao carregar a base de dados.</p>";
     }
 }
 
-// 2. Renderizar a lista (cards)
-function renderizar(lista) {
-    if (lista.length === 0) {
+// 2. Criar os cards na tela
+function renderizar(dados) {
+    if (dados.length === 0) {
         listaPrincipal.innerHTML = "<p>Nenhuma empresa encontrada.</p>";
         return;
     }
 
-    listaPrincipal.innerHTML = lista.map(emp => `
-        <div class="card" onclick="abrirDetalhes('${emp.id}')">
+    listaPrincipal.innerHTML = dados.map(emp => `
+        <div class="card" onclick="abrirModal('${emp.id}')">
             <h3>${emp.nome}</h3>
-            <p><strong>Categoria:</strong> ${emp.categoria || 'Comércio'}</p>
+            <p><strong>Setor:</strong> ${emp.categoria || 'Geral'}</p>
             <p>📍 ${emp.endereco || 'C. Araguaia - PA'}</p>
         </div>
     `).join('');
 }
 
-// 3. Sistema de Busca
+// 3. Sistema de Filtro
 function filtrar() {
     const termo = document.getElementById('inputBusca').value.toLowerCase();
-    const filtrados = database.filter(item => 
-        item.nome.toLowerCase().includes(termo) || 
-        item.categoria.toLowerCase().includes(termo)
+    const filtrados = empresas.filter(e => 
+        e.nome.toLowerCase().includes(termo) || 
+        (e.categoria && e.categoria.toLowerCase().includes(termo))
     );
     renderizar(filtrados);
 }
 
-// 4. Modal de Detalhes
-function abrirDetalhes(id) {
-    const item = database.find(e => e.id == id);
-    if (!item) return;
+// 4. Modal
+function abrirModal(id) {
+    const e = empresas.find(item => item.id == id);
+    if (!e) return;
 
     conteudoModal.innerHTML = `
-        <h2 style="color: #1e40af; margin-top:0;">${item.nome}</h2>
-        <p><strong>📍 Endereço:</strong> ${item.endereco || 'Não informado'}</p>
-        <p><strong>📞 Contato:</strong> ${item.telefone || 'Não informado'}</p>
-        <p><strong>📝 Sobre:</strong> ${item.descricao || 'Atendimento em Conceição do Araguaia.'}</p>
+        <h2 style="color: #1e40af; margin-top: 0;">${e.nome}</h2>
+        <p><strong>📍 Endereço:</strong> ${e.endereco || 'Consulte no WhatsApp'}</p>
+        <p><strong>📝 Descrição:</strong> ${e.descricao || 'Empresa participante do guia CDA-Lista.'}</p>
+        <p><strong>📞 Contato:</strong> ${e.telefone || 'Não informado'}</p>
         
-        <a href="https://wa.me/55${item.whatsapp}" target="_blank" class="link-whatsapp">
-            Falar pelo WhatsApp
+        <a href="https://wa.me/55${e.whatsapp}" target="_blank" class="link-whatsapp">
+            Falar no WhatsApp
         </a>
     `;
     modal.style.display = 'flex';
@@ -62,9 +62,9 @@ function abrirDetalhes(id) {
 
 function fecharModal() { modal.style.display = 'none'; }
 
-// Fechar modal no botão e clicando fora
+// Fechar eventos
 btnFechar.onclick = fecharModal;
-window.onclick = (e) => { if (e.target === modal) fecharModal(); };
+window.onclick = (event) => { if (event.target == modal) fecharModal(); };
 
-// Início
-carregarDados();
+// Iniciar
+carregar();

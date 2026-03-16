@@ -1,36 +1,37 @@
 :root {
-    --azul: #1e40af;
+    --azul-escuro: #1e40af;
+    --azul-claro: #3b82f6;
     --verde-zap: #25d366;
-    --cinza-fundo: #f8fafc;
+    --bg-cor: #f1f5f9;
 }
 
-body { font-family: 'Segoe UI', system-ui, sans-serif; background: var(--cinza-fundo); margin: 0; padding: 0; }
+* { box-sizing: border-box; }
+body { font-family: 'Segoe UI', system-ui, sans-serif; background: var(--bg-cor); margin: 0; color: #334155; }
 
 header { 
-    background: var(--azul); 
+    background: var(--azul-escuro); 
     color: white; 
     text-align: center; 
-    padding: 40px 20px; 
-    box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
+    padding: 50px 20px; 
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
 }
 
-.container { max-width: 1200px; margin: 0 auto; padding: 20px; }
+.container { max-width: 1100px; margin: 0 auto; padding: 20px; }
 
-.busca-wrapper { margin-bottom: 30px; text-align: center; }
-
+/* Busca */
+.busca-wrapper { margin: -30px auto 40px; text-align: center; }
 #inputBusca {
-    width: 100%;
-    max-width: 600px;
-    padding: 15px;
-    border-radius: 50px;
-    border: 2px solid #ddd;
+    width: 90%;
+    max-width: 500px;
+    padding: 15px 25px;
+    border-radius: 30px;
+    border: none;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
     font-size: 16px;
     outline: none;
-    transition: 0.3s;
 }
 
-#inputBusca:focus { border-color: var(--azul); box-shadow: 0 0 10px rgba(30, 64, 175, 0.2); }
-
+/* Grid e Cards */
 .grid-empresas {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -39,17 +40,16 @@ header {
 
 .card {
     background: white;
-    padding: 20px;
+    padding: 25px;
     border-radius: 15px;
     cursor: pointer;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-    transition: transform 0.2s, box-shadow 0.2s;
-    border-left: 6px solid var(--azul);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    border-top: 4px solid var(--azul-claro);
+    transition: 0.3s;
 }
 
-.card:hover { transform: translateY(-5px); box-shadow: 0 10px 15px rgba(0,0,0,0.1); }
-.card h3 { margin: 0; color: #111; font-size: 1.2rem; }
-.card p { color: #666; font-size: 0.9rem; margin-top: 8px; }
+.card:hover { transform: translateY(-5px); box-shadow: 0 8px 20px rgba(0,0,0,0.1); }
+.card h3 { margin: 0 0 10px; color: var(--azul-escuro); }
 
 /* Modal */
 .modal-overlay {
@@ -58,24 +58,23 @@ header {
     top: 0; left: 0; width: 100%; height: 100%;
     background: rgba(0,0,0,0.8);
     z-index: 2000;
-    align-items: center;
-    justify-content: center;
-    padding: 20px;
+    align-items: center; justify-content: center;
+    backdrop-filter: blur(4px);
 }
 
 .modal-box {
     background: white;
-    width: 100%;
+    width: 95%;
     max-width: 500px;
     padding: 30px;
     border-radius: 20px;
     position: relative;
-    animation: surgindo 0.3s ease-out;
+    animation: zoomIn 0.3s ease;
 }
 
-@keyframes surgindo { from { opacity: 0; transform: scale(0.9); } to { opacity: 1; transform: scale(1); } }
+@keyframes zoomIn { from { opacity:0; transform: scale(0.9); } to { opacity:1; transform: scale(1); } }
 
-.btn-fechar { position: absolute; top: 15px; right: 20px; font-size: 30px; cursor: pointer; color: #999; }
+.btn-fechar { position: absolute; top: 15px; right: 20px; font-size: 30px; cursor: pointer; color: #64748b; }
 
 .link-whatsapp {
     display: block;
@@ -83,11 +82,33 @@ header {
     color: white;
     text-align: center;
     padding: 15px;
-    border-radius: 10px;
+    border-radius: 12px;
     text-decoration: none;
     font-weight: bold;
-    margin-top: 20px;
-    transition: filter 0.2s;
+    margin-top: 25px;
 }
 
-.link-whatsapp:hover { filter: brightness(0.9); }
+/* Botão Flutuante */
+.btn-zap-flutuante {
+    position: fixed;
+    width: 60px; height: 60px;
+    bottom: 30px; right: 30px;
+    background: var(--verde-zap);
+    border-radius: 50px;
+    display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    z-index: 1001;
+    transition: 0.3s;
+}
+.btn-zap-flutuante:hover { transform: scale(1.1); }
+.btn-zap-flutuante img { width: 35px; height: 35px; }
+
+/* Rodapé */
+footer {
+    background: #1e293b;
+    color: #f1f5f9;
+    text-align: center;
+    padding: 40px 20px;
+    margin-top: 60px;
+}
+footer p { margin: 5px 0; opacity: 0.8; }
