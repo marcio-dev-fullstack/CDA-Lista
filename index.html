@@ -4,153 +4,26 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CDA-Lista | Guia Comercial</title>
-    <style>
-        /* Layout Geral - Mantendo o padrão que você gosta */
-        body { font-family: 'Segoe UI', Arial, sans-serif; background: #f0f2f5; margin: 0; padding: 15px; }
-        header { text-align: center; padding: 20px; background: #fff; border-radius: 10px; margin-bottom: 20px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
-        
-        .grid-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 15px;
-        }
-
-        .card {
-            background: #fff;
-            padding: 20px;
-            border-radius: 12px;
-            cursor: pointer;
-            border-bottom: 4px solid #2563eb;
-            transition: 0.3s;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-        }
-
-        .card:hover { transform: translateY(-5px); box-shadow: 0 6px 12px rgba(0,0,0,0.1); }
-        .card h3 { margin: 0 0 10px 0; color: #1e40af; }
-        .card p { margin: 5px 0; color: #555; font-size: 0.9em; }
-
-        /* Modal - Detalhes da Empresa */
-        .modal-overlay {
-            display: none;
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.8);
-            z-index: 1000;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .modal-box {
-            background: #fff;
-            width: 90%;
-            max-width: 550px;
-            padding: 30px;
-            border-radius: 20px;
-            position: relative;
-            max-height: 85vh;
-            overflow-y: auto;
-        }
-
-        .fechar {
-            position: absolute;
-            top: 15px; right: 20px;
-            font-size: 35px;
-            cursor: pointer;
-            color: #999;
-        }
-
-        .btn-zap {
-            display: block;
-            background: #25d366;
-            color: white;
-            text-align: center;
-            padding: 15px;
-            border-radius: 10px;
-            text-decoration: none;
-            font-weight: bold;
-            margin-top: 25px;
-        }
-
-        .label { font-weight: bold; color: #333; display: block; margin-top: 15px; }
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<header>
-    <h1>CDA-Lista</h1>
-    <p>Conceição do Araguaia - PA</p>
-</header>
+    <header>
+        <h1>CDA-Lista</h1>
+        <p>Conceição do Araguaia - PA</p>
+    </header>
 
-<div id="listaPrincipal" class="grid-container">
-    <p>Carregando empresas...</p>
-</div>
+    <main id="listaPrincipal" class="grid-container">
+        <p class="loading">Carregando empresas...</p>
+    </main>
 
-<div id="modalDetalhes" class="modal-overlay" onclick="fecharAoClicarFora(event)">
-    <div class="modal-box">
-        <span class="fechar" onclick="fecharModal()">&times;</span>
-        <div id="conteudoEmpresa"></div>
+    <div id="modalDetalhes" class="modal-overlay">
+        <div class="modal-box">
+            <span class="fechar" id="btnFechar">&times;</span>
+            <div id="conteudoEmpresa"></div>
+        </div>
     </div>
-</div>
 
-<script>
-    let todasAsEmpresas = [];
-
-    // Função que busca TODOS os dados do seu arquivo JSON
-    async function buscarEmpresas() {
-        try {
-            const res = await fetch('dados.json');
-            todasAsEmpresas = await res.json();
-            exibirEmpresas(todasAsEmpresas);
-        } catch (e) {
-            document.getElementById('listaPrincipal').innerHTML = "Erro ao carregar os dados.";
-        }
-    }
-
-    // Renderiza cada empresa do JSON na tela
-    function exibirEmpresas(lista) {
-        const container = document.getElementById('listaPrincipal');
-        container.innerHTML = lista.map(emp => `
-            <div class="card" onclick="abrirDetalhes('${emp.id}')">
-                <h3>${emp.nome}</h3>
-                <p>📍 ${emp.categoria || 'Comércio'}</p>
-                <p>📞 ${emp.telefone || ''}</p>
-                <small style="color: #2563eb;">Ver mais informações</small>
-            </div>
-        `).join('');
-    }
-
-    // Abre o modal com TODAS as informações daquela empresa específica
-    function abrirDetalhes(id) {
-        const empresa = todasAsEmpresas.find(e => e.id == id);
-        if (!empresa) return;
-
-        const div = document.getElementById('conteudoEmpresa');
-        div.innerHTML = `
-            <h2 style="margin-top:0; color:#1e40af;">${empresa.nome}</h2>
-            <hr>
-            <span class="label">Categoria:</span> <span>${empresa.categoria || 'N/A'}</span>
-            <span class="label">Endereço:</span> <span>${empresa.endereco || 'Não cadastrado'}</span>
-            <span class="label">Telefone:</span> <span>${empresa.telefone || 'Não cadastrado'}</span>
-            <span class="label">Descrição:</span> <p>${empresa.descricao || 'Empresa participante do guia CDA-Lista.'}</p>
-            
-            <a href="https://wa.me/55${empresa.whatsapp}" target="_blank" class="btn-zap">
-                Enviar WhatsApp
-            </a>
-        `;
-        document.getElementById('modalDetalhes').style.display = 'flex';
-    }
-
-    function fecharModal() {
-        document.getElementById('modalDetalhes').style.display = 'none';
-    }
-
-    function fecharAoClicarFora(e) {
-        if (e.target.id === 'modalDetalhes') fecharModal();
-    }
-
-    // Inicia a busca automática ao abrir a página
-    buscarEmpresas();
-</script>
-
+    <script src="script.js"></script>
 </body>
 </html>
