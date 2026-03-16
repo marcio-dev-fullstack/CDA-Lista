@@ -23,9 +23,9 @@ function renderizar(dados) {
 
     listaPrincipal.innerHTML = dados.map(emp => `
         <div class="card" onclick="abrirModal('${emp.id}')">
+            <img src="${emp.logo || 'https://via.placeholder.com/80?text=LOGO'}" class="logo-card" alt="Logo">
             <h3>${emp.nome}</h3>
             <p><strong>Setor:</strong> ${emp.categoria || 'Geral'}</p>
-            <p>📍 ${emp.endereco || 'C. Araguaia - PA'}</p>
         </div>
     `).join('');
 }
@@ -44,12 +44,12 @@ function abrirModal(id) {
     if (!e) return;
 
     conteudoModal.innerHTML = `
+        <img src="${e.logo || 'https://via.placeholder.com/120?text=LOGO'}" class="logo-modal" alt="Logo">
         <h2 style="color: #1e40af; margin-top: 0;">${e.nome}</h2>
         <p><strong>📍 Endereço:</strong> ${e.endereco || 'Consulte no WhatsApp'}</p>
         <p><strong>📝 Descrição:</strong> ${e.descricao || 'Empresa participante do guia CDA-Lista.'}</p>
         <p><strong>📞 Contato:</strong> ${e.telefone || 'Não informado'}</p>
-        
-        <a href="https://wa.me/55${e.whatsapp}" target="_blank" class="link-whatsapp">
+        <a href="https://wa.me/55${e.whatsapp.replace(/\D/g,'')}" target="_blank" class="link-whatsapp">
             Falar no WhatsApp
         </a>
     `;
@@ -57,7 +57,6 @@ function abrirModal(id) {
 }
 
 function fecharModal() { modal.style.display = 'none'; }
-
 btnFechar.onclick = fecharModal;
 window.onclick = (event) => { if (event.target == modal) fecharModal(); };
 

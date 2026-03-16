@@ -1,55 +1,56 @@
-/* Botão WhatsApp Flutuante com Animação */
-.btn-zap-flutuante {
-    position: fixed;
-    width: 60px;
-    height: 60px;
-    bottom: 30px;
-    right: 30px;
-    background: #25d366;
-    border-radius: 50px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-    z-index: 1001;
+:root {
+    --azul-escuro: #1e40af;
+    --azul-claro: #3b82f6;
+    --verde-zap: #25d366;
+    --bg-cor: #f1f5f9;
+}
+
+* { box-sizing: border-box; }
+body { font-family: 'Segoe UI', system-ui, sans-serif; background: var(--bg-cor); margin: 0; color: #334155; }
+
+header { background: var(--azul-escuro); color: white; text-align: center; padding: 50px 20px; }
+.container { max-width: 1100px; margin: 0 auto; padding: 20px; }
+
+/* Busca */
+.busca-wrapper { margin: -30px auto 40px; text-align: center; }
+#inputBusca { width: 90%; max-width: 500px; padding: 15px 25px; border-radius: 30px; border: none; box-shadow: 0 4px 15px rgba(0,0,0,0.1); font-size: 16px; outline: none; }
+
+/* Grid e Cards */
+.grid-container { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; }
+
+.card {
+    background: white;
+    padding: 20px;
+    border-radius: 15px;
+    cursor: pointer;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    border-top: 4px solid var(--azul-claro);
     transition: 0.3s;
-    
-    /* Chamada da animação: nome, duração, repetição infinita */
-    animation: pulsar 2s infinite;
+    text-align: center;
 }
 
-.btn-zap-flutuante:hover {
-    transform: scale(1.1);
-    animation: none; /* Para de piscar quando o mouse está em cima */
+.card:hover { transform: translateY(-5px); box-shadow: 0 8px 20px rgba(0,0,0,0.1); }
+
+/* Estilo da Logo no Card */
+.logo-card {
+    width: 80px;
+    height: 80px;
+    object-fit: contain;
+    margin-bottom: 15px;
+    border-radius: 8px;
 }
 
-.btn-zap-flutuante img {
-    width: 35px;
-    height: 35px;
-}
+/* Modal */
+.modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 2000; align-items: center; justify-content: center; backdrop-filter: blur(4px); }
+.modal-box { background: white; width: 95%; max-width: 500px; padding: 30px; border-radius: 20px; position: relative; max-height: 90vh; overflow-y: auto; text-align: center; }
+.logo-modal { width: 120px; height: 120px; object-fit: contain; margin-bottom: 20px; border-radius: 10px; }
+.btn-fechar { position: absolute; top: 15px; right: 20px; font-size: 30px; cursor: pointer; color: #64748b; }
 
-/* Definição da Animação de Pulsar/Piscar */
-@keyframes pulsar {
-    0% {
-        transform: scale(1);
-        box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7);
-    }
-    70% {
-        transform: scale(1.05);
-        box-shadow: 0 0 0 15px rgba(37, 211, 102, 0);
-    }
-    100% {
-        transform: scale(1);
-        box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
-    }
-}
+.link-whatsapp { display: block; background: var(--verde-zap); color: white; text-align: center; padding: 15px; border-radius: 12px; text-decoration: none; font-weight: bold; margin-top: 25px; }
 
-/* Ajuste mobile */
-@media (max-width: 768px) {
-    .btn-zap-flutuante {
-        width: 55px;
-        height: 55px;
-        bottom: 20px;
-        right: 20px;
-    }
-}
+/* Botão Flutuante Pulsando */
+.btn-zap-flutuante { position: fixed; width: 60px; height: 60px; bottom: 30px; right: 30px; background: var(--verde-zap); border-radius: 50px; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 15px rgba(0,0,0,0.3); z-index: 1001; animation: pulsar 2s infinite; }
+@keyframes pulsar { 0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); } 70% { transform: scale(1.05); box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); } 100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); } }
+.btn-zap-flutuante img { width: 35px; height: 35px; }
+
+footer { background: #1e293b; color: #f1f5f9; text-align: center; padding: 40px 20px; margin-top: 60px; }
