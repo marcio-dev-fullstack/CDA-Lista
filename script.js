@@ -1,6 +1,8 @@
 let empresas = [];
 let categoriaAtual = 'Todas';
 let favoritos = JSON.parse(localStorage.getItem('cda_favoritos')) || [];
+let tempoPopup = 5;
+let intervaloPopup;
 
 async function carregar() {
     try {
@@ -92,16 +94,28 @@ function fecharModal() {
     document.body.style.overflow = 'auto';
 }
 
-// Lógica do Popup de Anúncio
+// LOGICA DO POPUP COM CRONOMETRO
 function fecharPopup() {
+    clearInterval(intervaloPopup);
     document.getElementById('popupAnuncio').style.display = 'none';
     document.body.style.overflow = 'auto';
 }
 
+function iniciarCronometro() {
+    const contadorTexto = document.getElementById('contador');
+    intervaloPopup = setInterval(() => {
+        tempoPopup--;
+        if (contadorTexto) contadorTexto.innerText = tempoPopup;
+        if (tempoPopup <= 0) {
+            fecharPopup();
+        }
+    }, 1000);
+}
+
 document.addEventListener("DOMContentLoaded", function() {
-    // Abre o popup automaticamente e trava o fundo
     document.getElementById('popupAnuncio').style.display = 'flex';
     document.body.style.overflow = 'hidden';
+    iniciarCronometro();
 });
 
 window.onclick = (e) => { 

@@ -71,6 +71,7 @@ header {
     overflow-y: auto; box-shadow: 0 15px 35px rgba(0,0,0,0.5);
 }
 .btn-fechar { position: absolute; top: 10px; right: 15px; font-size: 28px; cursor: pointer; color: #333; }
+#contador { font-size: 14px; background: #eee; padding: 2px 6px; border-radius: 10px; margin-right: 5px; font-weight: bold; }
 
 /* POPUP ESPECÍFICO */
 .popup-promocao { border: 3px solid var(--verde-zap); animation: slideIn 0.5s ease-out; }
