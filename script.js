@@ -8,7 +8,11 @@ const inputBusca = document.getElementById('inputBusca');
 async function carregar() {
     try {
         const res = await fetch('dados.json');
-        empresas = await res.json();
+        const dadosBrutos = await res.json();
+        
+        // Lógica para organizar em ordem alfabética pelo nome
+        empresas = dadosBrutos.sort((a, b) => a.nome.localeCompare(b.nome));
+        
         renderizar(empresas);
     } catch (err) {
         console.error(err);
