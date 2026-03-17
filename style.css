@@ -11,9 +11,10 @@
 * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
 
 body { 
-    font-family: 'Segoe UI', sans-serif; 
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; 
     background: var(--bg-cor); 
     color: var(--texto); 
+    overflow-x: hidden;
 }
 
 header { 
@@ -36,9 +37,12 @@ header {
 #titulo-fallback {
     font-size: 2.2rem;
     font-weight: 800;
-    text-transform: uppercase;
+    letter-spacing: 2px;
     margin-bottom: 5px;
+    text-transform: uppercase;
 }
+
+header p { font-size: 1rem; }
 
 .container { max-width: 1100px; margin: 0 auto; padding: 15px; }
 
@@ -57,7 +61,7 @@ header {
 .tab-btn {
     background: var(--branco); border: 2px solid var(--azul-claro); color: var(--azul-escuro);
     padding: 10px 22px; border-radius: 50px; cursor: pointer; font-weight: bold;
-    white-space: nowrap; transition: 0.3s ease;
+    white-space: nowrap; transition: 0.3s ease; font-size: 14px;
 }
 
 .tab-btn.active { background: var(--azul-claro); color: white; }
@@ -66,8 +70,10 @@ header {
 
 .card { 
     background: var(--branco); padding: 25px; border-radius: 20px; position: relative;
-    text-align: center; box-shadow: 0 5px 15px rgba(0,0,0,0.05); cursor: pointer;
+    text-align: center; box-shadow: 0 5px 15px rgba(0,0,0,0.05); transition: 0.3s;
+    cursor: pointer;
 }
+.card:hover { transform: translateY(-5px); }
 
 .logo-card { width: 85px; height: 85px; object-fit: contain; margin-bottom: 15px; }
 
@@ -88,7 +94,7 @@ header {
     border-radius: 30px; position: relative; text-align: center;
 }
 
-.btn-fechar { position: absolute; top: 15px; right: 20px; font-size: 35px; cursor: pointer; }
+.btn-fechar { position: absolute; top: 15px; right: 20px; font-size: 35px; cursor: pointer; color: #94a3b8; }
 
 .link-whatsapp, .link-site { 
     display: block; padding: 15px; border-radius: 15px; text-decoration: none; 
@@ -100,21 +106,31 @@ header {
 .btn-zap-flutuante { 
     position: fixed; width: 60px; height: 60px; bottom: 25px; right: 25px; 
     background: var(--verde-zap); border-radius: 50%; display: flex; 
-    align-items: center; justify-content: center; z-index: 1001; 
+    align-items: center; justify-content: center; box-shadow: 0 6px 20px rgba(0,0,0,0.3); z-index: 1001; 
 }
 .btn-zap-flutuante img { width: 35px; }
 
-footer { background: #0f172a; color: white; text-align: center; padding: 50px 20px; margin-top: 60px; }
+/* RODAPÉ PRETO SOLICITADO */
+footer { 
+    background: #000000; 
+    color: white; 
+    text-align: center; 
+    padding: 50px 20px; 
+    margin-top: 60px; 
+}
 
-/* ESTILO DA LINHA DE DIVISÃO */
+footer a { color: var(--azul-claro); text-decoration: none; font-weight: bold; }
+
+/* LINHA DE DIVISÃO DO RODAPÉ */
 .linha-divisoria {
     border: 0;
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
     margin: 20px auto;
     width: 60%;
 }
 
 @media (max-width: 600px) {
+    header { padding: 40px 10px; }
     .logo-cabecalho { max-width: 140px; }
     #titulo-fallback { font-size: 1.6rem; }
     .linha-divisoria { width: 85%; }
