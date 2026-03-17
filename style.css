@@ -17,7 +17,6 @@ body {
     overflow-x: hidden;
 }
 
-/* --- HEADER --- */
 header { 
     background: var(--azul-escuro); 
     color: white; 
@@ -42,33 +41,34 @@ header {
     margin-bottom: 5px;
     text-transform: uppercase;
     color: var(--verde-zap);
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
 }
 
-/* --- MAIN --- */
 .container { max-width: 1200px; margin: 0 auto; padding: 15px; }
 
+/* BUSCA */
 .busca-wrapper { margin: -30px auto 25px; width: 90%; max-width: 500px; position: relative; z-index: 10; }
-
 #inputBusca { 
     width: 100%; padding: 18px 25px; border-radius: 50px; border: none; 
     box-shadow: 0 10px 25px rgba(0,0,0,0.15); font-size: 16px; outline: none;
 }
 
+/* NAVEGAÇÃO ESTILO APP (CHIPS) */
+.categorias-nav-container { width: 100%; overflow: hidden; margin-bottom: 25px; }
 .categorias-nav {
-    display: flex; gap: 12px; overflow-x: auto; padding: 10px 5px 30px; scrollbar-width: none;
+    display: flex; gap: 10px; overflow-x: auto; padding: 10px 5px;
+    scrollbar-width: none; -webkit-overflow-scrolling: touch;
 }
 .categorias-nav::-webkit-scrollbar { display: none; }
 
 .tab-btn {
-    background: var(--branco); border: 2px solid var(--azul-claro); color: var(--azul-escuro);
-    padding: 10px 22px; border-radius: 50px; cursor: pointer; font-weight: bold;
+    background: var(--branco); border: 1px solid #e2e8f0; color: var(--texto);
+    padding: 10px 20px; border-radius: 12px; cursor: pointer; font-weight: 600;
     white-space: nowrap; transition: 0.3s ease; font-size: 14px;
 }
+.tab-btn.active { background: var(--azul-claro); color: white; border-color: var(--azul-claro); }
+.tab-btn-fav { border-color: var(--dourado); color: var(--dourado); }
 
-.tab-btn.active { background: var(--azul-claro); color: white; }
-
-/* GRID PARA PC: 4 POR LINHA */
+/* GRID: 4 NO PC, 1 NO MOBILE */
 .grid-container { 
     display: grid; 
     grid-template-columns: repeat(4, 1fr); 
@@ -81,86 +81,47 @@ header {
     cursor: pointer;
 }
 .card:hover { transform: translateY(-5px); }
-
 .logo-card { width: 85px; height: 85px; object-fit: contain; margin-bottom: 15px; }
 
-.fav-btn {
-    position: absolute; top: 15px; right: 15px; background: none; border: none;
-    font-size: 1.8rem; cursor: pointer; color: #cbd5e1;
-}
-.fav-btn.active { color: var(--dourado); }
-
-/* --- MODAL --- */
+/* MODAL */
 .modal-overlay { 
     display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
     background: rgba(15, 23, 42, 0.85); z-index: 2000; align-items: center; justify-content: center;
     backdrop-filter: blur(8px);
 }
-
 .modal-box { 
     background: var(--branco); width: 92%; max-width: 450px; padding: 40px 30px; 
     border-radius: 30px; position: relative; text-align: center;
 }
 
-.btn-fechar { position: absolute; top: 15px; right: 20px; font-size: 35px; cursor: pointer; color: #94a3b8; }
-
+.btn-fechar { position: absolute; top: 15px; right: 20px; font-size: 35px; cursor: pointer; }
 .link-whatsapp, .link-site { 
     display: block; padding: 15px; border-radius: 15px; text-decoration: none; 
-    font-weight: bold; margin-top: 15px; text-align: center; color: white;
+    font-weight: bold; margin-top: 15px; color: white;
 }
 .link-whatsapp { background: var(--verde-zap); }
 .link-site { background: var(--azul-escuro); }
 
+/* WHATSAPP FLUTUANTE */
 .btn-zap-flutuante { 
     position: fixed; width: 60px; height: 60px; bottom: 25px; right: 25px; 
     background: var(--verde-zap); border-radius: 50%; display: flex; 
-    align-items: center; justify-content: center; box-shadow: 0 6px 20px rgba(0,0,0,0.3); z-index: 1001; 
+    align-items: center; justify-content: center; z-index: 1001; 
 }
 .btn-zap-flutuante img { width: 35px; }
 
-/* --- RODAPÉ PRETO FORMATADO --- */
-footer { 
-    background: #000000; 
-    color: white; 
-    text-align: center; 
-    padding: 40px 20px; 
-    margin-top: 60px; 
-}
+/* RODAPÉ PRETO */
+footer { background: #000000; color: white; text-align: center; padding: 50px 20px; margin-top: 60px; }
+.txt-verde-zap { color: var(--verde-zap); font-size: 1.2rem; }
+.linha-divisoria { border: 0; border-top: 1px solid rgba(255, 255, 255, 0.2); margin: 20px auto; width: 60%; }
+.creditos a { color: var(--azul-claro); text-decoration: none; font-weight: bold; }
 
-.footer-info p {
-    margin-bottom: 5px;
-    font-size: 1rem;
-}
-
-.txt-verde-zap {
-    color: var(--verde-zap);
-    font-size: 1.2rem;
-    letter-spacing: 1px;
-}
-
-.linha-divisoria {
-    border: 0;
-    border-top: 1px solid rgba(255, 255, 255, 0.2);
-    margin: 20px auto;
-    width: 60%;
-}
-
-.creditos a { 
-    color: var(--azul-claro); 
-    text-decoration: none; 
-    font-weight: bold; 
-}
-
-/* --- RESPONSIVIDADE --- */
-@media (max-width: 1024px) { 
-    .grid-container { grid-template-columns: repeat(2, 1fr); } 
-}
-
+/* RESPONSIVIDADE */
+@media (max-width: 1024px) { .grid-container { grid-template-columns: repeat(2, 1fr); } }
 @media (max-width: 600px) {
-    .grid-container { grid-template-columns: 1fr; } /* 1 POR LINHA NO MOBILE */
+    .grid-container { grid-template-columns: 1fr; }
     header { padding: 40px 10px; }
     .logo-cabecalho { max-width: 140px; }
     #titulo-fallback { font-size: 1.8rem; }
     .linha-divisoria { width: 85%; }
-    .footer-info p { font-size: 0.9rem; }
 }
