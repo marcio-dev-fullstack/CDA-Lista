@@ -10,13 +10,13 @@ async function carregar() {
         const res = await fetch('dados.json');
         const dadosBrutos = await res.json();
         
-        // Lógica para organizar em ordem alfabética pelo nome
+        // Organiza automaticamente de A a Z
         empresas = dadosBrutos.sort((a, b) => a.nome.localeCompare(b.nome));
         
         renderizar(empresas);
     } catch (err) {
         console.error(err);
-        listaPrincipal.innerHTML = "<p>Erro ao carregar os dados.</p>";
+        listaPrincipal.innerHTML = "<p>Erro ao carregar dados.</p>";
     }
 }
 

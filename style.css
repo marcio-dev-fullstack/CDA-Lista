@@ -1,7 +1,7 @@
 :root {
     --azul-escuro: #1e40af;
     --azul-claro: #3b82f6;
-    --verde-zap: #25d366;
+    --verde-zap: #25d366; /* Cor oficial do WhatsApp */
     --dourado: #f59e0b;
     --bg-cor: #f1f5f9;
     --branco: #ffffff;
@@ -34,13 +34,18 @@ header {
     border-radius: 12px;
 }
 
+/* TÍTULO EM VERDE WHATSAPP SOLICITADO */
 #titulo-fallback {
-    font-size: 2.2rem;
-    font-weight: 800;
+    font-size: 2.5rem;
+    font-weight: 900;
     letter-spacing: 2px;
     margin-bottom: 5px;
     text-transform: uppercase;
+    color: var(--verde-zap); /* Cor Verde WhatsApp */
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3); /* Sombra para destacar no azul */
 }
+
+header p { font-size: 1rem; }
 
 .container { max-width: 1200px; margin: 0 auto; padding: 15px; }
 
@@ -64,7 +69,7 @@ header {
 
 .tab-btn.active { background: var(--azul-claro); color: white; }
 
-/* GRID AJUSTADO: 4 POR LINHA NO DESKTOP */
+/* GRID PARA PC: 4 POR LINHA */
 .grid-container { 
     display: grid; 
     grid-template-columns: repeat(4, 1fr); 
@@ -74,6 +79,7 @@ header {
 .card { 
     background: var(--branco); padding: 25px; border-radius: 20px; position: relative;
     text-align: center; box-shadow: 0 5px 15px rgba(0,0,0,0.05); transition: 0.3s;
+    cursor: pointer;
 }
 .card:hover { transform: translateY(-5px); }
 
@@ -112,6 +118,7 @@ header {
 }
 .btn-zap-flutuante img { width: 35px; }
 
+/* RODAPÉ PRETO */
 footer { 
     background: #000000; 
     color: white; 
@@ -129,14 +136,12 @@ footer a { color: var(--azul-claro); text-decoration: none; font-weight: bold; }
     width: 60%;
 }
 
-/* RESPONSIVIDADE: 1 POR LINHA NO MOBILE */
-@media (max-width: 900px) {
-    .grid-container { grid-template-columns: repeat(2, 1fr); }
-}
+@media (max-width: 1024px) { .grid-container { grid-template-columns: repeat(2, 1fr); } }
 
 @media (max-width: 600px) {
     .grid-container { grid-template-columns: 1fr; }
     header { padding: 40px 10px; }
-    #titulo-fallback { font-size: 1.6rem; }
+    .logo-cabecalho { max-width: 140px; }
+    #titulo-fallback { font-size: 1.8rem; }
     .linha-divisoria { width: 85%; }
 }
