@@ -42,7 +42,6 @@
             <button class="menu-btn" onclick="filtrarPorCategoria('Restaurantes')">🍽️ Restaurantes</button>
             <button class="menu-btn" onclick="filtrarPorCategoria('Tecnologia')">💻 Tecnologia</button>
             <button class="menu-btn" onclick="filtrarPorCategoria('Engenharia')">🏗️ Engenharia</button>
-            <button class="menu-btn" onclick="filtrarPorCategoria('Saúde')">🏥 Saúde</button>
         </nav>
     </div>
     <div id="overlayMenu" class="overlay-menu" onclick="toggleMenu()"></div>
@@ -62,7 +61,6 @@
     </header>
 
     <main class="container">
-        
         <div class="categorias-pc">
             <div class="categorias-nav">
                 <button class="tab-btn active" onclick="filtrarPorCategoria('Todas')">Todas</button>
@@ -70,7 +68,6 @@
                 <button class="tab-btn" onclick="filtrarPorCategoria('Hotéis & Pousadas')">🏨 Hotéis</button>
                 <button class="tab-btn" onclick="filtrarPorCategoria('Restaurantes')">🍽️ Restaurantes</button>
                 <button class="tab-btn" onclick="filtrarPorCategoria('Tecnologia')">💻 Tecnologia</button>
-                <button class="tab-btn" onclick="filtrarPorCategoria('Engenharia')">🏗️ Engenharia</button>
             </div>
         </div>
 
@@ -81,8 +78,7 @@
     <div id="modalDetalhes" class="modal-overlay">
         <div class="modal-box">
             <span class="btn-fechar" onclick="fecharModal()">&times;</span>
-            <div id="conteudoEmpresa">
-                </div>
+            <div id="conteudoEmpresa"></div>
         </div>
     </div>
 
@@ -92,8 +88,10 @@
 
     <footer>
         <div class="container">
-            <p class="footer-brand"><strong>CDA LISTA</strong> Conectando o comércio local</p>
-            <p class="footer-info">Conceição do Araguaia - PA | (94) 99250-0073</p>
+            <strong class="footer-brand">CDA LISTA</strong>
+            <span class="footer-line">Conectando o comércio local</span>
+            <span class="footer-line">Conceição do Araguaia - PA</span>
+            <span class="footer-line">(94) 99250-0073</span>
             <p class="footer-copyright">© 2026 Todos os direitos reservados</p>
             
             <hr class="footer-divider">
