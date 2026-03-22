@@ -23,7 +23,7 @@
                 
                 <a href="https://wa.me/5594992500073?text=Olá! Quero fazer a propaganda da minha empresa no CDA LISTA." 
                    target="_blank" class="link-whatsapp pulse-mini">
-                   Quero Anunciar Agora!
+                    Quero Anunciar Agora!
                 </a>
             </div>
         </div>
@@ -31,22 +31,18 @@
 
     <div id="sideMenu" class="side-menu">
         <div class="side-menu-header">
-            <span class="btn-fechar-menu" onclick="toggleMenu()">&times;</span>
             <h3>Categorias</h3>
+            <span class="btn-fechar-menu" style="cursor:pointer; font-size: 1.5rem;" onclick="toggleMenu()">&times;</span>
         </div>
         <nav class="side-menu-nav">
-            <button class="menu-btn active" onclick="filtrarPorCategoria('Todas')">Todas</button>
+            <button class="menu-btn" onclick="filtrarPorCategoria('Todas')">Todas</button>
             <button class="menu-btn" onclick="mostrarFavoritos()">⭐ Favoritos</button>
             <button class="menu-btn" onclick="filtrarPorCategoria('Praias & Lazer')">🏖️ Praias & Lazer</button>
             <button class="menu-btn" onclick="filtrarPorCategoria('Hotéis & Pousadas')">🏨 Hotéis & Pousadas</button>
             <button class="menu-btn" onclick="filtrarPorCategoria('Restaurantes')">🍽️ Restaurantes</button>
-            <button class="menu-btn" onclick="filtrarPorCategoria('Guias de Pesca')">🎣 Guias de Pesca</button>
-            <button class="menu-btn" onclick="filtrarPorCategoria('Transporte')">🚤 Transporte/Barcos</button>
-            <button class="menu-btn" onclick="filtrarPorCategoria('Educação')">Educação</button>
-            <button class="menu-btn" onclick="filtrarPorCategoria('Tecnologia')">Tecnologia</button>
-            <button class="menu-btn" onclick="filtrarPorCategoria('Engenharia')">Engenharia</button>
+            <button class="menu-btn" onclick="filtrarPorCategoria('Tecnologia')">💻 Tecnologia</button>
+            <button class="menu-btn" onclick="filtrarPorCategoria('Engenharia')">🏗️ Engenharia</button>
             <button class="menu-btn" onclick="filtrarPorCategoria('Saúde')">🏥 Saúde</button>
-            <button class="menu-btn" onclick="filtrarPorCategoria('Oficina')">🛠️ Oficinas</button>
         </nav>
     </div>
     <div id="overlayMenu" class="overlay-menu" onclick="toggleMenu()"></div>
@@ -54,13 +50,17 @@
     <header>
         <button class="btn-menu-mobile" onclick="toggleMenu()">&#9776;</button>
         <img src="img/logo-cda3.jpg" alt="CDA Lista" class="logo-cabecalho" id="main-logo">
-        <h1 id="titulo-fallback">CDA LISTA</h1>
+        <h1>CDA LISTA</h1>
         <p><strong>O Guia Comercial de Conceição do Araguaia</strong></p>
     </header>
 
     <main class="container">
+        
         <div class="busca-wrapper">
-            <input type="text" id="inputBusca" placeholder="O que você procura em CDA?" onkeyup="filtrar()">
+            <div class="busca-container">
+                <span class="icone-busca">🔍</span>
+                <input type="text" id="inputBusca" placeholder="O que você procura em CDA?" onkeyup="filtrar()">
+            </div>
         </div>
 
         <div class="categorias-pc">
@@ -69,38 +69,36 @@
                 <button class="tab-btn" onclick="filtrarPorCategoria('Praias & Lazer')">🏖️ Praias</button>
                 <button class="tab-btn" onclick="filtrarPorCategoria('Hotéis & Pousadas')">🏨 Hotéis</button>
                 <button class="tab-btn" onclick="filtrarPorCategoria('Restaurantes')">🍽️ Restaurantes</button>
-                <button class="tab-btn" onclick="filtrarPorCategoria('Tecnologia')">Tecnologia</button>
-                <button class="tab-btn" onclick="filtrarPorCategoria('Engenharia')">Engenharia</button>
+                <button class="tab-btn" onclick="filtrarPorCategoria('Tecnologia')">💻 Tecnologia</button>
+                <button class="tab-btn" onclick="filtrarPorCategoria('Engenharia')">🏗️ Engenharia</button>
             </div>
         </div>
 
-        <div id="listaPrincipal" class="grid-container"></div>
+        <div id="listaPrincipal" class="grid-container">
+            </div>
     </main>
 
     <div id="modalDetalhes" class="modal-overlay">
         <div class="modal-box">
             <span class="btn-fechar" onclick="fecharModal()">&times;</span>
-            <div id="conteudoEmpresa"></div>
+            <div id="conteudoEmpresa">
+                </div>
         </div>
     </div>
 
-    <a href="https://wa.me/5594992500073" class="btn-zap-flutuante" target="_blank" aria-label="WhatsApp">
+    <a href="https://wa.me/5594992500073" class="btn-zap-flutuante" target="_blank">
         <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
     </a>
 
     <footer>
         <div class="container">
-            <div class="footer-info">
-                <p class="txt-verde-zap"><strong>CDA LISTA</strong></p>
-                <p>
-                    Conectando o comércio local<br>
-                    Conceição do Araguaia - PA<br>
-                    (94) 99250-0073<br>
-                    © 2026 Todos os direitos reservados
-                </p>
-            </div>
-            <hr class="linha-divisoria">
-            <p class="creditos">Desenvolvido por <a href="https://razgo.com.br" target="_blank">RAZGO</a></p>
+            <p class="footer-brand"><strong>CDA LISTA</strong> Conectando o comércio local</p>
+            <p class="footer-info">Conceição do Araguaia - PA | (94) 99250-0073</p>
+            <p class="footer-copyright">© 2026 Todos os direitos reservados</p>
+            
+            <hr class="footer-divider">
+            
+            <p class="footer-dev">Desenvolvido por <a href="https://razgo.com.br" target="_blank">RAZGO</a></p>
         </div>
     </footer>
 
