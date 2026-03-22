@@ -1,129 +1,178 @@
-let empresas = [];
-let categoriaAtual = 'Todas';
-let favoritos = JSON.parse(localStorage.getItem('cda_favoritos')) || [];
-let tempoPopup = 10;
+// --- DADOS DAS EMPRESAS E UTILIDADE PÚBLICA ---
+const utilidadePublica = [
+    { nome: "PM - Polícia Militar", fone: "190", icone: "🚨" },
+    { nome: "Corpo de Bombeiros", fone: "193", icone: "🚒" },
+    { nome: "SAMU", fone: "192", icone: "🚑" },
+    { nome: "Hospital Regional", fone: "(94) 3421-1601", icone: "🏥" },
+    { nome: "Delegacia de Polícia", fone: "(94) 3421-1185", icone: "🚔" },
+    { nome: "Conselho Tutelar", fone: "(94) 99123-4567", icone: "🛡️" } // Exemplo, ajuste o número
+];
+
+let empresas = [
+    { id: 1, nome: "Hotel Araguaia", categoria: "Hotéis & Pousadas", zap: "5594992500073", img: "img/hotel.jpg", favorito: false },
+    { id: 2, nome: "Restaurante Beira Rio", categoria: "Restaurantes", zap: "5594992500073", img: "img/restaurante.jpg", favorito: false },
+    { id: 3, nome: "Praia da Gaivota", categoria: "Praias & Lazer", zap: "5594992500073", img: "img/praia.jpg", favorito: false },
+    // Adicione mais empresas aqui conforme o cadastro crescer
+];
+
+let tempoRestante = 30;
 let intervaloPopup;
 
-async function carregar() {
-    try {
-        const res = await fetch('dados.json');
-        const dados = await res.json();
-        // Ordem Alfabética Automática
-        empresas = dados.sort((a, b) => a.nome.localeCompare(b.nome));
-        renderizar(empresas);
-    } catch (err) { console.error(err); }
-}
+// --- INICIALIZAÇÃO ---
+window.onload = () => {
+    // Inicia o popup de 30 segundos
+    iniciarContadorPopup();
+    
+    // Carrega favoritos e renderiza
+    carregarFavoritos();
+    renderizarEmpresas(empresas);
+    
+    // Adiciona os números de emergência no topo do menu lateral
+    renderizarEmergencias();
+};
 
-function renderizar(dados) {
-    const lista = document.getElementById('listaPrincipal');
-    if (!lista) return;
-    lista.innerHTML = dados.map(emp => {
-        const isFav = favoritos.includes(emp.id);
-        const imgPath = emp.logo || 'https://img.icons8.com/fluency/150/group-of-companies.png';
-        return `
-            <div class="card">
-                <button class="fav-btn ${isFav ? 'active' : ''}" onclick="toggleFavorito(event, '${emp.id}')">★</button>
-                <div onclick="abrirModal('${emp.id}')">
-                    <img src="${imgPath}" class="logo-card" onerror="this.src='https://img.icons8.com/fluency/150/group-of-companies.png'">
-                    <h3>${emp.nome}</h3>
-                    <p><strong>${emp.categoria}</strong></p>
-                </div>
-            </div>
-        `;
-    }).join('');
-}
+// --- LÓGICA DO POPUP (30 SEGUNDOS) ---
+function iniciarContadorPopup() {
+    const contadorElemento = document.getElementById('contador');
+    const popup = document.getElementById('popupAnuncio');
 
-function toggleMenu() {
-    document.getElementById('sideMenu').classList.toggle('active');
-    document.getElementById('overlayMenu').classList.toggle('active');
-}
+    if (popup) popup.style.display = 'flex';
 
-function filtrarPorCategoria(cat) {
-    categoriaAtual = cat;
-    if (document.getElementById('sideMenu').classList.contains('active')) toggleMenu();
-    document.querySelectorAll('.tab-btn, .menu-btn').forEach(btn => {
-        btn.classList.toggle('active', btn.innerText.includes(cat) || (cat === 'Todas' && btn.innerText === 'Todas'));
-    });
-    filtrar();
-}
-
-function filtrar() {
-    const termo = document.getElementById('inputBusca').value.toLowerCase();
-    const filtrados = empresas.filter(e => {
-        const mCat = (categoriaAtual === 'Todas' || e.categoria === categoriaAtual);
-        const mBusca = e.nome.toLowerCase().includes(termo) || e.categoria.toLowerCase().includes(termo);
-        return mCat && mBusca;
-    });
-    renderizar(filtrados);
-}
-
-function toggleFavorito(event, id) {
-    event.stopPropagation();
-    const idx = favoritos.indexOf(id);
-    idx > -1 ? favoritos.splice(idx, 1) : favoritos.push(id);
-    localStorage.setItem('cda_favoritos', JSON.stringify(favoritos));
-    renderizar(empresas);
-}
-
-function mostrarFavoritos() {
-    categoriaAtual = 'Favoritos';
-    if (document.getElementById('sideMenu').classList.contains('active')) toggleMenu();
-    renderizar(empresas.filter(e => favoritos.includes(e.id)));
-}
-
-function abrirModal(id) {
-    const e = empresas.find(i => i.id == id);
-    if (!e) return;
-    const botaoSite = e.site ? `<a href="${e.site}" target="_blank" class="link-site">Visitar Website</a>` : '';
-    const zapGeral = "94992500073";
-
-    document.getElementById('conteudoEmpresa').innerHTML = `
-        <img src="${e.logo}" class="logo-modal" onerror="this.src='https://img.icons8.com/fluency/150/group-of-companies.png'">
-        <h2 style="color:#1e40af; margin-bottom:5px; font-size:1.4rem;">${e.nome}</h2>
-        <p style="color:#666; font-weight:bold; margin-bottom:15px; font-size:13px;">${e.categoria}</p>
-        <div class="info-empresa">
-            <p>📍 <strong>Endereço:</strong> ${e.endereco}</p>
-            <p>📞 <strong>Contato:</strong> ${e.telefone}</p>
-            <p>📝 <strong>Sobre:</strong> ${e.descricao}</p>
-        </div>
-        <a href="https://wa.me/55${zapGeral}?text=Olá! Gostaria de mais informações sobre ${e.nome} que vi no CDA LISTA." target="_blank" class="link-whatsapp">Falar com Consultor</a>
-        ${botaoSite}
-    `;
-    document.getElementById('modalDetalhes').style.display = 'flex';
-    document.body.style.overflow = 'hidden';
-}
-
-function fecharModal() { 
-    document.getElementById('modalDetalhes').style.display = 'none'; 
-    document.body.style.overflow = 'auto';
-}
-
-function fecharPopup() {
-    clearInterval(intervaloPopup);
-    document.getElementById('popupAnuncio').style.display = 'none';
-    document.body.style.overflow = 'auto';
-}
-
-function iniciarCronometro() {
-    const contadorTexto = document.getElementById('contador');
     intervaloPopup = setInterval(() => {
-        tempoPopup--;
-        if (contadorTexto) contadorTexto.innerText = tempoPopup;
-        if (tempoPopup <= 0) {
+        tempoRestante--;
+        if (contadorElemento) contadorElemento.innerText = tempoRestante;
+
+        if (tempoRestante <= 0) {
             fecharPopup();
         }
     }, 1000);
 }
 
-document.addEventListener("DOMContentLoaded", function() {
-    document.getElementById('popupAnuncio').style.display = 'flex';
-    document.body.style.overflow = 'hidden';
-    iniciarCronometro();
-});
+function fecharPopup() {
+    const popup = document.getElementById('popupAnuncio');
+    if (popup) popup.style.display = 'none';
+    clearInterval(intervaloPopup);
+}
 
-window.onclick = (e) => { 
-    if (e.target.id == 'modalDetalhes') fecharModal(); 
-    if (e.target.id == 'popupAnuncio') fecharPopup();
-};
+// --- RENDERIZAR NÚMEROS DE EMERGÊNCIA NO MENU ---
+function renderizarEmergencias() {
+    const menuNav = document.querySelector('.side-menu-nav');
+    
+    // Criar seção de emergência
+    const divEmergencia = document.createElement('div');
+    divEmergencia.className = 'secao-emergencia';
+    divEmergencia.innerHTML = '<h4 style="color: #dc2626; padding: 10px; border-bottom: 1px solid #eee;">Emergência</h4>';
+    
+    utilidadePublica.forEach(item => {
+        const link = document.createElement('a');
+        link.href = `tel:${item.fone.replace(/\D/g,'')}`;
+        link.className = 'menu-btn-emergencia';
+        link.innerHTML = `<span>${item.icone} ${item.nome}</span> <strong>${item.fone}</strong>`;
+        link.style.cssText = "display: flex; justify-content: space-between; padding: 10px; text-decoration: none; color: #333; font-size: 0.9rem; border-bottom: 1px solid #f5f5f5;";
+        divEmergencia.appendChild(link);
+    });
 
-carregar();
+    // Insere no topo do menu lateral
+    menuNav.prepend(divEmergencia);
+}
+
+// --- BUSCA E FILTROS ---
+function filtrar() {
+    const termo = document.getElementById('inputBusca').value.toLowerCase();
+    const filtrados = empresas.filter(e => 
+        e.nome.toLowerCase().includes(termo) || 
+        e.categoria.toLowerCase().includes(termo)
+    );
+    renderizarEmpresas(filtrados);
+}
+
+function filtrarPorCategoria(cat) {
+    const botoes = document.querySelectorAll('.menu-btn, .tab-btn');
+    botoes.forEach(b => b.classList.remove('active'));
+
+    if (cat === 'Todas') {
+        renderizarEmpresas(empresas);
+    } else {
+        const filtrados = empresas.filter(e => e.categoria === cat);
+        renderizarEmpresas(filtrados);
+    }
+    
+    if (window.innerWidth < 768) toggleMenu();
+}
+
+// --- RENDERIZAÇÃO DO GRID DE EMPRESAS ---
+function renderizarEmpresas(lista) {
+    const container = document.getElementById('listaPrincipal');
+    if (!container) return;
+    
+    container.innerHTML = '';
+
+    if (lista.length === 0) {
+        container.innerHTML = '<p style="grid-column: 1/-1; text-align: center; padding: 40px; color: #666;">Nenhum comércio encontrado nesta categoria.</p>';
+        return;
+    }
+
+    lista.forEach(empresa => {
+        const card = document.createElement('div');
+        card.className = 'card-empresa';
+        card.innerHTML = `
+            <div class="card-img-container">
+                <img src="${empresa.img}" alt="${empresa.nome}" onerror="this.src='img/placeholder.jpg'">
+            </div>
+            <div class="card-info">
+                <h3>${empresa.nome}</h3>
+                <span class="categoria-label">${empresa.categoria}</span>
+                <div class="card-acoes">
+                    <a href="https://wa.me/${empresa.zap}" target="_blank" class="btn-zap">WhatsApp</a>
+                    <button onclick="toggleFavorito(${empresa.id})" class="btn-fav">
+                        ${empresa.favorito ? '⭐' : '☆'}
+                    </button>
+                </div>
+            </div>
+        `;
+        container.appendChild(card);
+    });
+}
+
+// --- MENU LATERAL (MOBILE) ---
+function toggleMenu() {
+    const menu = document.getElementById('sideMenu');
+    const overlay = document.getElementById('overlayMenu');
+    const estaAberto = menu.style.left === '0px';
+
+    if (estaAberto) {
+        menu.style.left = '-280px';
+        overlay.style.display = 'none';
+    } else {
+        menu.style.left = '0px';
+        overlay.style.display = 'block';
+    }
+}
+
+// --- FAVORITOS (LOCALSTORAGE) ---
+function toggleFavorito(id) {
+    const index = empresas.findIndex(e => e.id === id);
+    if (index !== -1) {
+        empresas[index].favorito = !empresas[index].favorito;
+        salvarFavoritos();
+        renderizarEmpresas(empresas);
+    }
+}
+
+function salvarFavoritos() {
+    const favIds = empresas.filter(e => e.favorito).map(e => e.id);
+    localStorage.setItem('cda_favs', JSON.stringify(favIds));
+}
+
+function carregarFavoritos() {
+    const salvos = JSON.parse(localStorage.getItem('cda_favs')) || [];
+    empresas.forEach(e => {
+        if (salvos.includes(e.id)) e.favorito = true;
+    });
+}
+
+function mostrarFavoritos() {
+    const filtrados = empresas.filter(e => e.favorito);
+    renderizarEmpresas(filtrados);
+    if (window.innerWidth < 768) toggleMenu();
+}
