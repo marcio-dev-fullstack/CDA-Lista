@@ -1,10 +1,5 @@
-# Ignorar arquivos de sistema
 .DS_Store
 Thumbs.db
-
-# Ignorar pastas de ambiente virtual (se usar Python/Django no futuro)
-venv/
-__pycache__/
-
-# Ignorar logs de erro
-npm-debug.log*
+node_modules/
+.vscode/
+*.log
