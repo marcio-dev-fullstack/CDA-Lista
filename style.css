@@ -1,5 +1,6 @@
-/* PROJETO: CDA LISTA - O Guia Comercial de Conceição do Araguaia
+/* PROJETO: CDA LISTA 
    DESENVOLVEDOR: Márcio Oliveira (RAZGO)
+   CONFIGURAÇÃO: 6 Colunas PC | Modal de Detalhes | Mobile First
 */
 
 /* --- RESET E BASES --- */
@@ -7,36 +8,35 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Segoe UI', Roboto, -apple-system, sans-serif;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 body {
-    background-color: #f0f2f5;
-    color: #1a1a1b;
-    line-height: 1.5;
+    background-color: #f8fafc;
+    color: #1e293b;
+    line-height: 1.6;
 }
 
 .container {
-    max-width: 1300px;
+    max-width: 1400px;
     margin: 0 auto;
     padding: 0 15px;
 }
 
 /* --- CABEÇALHO --- */
 header {
-    background: linear-gradient(135deg, #1e40af 0%, #1e3a8a 100%);
+    background: #1e40af;
     color: white;
     text-align: center;
-    padding: 30px 0 60px;
+    padding: 40px 0 60px;
     position: relative;
-    clip-path: ellipse(150% 100% at 50% 0%);
 }
 
 .logo-cabecalho {
-    width: 90px;
-    height: 90px;
+    width: 100px;
+    height: 100px;
     border-radius: 50%;
-    border: 4px solid rgba(255,255,255,0.3);
+    border: 3px solid white;
     margin-bottom: 10px;
     object-fit: cover;
 }
@@ -44,40 +44,34 @@ header {
 .btn-menu-mobile {
     position: absolute;
     left: 20px;
-    top: 30px;
-    background: rgba(255,255,255,0.1);
+    top: 20px;
+    background: rgba(255,255,255,0.2);
     border: none;
     color: white;
     font-size: 1.5rem;
-    padding: 8px 12px;
+    padding: 5px 12px;
     border-radius: 8px;
     cursor: pointer;
 }
 
 /* --- BUSCA --- */
 .busca-wrapper {
-    margin: -35px auto 30px;
+    margin: -30px auto 30px;
     max-width: 600px;
-    position: relative;
-    z-index: 10;
+    padding: 0 15px;
 }
 
 #inputBusca {
     width: 100%;
-    padding: 18px 25px;
-    border-radius: 50px;
+    padding: 15px 25px;
+    border-radius: 30px;
     border: none;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-    font-size: 1.1rem;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    font-size: 1rem;
     outline: none;
-    transition: 0.3s;
 }
 
-#inputBusca:focus {
-    box-shadow: 0 10px 30px rgba(30, 64, 175, 0.2);
-}
-
-/* --- NAVEGAÇÃO DE CATEGORIAS (PC) --- */
+/* --- CATEGORIAS (PC) --- */
 .categorias-pc {
     display: none;
     text-align: center;
@@ -90,22 +84,20 @@ header {
 
 .tab-btn {
     background: white;
-    border: 1px solid #e5e7eb;
-    padding: 10px 20px;
-    border-radius: 25px;
+    border: 1px solid #e2e8f0;
+    padding: 8px 18px;
+    border-radius: 20px;
     margin: 5px;
     cursor: pointer;
-    font-weight: 500;
     transition: 0.3s;
 }
 
 .tab-btn.active, .tab-btn:hover {
     background: #1e40af;
     color: white;
-    border-color: #1e40af;
 }
 
-/* --- GRID DE EMPRESAS --- */
+/* --- GRID DE EMPRESAS (6 COLUNAS NO PC) --- */
 .grid-container {
     display: grid;
     gap: 15px;
@@ -120,187 +112,74 @@ header {
 }
 
 @media (min-width: 1200px) {
-    /* PC: 6 colunas (Pedido do Usuário) */
+    /* PC: 6 colunas conforme solicitado */
     .grid-container { grid-template-columns: repeat(6, 1fr); }
 }
 
-/* --- ESTILO DOS CARDS --- */
+/* --- CARDS --- */
 .card-empresa {
     background: white;
-    border-radius: 12px;
+    border-radius: 10px;
     overflow: hidden;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
     display: flex;
     flex-direction: column;
-    transition: transform 0.3s ease;
-    border: 1px solid #f0f0f0;
+    cursor: pointer;
+    transition: transform 0.2s;
+    border: 1px solid #f1f5f9;
 }
 
 .card-empresa:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 12px 20px rgba(0,0,0,0.1);
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
 }
 
 .card-img-container img {
     width: 100%;
-    height: 120px;
+    height: 110px;
     object-fit: cover;
 }
 
 .card-info {
-    padding: 12px;
-    flex-grow: 1;
-    display: flex;
-    flex-direction: column;
+    padding: 10px;
     text-align: center;
+    flex-grow: 1;
 }
 
 .card-info h3 {
-    font-size: 0.95rem;
+    font-size: 0.9rem;
     color: #1e3a8a;
     margin-bottom: 5px;
-    height: 2.5em;
+    white-space: nowrap;
     overflow: hidden;
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
+    text-overflow: ellipsis; /* Mantém alinhado mesmo com nomes longos */
 }
 
 .categoria-label {
     font-size: 0.7rem;
-    color: #6b7280;
-    background: #f3f4f6;
+    color: #64748b;
+    background: #f1f5f9;
     padding: 2px 8px;
     border-radius: 10px;
-    align-self: center;
-    margin-bottom: 12px;
 }
 
-.card-acoes {
-    display: flex;
-    gap: 5px;
-    margin-top: auto;
-}
-
-.btn-zap {
-    background: #25d366;
-    color: white;
-    text-decoration: none;
+.btn-ver-mais {
+    background: #eff6ff;
+    color: #1e40af;
+    border: none;
+    padding: 6px;
+    width: 100%;
+    margin-top: 10px;
+    border-radius: 5px;
     font-size: 0.8rem;
     font-weight: bold;
-    padding: 10px;
-    border-radius: 8px;
-    flex-grow: 1;
-    transition: 0.3s;
 }
 
-.btn-zap:hover { background: #128c7e; }
-
-.btn-fav {
-    background: #fff9db;
-    border: 1px solid #fab005;
-    border-radius: 8px;
-    padding: 5px 10px;
-    cursor: pointer;
-}
-
-/* --- DESTAQUE PREMIUM (R$ 69,99) --- */
-.card-premium {
-    border: 2px solid #fbbf24;
-    background: #fffdf5;
-    position: relative;
-    animation: goldGlow 3s infinite;
-}
-
-.card-premium::before {
-    content: "⭐ DESTAQUE";
-    position: absolute;
-    top: -10px;
-    left: 50%;
-    transform: translateX(-50%);
-    background: #fbbf24;
-    color: #000;
-    font-size: 0.6rem;
-    font-weight: bold;
-    padding: 2px 12px;
-    border-radius: 20px;
-    z-index: 5;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-}
-
-@keyframes goldGlow {
-    0% { box-shadow: 0 0 5px rgba(251, 191, 36, 0.2); }
-    50% { box-shadow: 0 0 15px rgba(251, 191, 36, 0.5); }
-    100% { box-shadow: 0 0 5px rgba(251, 191, 36, 0.2); }
-}
-
-/* --- MENU LATERAL --- */
-.side-menu {
-    position: fixed;
-    top: 0;
-    left: -280px;
-    width: 280px;
-    height: 100%;
-    background: white;
-    z-index: 1100;
-    transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    box-shadow: 5px 0 25px rgba(0,0,0,0.15);
-    overflow-y: auto;
-}
-
-.side-menu-header {
-    background: #1e40af;
-    color: white;
-    padding: 25px 20px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.menu-btn {
-    width: 100%;
-    padding: 15px 20px;
-    border: none;
-    background: none;
-    text-align: left;
-    border-bottom: 1px solid #f3f4f6;
-    font-size: 1rem;
-    cursor: pointer;
-}
-
-.menu-btn:hover { background: #f9fafb; color: #1e40af; }
-
-.overlay-menu {
-    position: fixed;
-    top: 0; left: 0; width: 100%; height: 100%;
-    background: rgba(0,0,0,0.5);
-    display: none;
-    z-index: 1050;
-}
-
-/* --- SEÇÃO EMERGÊNCIA --- */
-.secao-emergencia {
-    background: #fff5f5;
-    padding-bottom: 10px;
-}
-
-.menu-btn-emergencia {
-    display: flex;
-    justify-content: space-between;
-    padding: 12px 20px;
-    text-decoration: none;
-    color: #333;
-    font-size: 0.9rem;
-    border-bottom: 1px solid #fee2e2;
-}
-
-.menu-btn-emergencia strong { color: #dc2626; }
-
-/* --- POPUP DE ANÚNCIO (30s) --- */
+/* --- MODAIS (POPUP ANÚNCIO E DETALHES) --- */
 .modal-overlay {
     position: fixed;
     top: 0; left: 0; width: 100%; height: 100%;
-    background: rgba(0,0,0,0.9);
+    background: rgba(0,0,0,0.8);
     display: none;
     justify-content: center;
     align-items: center;
@@ -310,56 +189,95 @@ header {
 
 .modal-box {
     background: white;
-    border-radius: 20px;
-    padding: 40px 20px;
-    max-width: 400px;
+    border-radius: 15px;
     width: 100%;
-    text-align: center;
+    max-width: 450px;
     position: relative;
-    border-top: 10px solid #1e40af;
+    padding: 30px;
+    animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
 }
 
 .btn-fechar {
     position: absolute;
     top: 15px; right: 15px;
-    background: #f3f4f6;
-    padding: 5px 15px;
-    border-radius: 50px;
-    font-size: 0.8rem;
+    font-size: 1.5rem;
     cursor: pointer;
+    color: #64748b;
 }
 
-.link-whatsapp {
-    display: inline-block;
+/* Estilo específico para o botão de WhatsApp dentro do Modal */
+.btn-zap {
+    display: block;
     background: #25d366;
     color: white;
-    padding: 15px 30px;
-    border-radius: 50px;
+    text-align: center;
+    padding: 12px;
+    border-radius: 8px;
     text-decoration: none;
     font-weight: bold;
     margin-top: 20px;
+}
+
+/* --- MENU LATERAL --- */
+.side-menu {
+    position: fixed;
+    top: 0; left: -280px; width: 280px; height: 100%;
+    background: white;
+    z-index: 1500;
+    transition: 0.3s;
+    box-shadow: 2px 0 10px rgba(0,0,0,0.1);
+}
+
+.side-menu-header {
+    background: #1e40af;
+    color: white;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.menu-btn {
+    width: 100%;
+    text-align: left;
+    padding: 15px 20px;
+    border: none;
+    background: none;
+    border-bottom: 1px solid #f1f5f9;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+.overlay-menu {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0,0,0,0.5);
+    display: none;
+    z-index: 1400;
 }
 
 /* --- FOOTER --- */
 footer {
     background: #0f172a;
     color: #94a3b8;
-    padding: 60px 0 30px;
+    padding: 40px 0;
     text-align: center;
+    margin-top: 50px;
 }
 
-.txt-verde-zap { color: #25d366; margin-bottom: 10px; display: block; }
-.linha-divisoria { border: 0; border-top: 1px solid #1e293b; margin: 30px 0; }
-.creditos a { color: white; text-decoration: none; font-weight: bold; }
+.txt-verde-zap { color: #25d366; font-weight: bold; }
+.linha-divisoria { border: 0; border-top: 1px solid #1e293b; margin: 20px 0; }
+.creditos a { color: white; text-decoration: none; }
 
 /* --- BOTÃO FLUTUANTE --- */
 .btn-zap-flutuante {
     position: fixed;
-    bottom: 25px; right: 25px;
+    bottom: 20px; right: 20px;
     width: 60px; height: 60px;
     z-index: 1000;
-    filter: drop-shadow(0 5px 15px rgba(37, 211, 102, 0.4));
-    transition: 0.3s;
 }
-
-.btn-zap-flutuante:hover { transform: scale(1.1); }
+.btn-zap-flutuante img { width: 100%; }
