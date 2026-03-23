@@ -1,9 +1,7 @@
 /* PROJETO: CDA LISTA 
    DESENVOLVEDOR: Márcio Oliveira (RAZGO)
-   ESTILO: App Interface / 6 Colunas PC / Rodapé Inteligente
 */
 
-/* --- 1. RESET E VARIÁVEIS --- */
 * {
     margin: 0;
     padding: 0;
@@ -23,14 +21,13 @@ body {
     padding: 0 20px;
 }
 
-/* --- 2. CABEÇALHO --- */
+/* --- CABEÇALHO --- */
 header {
     background: #1e40af;
     color: white;
     text-align: center;
     padding: 50px 0 40px;
-    position: relative;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    position: relative; /* Base para o posicionamento do botão */
 }
 
 .logo-cabecalho {
@@ -42,21 +39,21 @@ header {
     object-fit: cover;
 }
 
-header h1 { font-size: 2rem; margin-bottom: 5px; }
-header p { font-size: 1rem; margin-bottom: 25px; opacity: 0.9; }
+header h1 { font-size: 1.8rem; margin-bottom: 5px; }
+header p { font-size: 0.95rem; opacity: 0.9; margin-bottom: 25px; }
 
-/* --- 3. MENU HAMBÚRGUER (SUPERIOR DIREITO) --- */
+/* --- BOTÃO MENU HAMBÚRGUER (PADRÃO APP MOBILE) --- */
 .btn-menu-app {
     position: absolute;
-    right: 20px;
-    top: 20px;
-    background: rgba(255,255,255,0.15);
+    right: 15px; /* Canto superior direito */
+    top: 15px;
+    background: rgba(255,255,255,0.15); /* Fundo sutil de app */
     border: none;
     color: white;
-    font-size: 2rem;
-    width: 50px;
-    height: 50px;
-    border-radius: 10px;
+    font-size: 2.2rem; /* Tamanho maior para toque fácil */
+    width: 60px; /* Área de toque aumentada */
+    height: 60px;
+    border-radius: 12px;
     cursor: pointer;
     display: flex;
     align-items: center;
@@ -65,9 +62,12 @@ header p { font-size: 1rem; margin-bottom: 25px; opacity: 0.9; }
     z-index: 100;
 }
 
-.btn-menu-app:hover { background: rgba(255,255,255,0.3); }
+.btn-menu-app:active {
+    background: rgba(255,255,255,0.3);
+    transform: scale(0.95);
+}
 
-/* --- 4. BUSCA INTEGRADA --- */
+/* --- BUSCA INTEGRADA --- */
 .busca-wrapper {
     max-width: 650px;
     margin: 0 auto;
@@ -89,18 +89,18 @@ header p { font-size: 1rem; margin-bottom: 25px; opacity: 0.9; }
     width: 100%;
     border: none;
     padding: 14px 0;
-    font-size: 1.05rem;
+    font-size: 1.1rem;
     outline: none;
     color: #1e293b;
     background: transparent;
 }
 
-/* --- 5. GRID 6 COLUNAS PC --- */
+/* --- GRID 6 COLUNAS PC --- */
 .grid-container {
     display: grid;
     gap: 15px;
     padding: 40px 0 80px;
-    grid-template-columns: repeat(2, 1fr); /* Mobile: 2 colunas */
+    grid-template-columns: repeat(2, 1fr);
 }
 
 @media (min-width: 768px) {
@@ -108,10 +108,10 @@ header p { font-size: 1rem; margin-bottom: 25px; opacity: 0.9; }
 }
 
 @media (min-width: 1200px) {
-    .grid-container { grid-template-columns: repeat(6, 1fr); } /* PC: 6 colunas */
+    .grid-container { grid-template-columns: repeat(6, 1fr); }
 }
 
-/* --- 6. CARDS --- */
+/* --- CARDS --- */
 .card-empresa {
     background: white;
     border-radius: 12px;
@@ -124,51 +124,33 @@ header p { font-size: 1rem; margin-bottom: 25px; opacity: 0.9; }
     border: 1px solid #f1f5f9;
 }
 
-.card-empresa:hover { transform: translateY(-5px); box-shadow: 0 8px 20px rgba(0,0,0,0.08); }
 .card-img-container img { width: 100%; height: 120px; object-fit: cover; }
 .card-info { padding: 15px; text-align: center; }
 .card-info h3 { font-size: 0.95rem; color: #1e3a8a; margin-bottom: 5px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .categoria-label { font-size: 0.75rem; color: #64748b; background: #f1f5f9; padding: 3px 12px; border-radius: 20px; }
 
-/* --- 7. RODAPÉ INTELIGENTE --- */
+/* --- RODAPÉ INTELIGENTE --- */
 footer {
     background: white;
-    padding: 40px 0 30px;
+    padding: 40px 0 20px;
     text-align: center;
     border-top: 1px solid #e2e8f0;
     margin-top: 50px;
 }
 
-.footer-content {
-    display: flex;
-    flex-direction: column; /* Padrão Mobile: Empilhado */
-    gap: 8px;
-    align-items: center;
-}
-
+.footer-content { display: flex; flex-direction: column; gap: 6px; align-items: center; }
 .footer-brand { color: #1e40af; font-weight: bold; font-size: 1.1rem; }
-.footer-line { color: #475569; font-size: 0.95rem; }
-.footer-copyright { font-size: 0.85rem; color: #94a3b8; }
+.footer-copyright { color: #94a3b8; font-size: 0.9rem; }
+.footer-divider { max-width: 100px; margin: 15px auto; border: 0; border-top: 1px solid #cbd5e1; }
 .footer-dev a { color: #1e40af; text-decoration: none; font-weight: bold; }
-.footer-divider { max-width: 100px; margin: 20px auto; border: 0; border-top: 1px solid #cbd5e1; }
 
-/* PC: Rodapé em linha única com divisórias | */
+/* Ajuste PC: Agrupar em linhas conforme solicitado */
 @media (min-width: 768px) {
-    .footer-content {
-        flex-direction: row;
-        justify-content: center;
-        gap: 15px;
-        flex-wrap: wrap;
-    }
-    .footer-content span:not(:last-child)::after {
-        content: "|";
-        margin-left: 15px;
-        color: #cbd5e1;
-    }
-    .footer-divider { display: block; max-width: 200px; }
+    .footer-row-pc { display: block; margin-bottom: 5px; }
+    .footer-row-pc strong, .footer-row-pc span { display: inline-block; margin: 0 8px; }
 }
 
-/* --- 8. MENU LATERAL (SIDE MENU) --- */
+/* --- MENU LATERAL (SIDE MENU) --- */
 .side-menu {
     position: fixed;
     top: 0; left: -280px; width: 280px; height: 100%;
@@ -187,12 +169,12 @@ footer {
     align-items: center;
 }
 
-.btn-fechar-menu { font-size: 2rem; cursor: pointer; }
+.btn-fechar-menu { font-size: 2.5rem; cursor: pointer; }
 
 .menu-btn {
     width: 100%;
     text-align: left;
-    padding: 18px 20px;
+    padding: 20px;
     background: none;
     border: none;
     border-bottom: 1px solid #f1f5f9;
@@ -200,8 +182,6 @@ footer {
     cursor: pointer;
     color: #333;
 }
-
-.menu-btn:hover { background: #f8fafc; color: #1e40af; }
 
 .overlay-menu {
     position: fixed;
@@ -211,7 +191,7 @@ footer {
     z-index: 3500;
 }
 
-/* --- 9. MODAIS --- */
+/* --- MODAIS --- */
 .modal-overlay {
     position: fixed;
     top: 0; left: 0; width: 100%; height: 100%;
@@ -245,12 +225,4 @@ footer {
     margin-top: 25px;
 }
 
-/* Botão Zap Flutuante */
-.btn-zap-flutuante {
-    position: fixed;
-    bottom: 25px; right: 25px;
-    width: 60px; height: 60px;
-    z-index: 2000;
-    transition: 0.3s;
-}
-.btn-zap-flutuante:hover { transform: scale(1.1); }
+.btn-zap-flutuante { position: fixed; bottom: 25px; right: 25px; width: 60px; z-index: 2000; }
