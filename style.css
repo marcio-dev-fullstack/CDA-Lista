@@ -1,4 +1,9 @@
-/* --- CONFIGURAÇÕES GERAIS --- */
+/* PROJETO: CDA LISTA 
+   DESENVOLVEDOR: Márcio Oliveira (RAZGO)
+   ESTILO: App Interface / 6 Colunas PC / Rodapé Inteligente
+*/
+
+/* --- 1. RESET E VARIÁVEIS --- */
 * {
     margin: 0;
     padding: 0;
@@ -9,37 +14,62 @@
 body {
     background-color: #f8fafc;
     color: #1e293b;
+    overflow-x: hidden;
 }
 
 .container {
     max-width: 1400px;
     margin: 0 auto;
-    padding: 0 15px;
+    padding: 0 20px;
 }
 
-/* --- CABEÇALHO E BUSCA --- */
+/* --- 2. CABEÇALHO --- */
 header {
     background: #1e40af;
     color: white;
     text-align: center;
-    padding: 40px 0 35px;
+    padding: 50px 0 40px;
     position: relative;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
 }
 
 .logo-cabecalho {
-    width: 85px;
-    height: 85px;
+    width: 90px;
+    height: 90px;
     border-radius: 50%;
-    border: 3px solid white;
-    margin-bottom: 10px;
+    border: 3px solid rgba(255,255,255,0.8);
+    margin-bottom: 12px;
     object-fit: cover;
 }
 
-header h1 { font-size: 1.8rem; margin-bottom: 5px; }
-header p { font-size: 0.95rem; opacity: 0.9; margin-bottom: 20px; }
+header h1 { font-size: 2rem; margin-bottom: 5px; }
+header p { font-size: 1rem; margin-bottom: 25px; opacity: 0.9; }
 
+/* --- 3. MENU HAMBÚRGUER (SUPERIOR DIREITO) --- */
+.btn-menu-app {
+    position: absolute;
+    right: 20px;
+    top: 20px;
+    background: rgba(255,255,255,0.15);
+    border: none;
+    color: white;
+    font-size: 2rem;
+    width: 50px;
+    height: 50px;
+    border-radius: 10px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: 0.3s;
+    z-index: 100;
+}
+
+.btn-menu-app:hover { background: rgba(255,255,255,0.3); }
+
+/* --- 4. BUSCA INTEGRADA --- */
 .busca-wrapper {
-    max-width: 600px;
+    max-width: 650px;
     margin: 0 auto;
     padding: 0 20px;
 }
@@ -48,28 +78,29 @@ header p { font-size: 0.95rem; opacity: 0.9; margin-bottom: 20px; }
     background: white;
     display: flex;
     align-items: center;
-    padding: 2px 18px;
-    border-radius: 8px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    padding: 2px 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
 }
 
-.icone-busca { color: #94a3b8; margin-right: 10px; }
+.icone-busca { color: #94a3b8; margin-right: 12px; font-size: 1.2rem; }
 
 #inputBusca {
     width: 100%;
     border: none;
-    padding: 12px 0;
-    font-size: 1rem;
+    padding: 14px 0;
+    font-size: 1.05rem;
     outline: none;
-    color: #333;
+    color: #1e293b;
+    background: transparent;
 }
 
-/* --- GRID 6 COLUNAS PC --- */
+/* --- 5. GRID 6 COLUNAS PC --- */
 .grid-container {
     display: grid;
     gap: 15px;
-    padding: 30px 0 60px;
-    grid-template-columns: repeat(2, 1fr);
+    padding: 40px 0 80px;
+    grid-template-columns: repeat(2, 1fr); /* Mobile: 2 colunas */
 }
 
 @media (min-width: 768px) {
@@ -77,55 +108,51 @@ header p { font-size: 0.95rem; opacity: 0.9; margin-bottom: 20px; }
 }
 
 @media (min-width: 1200px) {
-    .grid-container { grid-template-columns: repeat(6, 1fr); }
+    .grid-container { grid-template-columns: repeat(6, 1fr); } /* PC: 6 colunas */
 }
 
-/* --- CARDS --- */
+/* --- 6. CARDS --- */
 .card-empresa {
     background: white;
-    border-radius: 10px;
+    border-radius: 12px;
     overflow: hidden;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    box-shadow: 0 2px 6px rgba(0,0,0,0.04);
     display: flex;
     flex-direction: column;
     cursor: pointer;
-    transition: 0.3s;
-    border: 1px solid #e2e8f0;
+    transition: 0.2s;
+    border: 1px solid #f1f5f9;
 }
 
-.card-empresa:hover { transform: translateY(-5px); }
+.card-empresa:hover { transform: translateY(-5px); box-shadow: 0 8px 20px rgba(0,0,0,0.08); }
+.card-img-container img { width: 100%; height: 120px; object-fit: cover; }
+.card-info { padding: 15px; text-align: center; }
+.card-info h3 { font-size: 0.95rem; color: #1e3a8a; margin-bottom: 5px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.categoria-label { font-size: 0.75rem; color: #64748b; background: #f1f5f9; padding: 3px 12px; border-radius: 20px; }
 
-.card-img-container img {
-    width: 100%;
-    height: 115px;
-    object-fit: cover;
-}
-
-.card-info { padding: 12px; text-align: center; }
-.card-info h3 { font-size: 0.9rem; color: #1e3a8a; margin-bottom: 5px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.categoria-label { font-size: 0.7rem; color: #64748b; background: #f1f5f9; padding: 2px 8px; border-radius: 10px; }
-
-/* --- RODAPÉ (INTELIGENTE: LINHA NO PC, COLUNA NO MOBILE) --- */
+/* --- 7. RODAPÉ INTELIGENTE --- */
 footer {
     background: white;
-    padding: 30px 0;
+    padding: 40px 0 30px;
     text-align: center;
     border-top: 1px solid #e2e8f0;
     margin-top: 50px;
 }
 
-/* Estilo para Mobile (Empilhado) */
 .footer-content {
     display: flex;
-    flex-direction: column;
+    flex-direction: column; /* Padrão Mobile: Empilhado */
     gap: 8px;
     align-items: center;
 }
 
-.footer-brand { color: #1e40af; font-weight: bold; }
+.footer-brand { color: #1e40af; font-weight: bold; font-size: 1.1rem; }
+.footer-line { color: #475569; font-size: 0.95rem; }
+.footer-copyright { font-size: 0.85rem; color: #94a3b8; }
 .footer-dev a { color: #1e40af; text-decoration: none; font-weight: bold; }
+.footer-divider { max-width: 100px; margin: 20px auto; border: 0; border-top: 1px solid #cbd5e1; }
 
-/* Estilo para PC (Em linha única) */
+/* PC: Rodapé em linha única com divisórias | */
 @media (min-width: 768px) {
     .footer-content {
         flex-direction: row;
@@ -133,20 +160,58 @@ footer {
         gap: 15px;
         flex-wrap: wrap;
     }
-    
-    .footer-content span::after {
+    .footer-content span:not(:last-child)::after {
         content: "|";
         margin-left: 15px;
         color: #cbd5e1;
     }
-    
-    .footer-content span:last-child::after,
-    .footer-content .footer-dev::after {
-        content: "";
-    }
+    .footer-divider { display: block; max-width: 200px; }
 }
 
-/* --- MODAIS --- */
+/* --- 8. MENU LATERAL (SIDE MENU) --- */
+.side-menu {
+    position: fixed;
+    top: 0; left: -280px; width: 280px; height: 100%;
+    background: white;
+    z-index: 4000;
+    transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 5px 0 20px rgba(0,0,0,0.1);
+}
+
+.side-menu-header {
+    background: #1e40af;
+    color: white;
+    padding: 30px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.btn-fechar-menu { font-size: 2rem; cursor: pointer; }
+
+.menu-btn {
+    width: 100%;
+    text-align: left;
+    padding: 18px 20px;
+    background: none;
+    border: none;
+    border-bottom: 1px solid #f1f5f9;
+    font-size: 1.1rem;
+    cursor: pointer;
+    color: #333;
+}
+
+.menu-btn:hover { background: #f8fafc; color: #1e40af; }
+
+.overlay-menu {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0,0,0,0.5);
+    display: none;
+    z-index: 3500;
+}
+
+/* --- 9. MODAIS --- */
 .modal-overlay {
     position: fixed;
     top: 0; left: 0; width: 100%; height: 100%;
@@ -155,42 +220,37 @@ footer {
     justify-content: center;
     align-items: center;
     z-index: 3000;
-    padding: 20px;
 }
 
 .modal-box {
     background: white;
     padding: 30px;
-    border-radius: 15px;
-    max-width: 450px;
-    width: 100%;
+    border-radius: 16px;
+    max-width: 480px;
+    width: 90%;
     position: relative;
 }
 
-.btn-fechar { position: absolute; top: 10px; right: 15px; font-size: 1.5rem; cursor: pointer; }
+.btn-fechar { position: absolute; top: 10px; right: 15px; font-size: 1.8rem; cursor: pointer; color: #94a3b8; }
 
 .btn-zap {
     display: block;
     background: #25d366;
     color: white;
     text-align: center;
-    padding: 14px;
-    border-radius: 8px;
+    padding: 15px;
+    border-radius: 10px;
     text-decoration: none;
     font-weight: bold;
-    margin-top: 20px;
+    margin-top: 25px;
 }
 
-.btn-zap-flutuante { position: fixed; bottom: 20px; right: 20px; width: 55px; z-index: 1000; }
-.btn-zap-flutuante img { width: 100%; }
-
-/* Menu Lateral */
-.side-menu { position: fixed; top: 0; left: -280px; width: 280px; height: 100%; background: white; z-index: 4000; transition: 0.3s; box-shadow: 2px 0 10px rgba(0,0,0,0.1); }
-.side-menu-header { background: #1e40af; color: white; padding: 20px; display: flex; justify-content: space-between; }
-.menu-btn { width: 100%; text-align: left; padding: 15px 20px; background: none; border: none; border-bottom: 1px solid #f1f5f9; font-size: 1rem; cursor: pointer; }
-.overlay-menu { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); display: none; z-index: 3500; }
-
-.categorias-pc { display: none; text-align: center; margin-top: 25px; }
-@media (min-width: 768px) { .categorias-pc { display: block; } }
-.tab-btn { background: white; border: 1px solid #ddd; padding: 8px 18px; border-radius: 20px; margin: 5px; cursor: pointer; transition: 0.3s; }
-.tab-btn.active, .tab-btn:hover { background: #1e40af; color: white; }
+/* Botão Zap Flutuante */
+.btn-zap-flutuante {
+    position: fixed;
+    bottom: 25px; right: 25px;
+    width: 60px; height: 60px;
+    z-index: 2000;
+    transition: 0.3s;
+}
+.btn-zap-flutuante:hover { transform: scale(1.1); }
