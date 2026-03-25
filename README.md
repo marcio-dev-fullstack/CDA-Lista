@@ -25,13 +25,6 @@ Este projeto foi construído com foco em performance e SEO, utilizando apenas te
 * **CSS3:** Layout moderno utilizando **Flexbox** e **CSS Grid** (6 colunas).
 * **JavaScript (ES6+):** Manipulação de DOM, lógica de filtragem e persistência de dados simples.
 
-
-## Desenvolvimento e Créditos
-
-Projeto desenvolvido e mantido por: RAZGO www.razgo.com.br
-
-Desenvolvedor Responsável: Márcio Rodrigues de Oliveira 
-
 ## Autor
 
 **Márcio Rodrigues de Oliveira | Desenvolvedor Líder Fullstack | cda.marcio@gmail.com**
