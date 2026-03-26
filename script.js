@@ -3,8 +3,8 @@
    FUNCIONALIDADE: Grid de 4 colunas, Busca, Menu Dinâmico e Modal
 */
 
-// --- 1. BANCO DE DADOS COMPLETO (CDA LISTA) ---
-let empresas = [
+// --- 1. BANCO DE DADOS COMPLETO ---
+const empresas = [
     // --- SEU GRUPO (RAZGO & AFILIADAS) ---
     { id: 1, nome: "RAZGO", categoria: "Tecnologia", zap: "94992500073", endereco: "Conceição do Araguaia - PA", site: "razgo.com.br", img: "img/logo-cda3.jpg" },
     { id: 2, nome: "KM Projetos & Engenharia", categoria: "Engenharia", zap: "94992500073", endereco: "Conceição do Araguaia - PA", site: "kmprojetos.com.br", img: "img/logo-cda3.jpg" },
@@ -32,17 +32,7 @@ let empresas = [
     { id: 15, nome: "Lojas Gazin", categoria: "Eletrodomésticos", zap: "94999999999", endereco: "Av. Araguaia", site: "gazin.com.br", img: "https://via.placeholder.com/150" },
     { id: 16, nome: "Eletro Araguaia", categoria: "Eletrodomésticos", zap: "94999999999", endereco: "Centro", site: "", img: "https://via.placeholder.com/150" },
     { id: 17, nome: "Farmácia Preço Baixo", categoria: "Saúde", zap: "94999999999", endereco: "Av. Araguaia", site: "", img: "https://via.placeholder.com/150" },
-    { id: 18, nome: "Drogaria Avenida", categoria: "Saúde", zap: "94999999999", endereco: "Centro", site: "", img: "https://via.placeholder.com/150" },
-
-    // --- AGRONEGÓCIO & CONSTRUÇÃO ---
-    { id: 19, nome: "Casa do Pecuarista", categoria: "Engenharia", zap: "94999999999", endereco: "Setor Industrial", site: "", img: "https://via.placeholder.com/150" },
-    { id: 20, nome: "Araguaia Construções", categoria: "Engenharia", zap: "94999999999", endereco: "Av. JK", site: "", img: "https://via.placeholder.com/150" },
-    { id: 21, nome: "Mecânica Araguaia", categoria: "Automotivo", zap: "94999999999", endereco: "Saída para Redenção", site: "", img: "https://via.placeholder.com/150" },
-
-    // --- SERVIÇOS E TRANSPORTE ---
-    { id: 22, nome: "JamJoy Transportes", categoria: "Transporte", zap: "94999999999", endereco: "Rodoviária", site: "jamjoy.com.br", img: "https://via.placeholder.com/150" },
-    { id: 23, nome: "Sicredi CDA", categoria: "Financeiro", zap: "94999999999", endereco: "Av. Araguaia", site: "sicredi.com.br", img: "https://via.placeholder.com/150" },
-    { id: 24, nome: "Equatorial Energia", categoria: "Serviços Públicos", zap: "94999999999", endereco: "Escritório Local", site: "equatorialenergia.com.br", img: "https://via.placeholder.com/150" }
+    { id: 18, nome: "Drogaria Avenida", categoria: "Saúde", zap: "94999999999", endereco: "Centro", site: "", img: "https://via.placeholder.com/150" }
 ];
 
 let tempoRestante = 30;
@@ -50,13 +40,9 @@ let intervaloPopup;
 
 // --- 2. INICIALIZAÇÃO ---
 window.onload = () => {
-    // Ordenar de A a Z
     const listaOrdenada = [...empresas].sort((a, b) => a.nome.localeCompare(b.nome));
     renderizarGrid(listaOrdenada);
-    
-    // Gerar Menu Dinâmico baseado nas categorias das empresas cadastradas
     gerarMenuCategorias();
-    
     iniciarContadorPopup();
 };
 
@@ -65,6 +51,11 @@ function renderizarGrid(lista) {
     const container = document.getElementById('listaPrincipal');
     if (!container) return;
     container.innerHTML = '';
+
+    if (lista.length === 0) {
+        container.innerHTML = `<p style="grid-column: 1/-1; text-align:center; padding: 50px; opacity: 0.5;">Nenhuma empresa encontrada...</p>`;
+        return;
+    }
 
     lista.forEach(empresa => {
         const card = document.createElement('div');
@@ -84,16 +75,15 @@ function renderizarGrid(lista) {
     });
 }
 
-// --- 4. GERADOR DE MENU DINÂMICO ---
+// --- 4. CATEGORIAS DINÂMICAS ---
 function gerarMenuCategorias() {
     const menuCategorias = document.getElementById('menuCategorias');
     if (!menuCategorias) return;
 
-    // Obtém categorias únicas e ordena alfabeticamente
     const categorias = ['Todas', ...new Set(empresas.map(e => e.categoria))].sort();
 
     menuCategorias.innerHTML = categorias.map(cat => `
-        <button onclick="filtrarPorCategoria('${cat}')" class="item-menu">
+        <button onclick="filtrarPorCategoria('${cat}')" class="menu-btn">
             ${cat}
         </button>
     `).join('');
@@ -103,35 +93,41 @@ function gerarMenuCategorias() {
 function abrirJanelaDados(id) {
     const empresa = empresas.find(e => e.id === id);
     const modal = document.getElementById('modalDados');
-    
-    // Preenchimento do Modal
-    document.getElementById('mLogo').src = empresa.img;
-    document.getElementById('mNome').innerText = empresa.nome;
-    document.getElementById('mEndereco').innerText = empresa.endereco || "Conceição do Araguaia - PA";
-    document.getElementById('mZapText').innerText = empresa.zap;
+    if (!empresa || !modal) return;
 
-    // Link do WhatsApp (limpeza de caracteres)
+    // Preenchimento Seguro
+    if(document.getElementById('mLogo')) document.getElementById('mLogo').src = empresa.img;
+    if(document.getElementById('mNome')) document.getElementById('mNome').innerText = empresa.nome;
+    if(document.getElementById('mEndereco')) document.getElementById('mEndereco').innerText = empresa.endereco || "Conceição do Araguaia - PA";
+    if(document.getElementById('mZapText')) document.getElementById('mZapText').innerText = empresa.zap;
+
+    // Link WhatsApp
     const numeroLimpo = empresa.zap.replace(/\D/g, '');
-    document.getElementById('mZapLink').href = `https://wa.me/55${numeroLimpo}`;
+    if(document.getElementById('mZapLink')) document.getElementById('mZapLink').href = `https://wa.me/55${numeroLimpo}`;
 
     // Lógica do Site
     const areaSite = document.getElementById('mSiteArea');
     const linkSite = document.getElementById('mSiteLink');
+    const textSite = document.getElementById('mSiteText');
+
     if (empresa.site) {
-        areaSite.style.display = 'block';
-        linkSite.style.display = 'block';
-        document.getElementById('mSiteText').innerText = empresa.site;
-        linkSite.href = empresa.site.startsWith('http') ? empresa.site : `https://${empresa.site}`;
+        if(areaSite) areaSite.style.display = 'block';
+        if(linkSite) {
+            linkSite.style.display = 'inline-block';
+            linkSite.href = empresa.site.startsWith('http') ? empresa.site : `https://${empresa.site}`;
+        }
+        if(textSite) textSite.innerText = empresa.site;
     } else {
-        areaSite.style.display = 'none';
-        linkSite.style.display = 'none';
+        if(areaSite) areaSite.style.display = 'none';
+        if(linkSite) linkSite.style.display = 'none';
     }
 
     modal.style.display = 'flex';
 }
 
 function fecharJanelaDados() {
-    document.getElementById('modalDados').style.display = 'none';
+    const modal = document.getElementById('modalDados');
+    if(modal) modal.style.display = 'none';
 }
 
 // --- 6. BUSCA E FILTROS ---
@@ -141,7 +137,6 @@ function filtrar() {
         e.nome.toLowerCase().includes(termo) || 
         e.categoria.toLowerCase().includes(termo)
     );
-    // Mantém a ordem alfabética na busca
     renderizarGrid(filtrados.sort((a, b) => a.nome.localeCompare(b.nome)));
 }
 
@@ -152,7 +147,10 @@ function filtrarPorCategoria(cat) {
         const filtrados = empresas.filter(e => e.categoria === cat);
         renderizarGrid(filtrados.sort((a, b) => a.nome.localeCompare(b.nome)));
     }
-    toggleMenu(); // Fecha o menu lateral no mobile
+    
+    // Fecha o menu lateral após selecionar (Mobile)
+    const sideMenu = document.getElementById('sideMenu');
+    if (sideMenu && sideMenu.style.left === '0px') toggleMenu();
 }
 
 // --- 7. UTILITÁRIOS ---
@@ -174,7 +172,8 @@ function fecharPopup() {
 function toggleMenu() {
     const menu = document.getElementById('sideMenu');
     const overlay = document.getElementById('overlayMenu');
-    
+    if (!menu) return;
+
     if (menu.style.left === '0px') {
         menu.style.left = '-280px';
         if(overlay) overlay.style.display = 'none';
