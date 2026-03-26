@@ -6,9 +6,34 @@
     <title>CDA Lista | O Guia Comercial de Conceição do Araguaia - PA</title>
     
     <link rel="icon" type="image/png" href="img/favicon.png">
-    <link rel="apple-touch-icon" href="img/favicon.png">
-    
     <link rel="stylesheet" href="style.css">
+    
+    <style>
+        /* AJUSTE DIRETO PARA 4 COLUNAS E LOGO */
+        .logo-cabecalho {
+            max-width: 150px; /* Impede a logo de ficar gigante */
+            height: auto;
+            display: block;
+            margin: 0 auto 10px;
+        }
+
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr); /* FIXO EM 4 COLUNAS */
+            gap: 20px;
+            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Responsividade para não quebrar no celular */
+        @media (max-width: 1024px) {
+            .grid-container { grid-template-columns: repeat(2, 1fr); }
+        }
+        @media (max-width: 480px) {
+            .grid-container { grid-template-columns: 1fr; }
+        }
+    </style>
 </head>
 <body>
 
@@ -23,9 +48,7 @@
                     Faça já a propaganda da sua empresa por apenas <br>
                     <strong style="color: #25d366; font-size: 2rem;">R$ 69,99 por mês</strong>
                 </p>
-                <p style="margin-bottom: 25px; opacity: 0.8;">Apareça para toda Conceição do Araguaia e região!</p>
-                
-                <a href="https://wa.me/5562996466033?text=Olá! Quero fazer a propaganda da minha empresa no CDA LISTA." 
+                <a href="https://wa.me/5562996466033?text=Olá! Quero anunciar no CDA LISTA." 
                    target="_blank" class="link-whatsapp pulse-mini">
                     Quero Anunciar Agora!
                 </a>
@@ -39,24 +62,21 @@
             <span class="btn-fechar-menu" onclick="toggleMenu()">&times;</span>
         </div>
         <nav class="side-menu-nav">
-            <button class="menu-btn" onclick="filtrarPorCategoria('Todas')">🏠 Todas</button>
-            <button class="menu-btn" onclick="filtrarPorCategoria('Praias & Lazer')">🏖️ Praias & Lazer</button>
-            <button class="menu-btn" onclick="filtrarPorCategoria('Hotéis & Pousadas')">🏨 Hotéis & Pousadas</button>
-            <button class="menu-btn" onclick="filtrarPorCategoria('Restaurantes')">🍽️ Restaurantes</button>
-            <button class="menu-btn" onclick="filtrarPorCategoria('Tecnologia')">💻 Tecnologia</button>
-            <button class="menu-btn" onclick="filtrarPorCategoria('Engenharia')">🏗️ Engenharia</button>
-            <button class="menu-btn" onclick="filtrarPorCategoria('Saúde')">🏥 Saúde</button>
+            <div id="menuCategorias">
+                <button class="menu-btn" onclick="filtrarPorCategoria('Todas')">🏠 Todas</button>
+                <button class="menu-btn" onclick="filtrarPorCategoria('Jurídico')">⚖️ Jurídico</button>
+                <button class="menu-btn" onclick="filtrarPorCategoria('Tecnologia')">💻 Tecnologia</button>
+                <button class="menu-btn" onclick="filtrarPorCategoria('Engenharia')">🏗️ Engenharia</button>
+                <button class="menu-btn" onclick="filtrarPorCategoria('Restaurantes')">🍽️ Restaurantes</button>
+            </div>
         </nav>
     </div>
     <div id="overlayMenu" class="overlay-menu" onclick="toggleMenu()"></div>
 
     <header>
         <button class="btn-menu-app" onclick="toggleMenu()">&#9776;</button>
-        
-        <img src="img/logo-cda3.jpg" alt="CDA Lista" class="logo-cabecalho" id="main-logo">
+        <img src="img/logo-cda3.jpg" alt="CDA Lista" class="logo-cabecalho">
         <h1>CDA LISTA</h1>
-        <p><strong>O Guia Comercial de Conceição do Araguaia</strong></p>
-
         <div class="busca-wrapper">
             <div class="busca-container">
                 <span class="icone-busca">🔍</span>
@@ -73,17 +93,16 @@
     <div id="modalDados" class="modal-overlay" onclick="fecharJanelaDados()">
         <div class="modal-content" onclick="event.stopPropagation()">
             <span class="btn-fechar" onclick="fecharJanelaDados()">&times;</span>
-            
             <img id="mLogo" class="modal-logo" src="" alt="Logo Empresa">
-            
             <div class="modal-info">
                 <h2 id="mNome">Nome da Empresa</h2>
                 <p><strong>📍 Endereço:</strong> <span id="mEndereco">...</span></p>
                 <p><strong>📱 WhatsApp:</strong> <span id="mZapText">...</span></p>
                 <p id="mSiteArea"><strong>🌐 Site:</strong> <span id="mSiteText">...</span></p>
-                
-                <a id="mZapLink" href="" target="_blank" class="btn-zap">Falar no Zap</a>
-                <a id="mSiteLink" href="" target="_blank" class="btn-site-modal">Acessar Site</a>
+                <div style="margin-top: 20px; display: flex; flex-direction: column; gap: 10px;">
+                    <a id="mZapLink" href="" target="_blank" class="btn-zap">Falar no Zap</a>
+                    <a id="mSiteLink" href="" target="_blank" class="btn-site-modal" style="background: #004a8d; color: white; text-decoration: none; padding: 12px; border-radius: 8px; display: none;">Acessar Site</a>
+                </div>
             </div>
         </div>
     </div>
@@ -94,16 +113,9 @@
 
     <footer>
         <div class="container footer-content">
-            <p class="footer-row-pc">
-                <strong class="footer-brand">CDA LISTA Conectando o comércio local</strong> 
-            </p>
-            <p class="footer-info-text">
-                Conceição do Araguaia - PA (62) 99646-6033<br> 
-                © 2026 Todos os direitos reservados
-            </p>
-            
-            <hr class="footer-divider">            
-            <p class="footer-dev">Desenvolvido por <a href="https://razgo.com.br" target="_blank">RAZGO</a></p>
+            <p><strong>CDA Lista</strong> - Conectando o comércio local</p>
+            <p>© 2026 Todos os direitos reservados</p>
+            <p>Desenvolvido por <a href="https://razgo.com.br" target="_blank">RAZGO</a></p>
         </div>
     </footer>
 
