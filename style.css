@@ -1,140 +1,96 @@
 /* PROJETO: CDA LISTA 
    DESENVOLVEDOR: Márcio Oliveira (RAZGO)
-   ESTILO: Interface de Aplicativo com Grid 6 Colunas
+   ESTILO: Grid 4 Colunas, Logos Controladas e Modal Padrão
 */
 
-/* --- 1. RESET E PADRÕES --- */
+/* --- 1. CONFIGURAÇÕES GERAIS --- */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: 'Segoe UI', Arial, sans-serif;
 }
 
 body {
-    background-color: #f8fafc;
-    color: #1e293b;
-    overflow-x: hidden;
+    background-color: #f5f7fa;
+    color: #333;
+    line-height: 1.5;
 }
 
-.container {
-    max-width: 1400px;
-    margin: 0 auto;
-    padding: 0 15px;
-}
-
-/* --- 2. CABEÇALHO (AZUL) --- */
+/* --- 2. CABEÇALHO (LOGO CONTROLADA) --- */
 header {
-    background: #1e40af;
-    color: white;
+    background: #ffffff;
+    padding: 20px;
     text-align: center;
-    padding: 50px 0 45px;
-    position: relative;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
 }
 
 .logo-cabecalho {
-    width: 90px;
-    height: 90px;
-    border-radius: 50%;
-    border: 3px solid rgba(255,255,255,0.8);
-    margin-bottom: 12px;
-    object-fit: cover;
+    max-width: 150px; /* IMPEDE A LOGO DE FICAR GIGANTE */
+    height: auto;
+    display: block;
+    margin: 0 auto 10px;
 }
 
-header h1 { font-size: 2rem; margin-bottom: 5px; }
-header p { font-size: 1rem; margin-bottom: 25px; opacity: 0.9; }
-
-/* Botão Menu Hambúrguer (Superior Direito) */
-.btn-menu-app {
-    position: absolute;
-    right: 15px;
-    top: 15px;
-    background: rgba(255,255,255,0.15);
-    border: none;
-    color: white;
-    font-size: 2.2rem;
-    width: 60px;
-    height: 60px;
-    border-radius: 12px;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: 0.3s;
-    z-index: 100;
+header h1 {
+    font-size: 1.6rem;
+    color: #1e40af;
+    margin-bottom: 10px;
 }
 
-.btn-menu-app:hover { background: rgba(255,255,255,0.3); }
-
-/* --- 3. BUSCA INTEGRADA --- */
-.busca-wrapper {
-    max-width: 650px;
-    margin: 0 auto;
-    padding: 0 20px;
-}
-
+/* --- 3. BUSCA --- */
 .busca-container {
-    background: white;
+    background: #f0f2f5;
+    padding: 10px 20px;
+    border-radius: 25px;
     display: flex;
     align-items: center;
-    padding: 2px 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    max-width: 500px;
+    margin: 0 auto;
 }
-
-.icone-busca { color: #94a3b8; margin-right: 12px; font-size: 1.2rem; }
 
 #inputBusca {
-    width: 100%;
     border: none;
-    padding: 14px 0;
-    font-size: 1.1rem;
-    outline: none;
-    color: #1e293b;
     background: transparent;
+    outline: none;
+    width: 100%;
+    margin-left: 10px;
+    font-size: 1rem;
 }
 
-/* --- 4. GRID DE EMPRESAS (6 COLUNAS PC) --- */
+/* --- 4. GRID DE 4 COLUNAS (O CORAÇÃO DO SITE) --- */
 .grid-container {
     display: grid;
-    gap: 15px;
-    padding: 40px 0 80px;
-    grid-template-columns: repeat(2, 1fr); /* Mobile: 2 colunas */
+    grid-template-columns: repeat(4, 1fr); /* FORÇA 4 EMPRESAS POR LINHA */
+    gap: 20px;
+    padding: 30px 5%;
+    max-width: 1250px;
+    margin: 0 auto;
 }
 
-@media (min-width: 768px) {
-    .grid-container { grid-template-columns: repeat(3, 1fr); }
-}
-
-@media (min-width: 1200px) {
-    .grid-container { grid-template-columns: repeat(6, 1fr); } /* PC: 6 colunas */
-}
-
-/* --- 5. CARDS (QUADROS CLICÁVEIS) --- */
+/* --- 5. CARDS DAS EMPRESAS --- */
 .card-empresa {
-    background: white;
-    border-radius: 12px;
+    background: #fff;
+    border-radius: 10px;
     overflow: hidden;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.04);
-    display: flex;
-    flex-direction: column;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+    transition: transform 0.3s ease;
     cursor: pointer;
-    transition: 0.2s;
-    border: 1px solid #f1f5f9;
+    border: 1px solid #eee;
 }
 
 .card-empresa:hover {
-    transform: scale(1.02);
-    box-shadow: 0 8px 20px rgba(0,0,0,0.08);
-    border-color: #1e40af;
+    transform: translateY(-5px);
+    box-shadow: 0 8px 15px rgba(0,0,0,0.1);
 }
 
 .card-img-container img {
     width: 100%;
-    height: 120px;
-    object-fit: cover;
-    background: #eee;
+    height: 150px;
+    object-fit: cover; /* Mantém a imagem centralizada e sem distorção */
 }
 
 .card-info {
@@ -143,121 +99,80 @@ header p { font-size: 1rem; margin-bottom: 25px; opacity: 0.9; }
 }
 
 .card-info h3 {
-    font-size: 0.95rem;
-    color: #1e3a8a;
+    font-size: 1rem;
+    color: #1e40af;
     margin-bottom: 5px;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
 }
 
 .categoria-label {
-    font-size: 0.75rem;
-    color: #64748b;
-    background: #f1f5f9;
-    padding: 3px 12px;
-    border-radius: 20px;
+    font-size: 0.7rem;
+    background: #eff6ff;
+    color: #1e40af;
+    padding: 3px 8px;
+    border-radius: 12px;
+    font-weight: bold;
+    text-transform: uppercase;
 }
 
-/* --- 6. JANELA DE DADOS (MODAL) --- */
+/* --- 6. MODAL (JANELA DE DADOS) --- */
 .modal-overlay {
+    display: none; /* Controlado pelo JS */
     position: fixed;
     top: 0; left: 0; width: 100%; height: 100%;
-    background: rgba(0, 0, 0, 0.85);
-    display: none;
+    background: rgba(0,0,0,0.85);
+    z-index: 2000;
     justify-content: center;
     align-items: center;
-    z-index: 5000;
 }
 
 .modal-content {
-    background: white;
+    background: #fff;
+    padding: 25px;
+    border-radius: 15px;
     width: 90%;
     max-width: 400px;
-    border-radius: 20px;
-    padding: 30px;
-    position: relative;
     text-align: center;
-    animation: abrirJanela 0.3s ease-out;
-}
-
-@keyframes abrirJanela {
-    from { opacity: 0; transform: translateY(-30px); }
-    to { opacity: 1; transform: translateY(0); }
+    position: relative;
 }
 
 .modal-logo {
-    width: 90px;
-    height: 90px;
-    border-radius: 50%;
-    margin: 0 auto 20px;
-    display: block;
-    border: 4px solid #f1f5f9;
-    object-fit: cover;
+    width: 100px;
+    height: 100px;
+    object-fit: contain;
+    margin-bottom: 15px;
+    border-radius: 8px;
 }
-
-.modal-info h2 { color: #1e40af; margin-bottom: 15px; font-size: 1.4rem; }
-.modal-info p { color: #475569; margin-bottom: 10px; font-size: 1rem; }
 
 .btn-zap {
     display: block;
     background: #25d366;
-    color: white;
+    color: #fff;
+    padding: 12px;
+    border-radius: 8px;
     text-decoration: none;
-    padding: 14px;
-    border-radius: 10px;
     font-weight: bold;
-    margin-top: 25px;
-    font-size: 1.1rem;
+    margin-top: 15px;
 }
 
 .btn-site-modal {
     display: block;
-    margin-top: 12px;
-    color: #1e40af;
-    text-decoration: none;
-    font-size: 0.95rem;
-    font-weight: bold;
-    border: 1.5px solid #1e40af;
+    background: #1e40af;
+    color: #fff;
     padding: 12px;
-    border-radius: 10px;
+    border-radius: 8px;
+    text-decoration: none;
+    margin-top: 10px;
 }
 
-.btn-fechar { position: absolute; top: 15px; right: 20px; font-size: 2rem; cursor: pointer; color: #94a3b8; }
+/* --- 7. RESPONSIVIDADE --- */
 
-/* --- 7. RODAPÉ INTELIGENTE --- */
-footer {
-    background: white;
-    padding: 45px 0 25px;
-    text-align: center;
-    border-top: 1px solid #e2e8f0;
-    margin-top: 60px;
+/* Tablets */
+@media (max-width: 1024px) {
+    .grid-container { grid-template-columns: repeat(2, 1fr); }
 }
 
-.footer-content { display: flex; flex-direction: column; gap: 8px; align-items: center; }
-.footer-brand { color: #1e40af; font-weight: bold; font-size: 1.1rem; }
-.footer-info-text { color: #475569; line-height: 1.5; font-size: 0.95rem; }
-.footer-divider { max-width: 120px; margin: 20px auto; border: 0; border-top: 1px solid #cbd5e1; }
-.footer-dev a { color: #1e40af; text-decoration: none; font-weight: bold; }
-
-@media (min-width: 768px) {
-    .footer-row-pc { display: block; margin-bottom: 5px; }
-    .footer-row-pc strong, .footer-row-pc span { display: inline-block; margin: 0 10px; }
+/* Celulares */
+@media (max-width: 500px) {
+    .grid-container { grid-template-columns: 1fr; }
+    .logo-cabecalho { max-width: 120px; }
 }
-
-/* --- 8. MENU LATERAL (SIDE MENU) --- */
-.side-menu {
-    position: fixed;
-    top: 0; left: -280px; width: 280px; height: 100%;
-    background: white;
-    z-index: 6000;
-    transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.side-menu-header { background: #1e40af; color: white; padding: 30px 20px; display: flex; justify-content: space-between; align-items: center; }
-.menu-btn { width: 100%; text-align: left; padding: 20px; background: none; border: none; border-bottom: 1px solid #f1f5f9; font-size: 1.1rem; cursor: pointer; }
-.overlay-menu { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); display: none; z-index: 5500; }
-
-/* Botão Flutuante */
-.btn-zap-flutuante { position: fixed; bottom: 25px; right: 25px; width: 60px; z-index: 2000; transition: 0.3s; }
-.btn-zap-flutuante:hover { transform: scale(1.1); }

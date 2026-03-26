@@ -1,47 +1,32 @@
 /* PROJETO: CDA LISTA 
    DESENVOLVEDOR: Márcio Oliveira (RAZGO)
-   FUNCIONALIDADE: Grid de 6 colunas, Busca e Janela de Dados (Modal)
+   FUNCIONALIDADE: Grid de 4 colunas, Busca e Janela de Dados (Dados Padrão RAZGO)
 */
 
-// --- BANCO DE DADOS COMPLETO (CDA LISTA) ---
-let empresas = [
-    // --- SUAS EMPRESAS (RAZGO & GRUPO) ---
-    { id: 1, nome: "RAZGO", categoria: "Tecnologia", zap: "94992500073", endereco: "Conceição do Araguaia - PA", site: "razgo.com.br", img: "img/logo-cda3.jpg" },
-    { id: 2, nome: "KM Projetos & Engenharia", categoria: "Engenharia", zap: "94992500073", endereco: "Conceição do Araguaia - PA", site: "kmprojetos.com.br", img: "img/logo-cda3.jpg" },
-    { id: 3, nome: "MAZZ", categoria: "Educação", zap: "94992500073", endereco: "Conceição do Araguaia - PA", site: "", img: "img/logo-cda3.jpg" },
-    { id: 4, nome: "MR Treinamentos", categoria: "Segurança do Trabalho", zap: "94992500073", endereco: "Conceição do Araguaia - PA", site: "", img: "img/logo-cda3.jpg" },
+// --- 1. BANCO DE DADOS (CDA LISTA) ---
+const empresas = [
+    // --- SEU GRUPO ---
+    { id: 1, nome: "RAZGO", categoria: "Tecnologia", img: "img/logo-cda3.jpg" },
+    { id: 2, nome: "KM Projetos & Engenharia", categoria: "Engenharia", img: "img/logo-cda3.jpg" },
+    { id: 3, nome: "MAZZ", categoria: "Educação", img: "img/logo-cda3.jpg" },
+    { id: 4, nome: "MR Treinamentos", categoria: "Segurança do Trabalho", img: "img/logo-cda3.jpg" },
 
-    // --- GASTRONOMIA & LAZER ---
-    { id: 5, nome: "Restaurante Zé Piranha", categoria: "Restaurantes", zap: "94999999999", endereco: "Porto das Balsas - Orla", site: "", img: "https://via.placeholder.com/150" },
-    { id: 6, nome: "Bateau Mouche Rio Araguaia", categoria: "Praias & Lazer", zap: "94999999999", endereco: "Rio Araguaia", site: "", img: "https://via.placeholder.com/150" },
-    { id: 7, nome: "Burgg's Lanches", categoria: "Restaurantes", zap: "94999999999", endereco: "Centro - CDA", site: "", img: "https://via.placeholder.com/150" },
-    { id: 8, nome: "Sorveteria Gebon", categoria: "Restaurantes", zap: "94999999999", endereco: "Av. Araguaia", site: "", img: "https://via.placeholder.com/150" },
-    { id: 9, nome: "Aiqfome CDA", categoria: "Tecnologia", zap: "94999999999", endereco: "Delivery", site: "aiqfome.com", img: "https://via.placeholder.com/150" },
-    { id: 10, nome: "Pizzaria Top 10", categoria: "Restaurantes", zap: "94999999999", endereco: "Centro", site: "", img: "https://via.placeholder.com/150" },
+    // --- JURÍDICO ---
+    { id: 25, nome: "J. Carlos Advogados", categoria: "Jurídico", img: "https://via.placeholder.com/150" },
 
-    // --- HOTÉIS & TURISMO ---
-    { id: 11, nome: "Hotel Tarumã", categoria: "Hotéis & Pousadas", zap: "94999999999", endereco: "Av. Araguaia", site: "", img: "https://via.placeholder.com/150" },
-    { id: 12, nome: "Pousada do Sol", categoria: "Hotéis & Pousadas", zap: "94999999999", endereco: "Próximo à Orla", site: "", img: "https://via.placeholder.com/150" },
-    { id: 13, nome: "Hotel Araguaia", categoria: "Hotéis & Pousadas", zap: "94999999999", endereco: "Centro", site: "", img: "https://via.placeholder.com/150" },
-
-    // --- COMÉRCIO VAREJISTA ---
-    { id: 14, nome: "Supermercado Econômico", categoria: "Supermercados", zap: "94999999999", endereco: "Av. JK", site: "", img: "https://via.placeholder.com/150" },
-    { id: 15, nome: "Lojas Gazin", categoria: "Eletrodomésticos", zap: "94999999999", endereco: "Av. Araguaia", site: "gazin.com.br", img: "https://via.placeholder.com/150" },
-    { id: 16, nome: "Eletro Araguaia", categoria: "Eletrodomésticos", zap: "94999999999", endereco: "Centro", site: "", img: "https://via.placeholder.com/150" },
-    { id: 17, nome: "Farmácia Preço Baixo", categoria: "Saúde", zap: "94999999999", endereco: "Av. Araguaia", site: "", img: "https://via.placeholder.com/150" },
-    { id: 18, nome: "Drogaria Avenida", categoria: "Saúde", zap: "94999999999", endereco: "Centro", site: "", img: "https://via.placeholder.com/150" },
-
-    // --- AGRONEGÓCIO & CONSTRUÇÃO ---
-    { id: 19, nome: "Casa do Pecuarista", categoria: "Engenharia", zap: "94999999999", endereco: "Setor Industrial", site: "", img: "https://via.placeholder.com/150" },
-    { id: 20, nome: "Araguaia Construções", categoria: "Engenharia", zap: "94999999999", endereco: "Av. JK", site: "", img: "https://via.placeholder.com/150" },
-    { id: 21, nome: "Mecânica Araguaia", categoria: "Automotivo", zap: "94999999999", endereco: "Saída para Redenção", site: "", img: "https://via.placeholder.com/150" },
-
-    // --- SERVIÇOS E TRANSPORTE ---
-    { id: 22, nome: "JamJoy Transportes", categoria: "Transporte", zap: "94999999999", endereco: "Rodoviária", site: "jamjoy.com.br", img: "https://via.placeholder.com/150" },
-    { id: 23, nome: "Sicredi CDA", categoria: "Financeiro", zap: "94999999999", endereco: "Av. Araguaia", site: "sicredi.com.br", img: "https://via.placeholder.com/150" },
-    { id: 24, nome: "Equatorial Energia", categoria: "Serviços Públicos", zap: "94999999999", endereco: "Escritório Local", site: "equatorialenergia.com.br", img: "https://via.placeholder.com/150" }
-    
-    // Continue adicionando conforme o padrão para completar as 50...
+    // --- OUTRAS EMPRESAS ---
+    { id: 5, nome: "Restaurante Zé Piranha", categoria: "Restaurantes", img: "https://via.placeholder.com/150" },
+    { id: 6, nome: "Bateau Mouche Rio Araguaia", categoria: "Praias & Lazer", img: "https://via.placeholder.com/150" },
+    { id: 7, nome: "Burgg's Lanches", categoria: "Restaurantes", img: "https://via.placeholder.com/150" },
+    { id: 8, nome: "Sorveteria Gebon", categoria: "Restaurantes", img: "https://via.placeholder.com/150" },
+    { id: 9, nome: "Aiqfome CDA", categoria: "Tecnologia", img: "https://via.placeholder.com/150" },
+    { id: 10, nome: "Pizzaria Top 10", categoria: "Restaurantes", img: "https://via.placeholder.com/150" },
+    { id: 11, nome: "Hotel Tarumã", categoria: "Hotéis & Pousadas", img: "https://via.placeholder.com/150" },
+    { id: 14, nome: "Supermercado Econômico", categoria: "Supermercados", img: "https://via.placeholder.com/150" },
+    { id: 17, nome: "Farmácia Preço Baixo", categoria: "Saúde", img: "https://via.placeholder.com/150" },
+    { id: 22, nome: "JamJoy Transportes", categoria: "Transporte", img: "https://via.placeholder.com/150" },
+    { id: 23, nome: "Sicredi CDA", categoria: "Financeiro", img: "https://via.placeholder.com/150" },
+    { id: 24, nome: "Equatorial Energia", categoria: "Serviços Públicos", img: "https://via.placeholder.com/150" }
 ];
 
 let tempoRestante = 30;
@@ -55,7 +40,7 @@ window.onload = () => {
     iniciarContadorPopup();
 };
 
-// --- 3. RENDERIZAÇÃO DO GRID (CADASTRO LIMPO) ---
+// --- 3. RENDERIZAÇÃO DO GRID (4 COLUNAS VIA CSS) ---
 function renderizarGrid(lista) {
     const container = document.getElementById('listaPrincipal');
     if (!container) return;
@@ -64,8 +49,6 @@ function renderizarGrid(lista) {
     lista.forEach(empresa => {
         const card = document.createElement('div');
         card.className = 'card-empresa';
-        
-        // O CLIQUE NO QUADRO INTEIRO ABRE A JANELA
         card.onclick = () => abrirJanelaDados(empresa.id);
         
         card.innerHTML = `
@@ -81,41 +64,46 @@ function renderizarGrid(lista) {
     });
 }
 
-// --- 4. JANELA DE DADOS (MODAL) ---
+// --- 4. JANELA DE DADOS (MODAL) - COM DADOS PADRÃO RAZGO ---
 function abrirJanelaDados(id) {
     const empresa = empresas.find(e => e.id === id);
     const modal = document.getElementById('modalDados');
-    
-    // Preenche a Logo no Topo Centralizada
+    if (!modal || !empresa) return;
+
+    // Logo e Nome da empresa clicada
     document.getElementById('mLogo').src = empresa.img;
-    
-    // Preenche os Textos
     document.getElementById('mNome').innerText = empresa.nome;
-    document.getElementById('mEndereco').innerText = empresa.endereco || "Conceição do Araguaia - PA";
-    document.getElementById('mZapText').innerText = empresa.zap;
 
-    // Configura o link do Zap (remove caracteres especiais para o link)
-    const numeroLimpo = empresa.zap.replace(/\D/g, '');
-    document.getElementById('mZapLink').href = `https://wa.me/55${numeroLimpo}`;
+    // --- DADOS PADRÃO SOLICITADOS ---
+    const enderecoPadrao = "Conceição do Araguaia - PA";
+    const zapPadrao = "94992500073";
+    const sitePadrao = "razgo.com.br";
 
-    // Configura o Site (mostra apenas se houver)
-    const areaSite = document.getElementById('mSiteArea');
-    const linkSite = document.getElementById('mSiteLink');
-    if (empresa.site) {
-        areaSite.style.display = 'block';
-        linkSite.style.display = 'block';
-        document.getElementById('mSiteText').innerText = empresa.site;
-        linkSite.href = empresa.site.startsWith('http') ? empresa.site : `https://${empresa.site}`;
-    } else {
-        areaSite.style.display = 'none';
-        linkSite.style.display = 'none';
+    // Preenchendo Endereço
+    document.getElementById('mEndereco').innerText = enderecoPadrao;
+
+    // Preenchendo WhatsApp (Texto e Link)
+    document.getElementById('mZapText').innerText = zapPadrao;
+    document.getElementById('mZapLink').href = `https://wa.me/55${zapPadrao}`;
+
+    // Preenchendo Site (Texto e Link)
+    const siteArea = document.getElementById('mSiteArea');
+    const siteLink = document.getElementById('mSiteLink');
+    const siteText = document.getElementById('mSiteText');
+
+    if (siteArea) siteArea.style.display = 'block';
+    if (siteText) siteText.innerText = sitePadrao;
+    if (siteLink) {
+        siteLink.style.display = 'inline-block';
+        siteLink.href = `https://${sitePadrao}`;
     }
 
     modal.style.display = 'flex';
 }
 
 function fecharJanelaDados() {
-    document.getElementById('modalDados').style.display = 'none';
+    const modal = document.getElementById('modalDados');
+    if(modal) modal.style.display = 'none';
 }
 
 // --- 5. BUSCA E FILTROS ---
@@ -125,17 +113,17 @@ function filtrar() {
         e.nome.toLowerCase().includes(termo) || 
         e.categoria.toLowerCase().includes(termo)
     );
-    renderizarGrid(filtrados);
+    renderizarGrid(filtrados.sort((a, b) => a.nome.localeCompare(b.nome)));
 }
 
 function filtrarPorCategoria(cat) {
     if (cat === 'Todas') {
-        renderizarGrid(empresas);
+        renderizarGrid([...empresas].sort((a, b) => a.nome.localeCompare(b.nome)));
     } else {
         const filtrados = empresas.filter(e => e.categoria === cat);
-        renderizarGrid(filtrados);
+        renderizarGrid(filtrados.sort((a, b) => a.nome.localeCompare(b.nome)));
     }
-    toggleMenu(); // Fecha o menu lateral após escolher
+    toggleMenu(); // Fecha o menu lateral
 }
 
 // --- 6. UTILITÁRIOS (POPUP E MENU) ---
@@ -149,18 +137,21 @@ function iniciarContadorPopup() {
 }
 
 function fecharPopup() {
-    document.getElementById('popupAnuncio').style.display = 'none';
+    const popup = document.getElementById('popupAnuncio');
+    if(popup) popup.style.display = 'none';
     clearInterval(intervaloPopup);
 }
 
 function toggleMenu() {
     const menu = document.getElementById('sideMenu');
     const overlay = document.getElementById('overlayMenu');
+    if (!menu) return;
+
     if (menu.style.left === '0px') {
         menu.style.left = '-280px';
-        overlay.style.display = 'none';
+        if(overlay) overlay.style.display = 'none';
     } else {
         menu.style.left = '0px';
-        overlay.style.display = 'block';
+        if(overlay) overlay.style.display = 'block';
     }
 }
