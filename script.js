@@ -1,33 +1,37 @@
 /* PROJETO: CDA LISTA 
    DESENVOLVEDOR: Márcio Oliveira (RAZGO)
-   FUNCIONALIDADE: Grid de 4 colunas, Busca e Janela de Dados (Dados Padrão RAZGO)
+   FUNCIONALIDADE: Grid 4 Colunas, Busca, Modal e Blindagem de Imagens
 */
 
 // --- 1. BANCO DE DADOS (CDA LISTA) ---
 const empresas = [
     // --- SEU GRUPO ---
-    { id: 1, nome: "RAZGO", categoria: "Tecnologia", img: "img/logo-cda3.jpg" },
+    { id: 1, nome: "RAZGO", categoria: "Tecnologia", img: "img/logo-cda3.jpg" }, // Caminho Correto
     { id: 2, nome: "KM Projetos & Engenharia", categoria: "Engenharia", img: "img/logo-cda3.jpg" },
     { id: 3, nome: "MAZZ", categoria: "Educação", img: "img/logo-cda3.jpg" },
     { id: 4, nome: "MR Treinamentos", categoria: "Segurança do Trabalho", img: "img/logo-cda3.jpg" },
 
     // --- JURÍDICO ---
-    { id: 25, nome: "J. Carlos Advogados", categoria: "Jurídico", img: "https://via.placeholder.com/150" },
+    // CORREÇÃO AQUI: Garanta que 'j-carlos.jpg' exista na pasta 'img' ou use o placeholder abaixo
+    { id: 25, nome: "J. Carlos Advogados", categoria: "Jurídico", img: "https://via.placeholder.com/150?text=J.Carlos+Advogados" },
 
-    // --- OUTRAS EMPRESAS ---
-    { id: 5, nome: "Restaurante Zé Piranha", categoria: "Restaurantes", img: "https://via.placeholder.com/150" },
-    { id: 6, nome: "Bateau Mouche Rio Araguaia", categoria: "Praias & Lazer", img: "https://via.placeholder.com/150" },
-    { id: 7, nome: "Burgg's Lanches", categoria: "Restaurantes", img: "https://via.placeholder.com/150" },
-    { id: 8, nome: "Sorveteria Gebon", categoria: "Restaurantes", img: "https://via.placeholder.com/150" },
-    { id: 9, nome: "Aiqfome CDA", categoria: "Tecnologia", img: "https://via.placeholder.com/150" },
-    { id: 10, nome: "Pizzaria Top 10", categoria: "Restaurantes", img: "https://via.placeholder.com/150" },
-    { id: 11, nome: "Hotel Tarumã", categoria: "Hotéis & Pousadas", img: "https://via.placeholder.com/150" },
-    { id: 14, nome: "Supermercado Econômico", categoria: "Supermercados", img: "https://via.placeholder.com/150" },
-    { id: 17, nome: "Farmácia Preço Baixo", categoria: "Saúde", img: "https://via.placeholder.com/150" },
-    { id: 22, nome: "JamJoy Transportes", categoria: "Transporte", img: "https://via.placeholder.com/150" },
-    { id: 23, nome: "Sicredi CDA", categoria: "Financeiro", img: "https://via.placeholder.com/150" },
-    { id: 24, nome: "Equatorial Energia", categoria: "Serviços Públicos", img: "https://via.placeholder.com/150" }
+    // --- GASTRONOMIA ---
+    { id: 5, nome: "Restaurante Zé Piranha", categoria: "Restaurantes", img: "https://via.placeholder.com/150?text=Ze+Piranha" },
+    { id: 6, nome: "Bateau Mouche Rio Araguaia", categoria: "Praias & Lazer", img: "https://via.placeholder.com/150?text=Bateau+Mouche" },
+    { id: 7, nome: "Burgg's Lanches", categoria: "Restaurantes", img: "https://via.placeholder.com/150?text=Burggs" },
+    { id: 8, nome: "Sorveteria Gebon", categoria: "Restaurantes", img: "https://via.placeholder.com/150?text=Sorveteria+Gebon" },
+    { id: 9, nome: "Aiqfome CDA", categoria: "Tecnologia", img: "https://via.placeholder.com/150?text=Aiqfome" },
+
+    // --- SERVIÇOS E COMÉRCIO ---
+    { id: 24, nome: "Equatorial Energia", categoria: "Serviços Públicos", img: "https://via.placeholder.com/150?text=Equatorial" },
+    { id: 11, nome: "Hotel Tarumã", categoria: "Hotéis & Pousadas", img: "https://via.placeholder.com/150?text=Hotel+Taruma" },
+    { id: 17, nome: "Farmácia Preço Baixo", categoria: "Saúde", img: "https://via.placeholder.com/150?text=Farmacia+Preco+Baixo" },
+    { id: 22, nome: "JamJoy Transportes", categoria: "Transporte", img: "https://via.placeholder.com/150?text=JamJoy" },
+    { id: 23, nome: "Sicredi CDA", categoria: "Financeiro", img: "https://via.placeholder.com/150?text=Sicredi" }
 ];
+
+// Caminho para a imagem padrão caso a original falhe
+const IMAGEM_PADRAO = "img/logo-cda3.jpg";
 
 let tempoRestante = 30;
 let intervaloPopup;
@@ -46,6 +50,11 @@ function renderizarGrid(lista) {
     if (!container) return;
     container.innerHTML = '';
 
+    if (lista.length === 0) {
+        container.innerHTML = `<p style="grid-column: 1/-1; text-align:center; padding: 50px; opacity: 0.5;">Nenhuma empresa encontrada...</p>`;
+        return;
+    }
+
     lista.forEach(empresa => {
         const card = document.createElement('div');
         card.className = 'card-empresa';
@@ -53,7 +62,7 @@ function renderizarGrid(lista) {
         
         card.innerHTML = `
             <div class="card-img-container">
-                <img src="${empresa.img}" alt="${empresa.nome}" onerror="this.src='img/logo-cda3.jpg'">
+                <img src="${empresa.img}" alt="${empresa.nome}" onerror="this.onerror=null; this.src='${IMAGEM_PADRAO}';">
             </div>
             <div class="card-info">
                 <h3>${empresa.nome}</h3>
@@ -64,29 +73,34 @@ function renderizarGrid(lista) {
     });
 }
 
-// --- 4. JANELA DE DADOS (MODAL) - COM DADOS PADRÃO RAZGO ---
+// --- 4. JANELA DE DADOS (MODAL) - COM BLINDAGEM DE IMAGEM ---
 function abrirJanelaDados(id) {
     const empresa = empresas.find(e => e.id === id);
     const modal = document.getElementById('modalDados');
     if (!modal || !empresa) return;
 
     // Logo e Nome da empresa clicada
-    document.getElementById('mLogo').src = empresa.img;
-    document.getElementById('mNome').innerText = empresa.nome;
+    const modalLogo = document.getElementById('mLogo');
+    if (modalLogo) {
+        modalLogo.src = empresa.img;
+        // BLINDAGEM NO MODAL: onerror chama a imagem padrão
+        modalLogo.onerror = () => {
+            modalLogo.src = IMAGEM_PADRAO;
+        };
+    }
 
-    // --- DADOS PADRÃO SOLICITADOS ---
+    if (document.getElementById('mNome')) document.getElementById('mNome').innerText = empresa.nome;
+
+    // --- DADOS PADRÃO RAZGO TRAVADOS ---
     const enderecoPadrao = "Conceição do Araguaia - PA";
     const zapPadrao = "94992500073";
     const sitePadrao = "razgo.com.br";
 
-    // Preenchendo Endereço
-    document.getElementById('mEndereco').innerText = enderecoPadrao;
+    if (document.getElementById('mEndereco')) document.getElementById('mEndereco').innerText = enderecoPadrao;
+    if (document.getElementById('mZapText')) document.getElementById('mZapText').innerText = zapPadrao;
+    if (document.getElementById('mZapLink')) document.getElementById('mZapLink').href = `https://wa.me/55${zapPadrao}`;
 
-    // Preenchendo WhatsApp (Texto e Link)
-    document.getElementById('mZapText').innerText = zapPadrao;
-    document.getElementById('mZapLink').href = `https://wa.me/55${zapPadrao}`;
-
-    // Preenchendo Site (Texto e Link)
+    // Lógica do Site
     const siteArea = document.getElementById('mSiteArea');
     const siteLink = document.getElementById('mSiteLink');
     const siteText = document.getElementById('mSiteText');
@@ -148,7 +162,7 @@ function toggleMenu() {
     if (!menu) return;
 
     if (menu.style.left === '0px') {
-        menu.style.left = '-280px';
+        menu.style.left = '-300px';
         if(overlay) overlay.style.display = 'none';
     } else {
         menu.style.left = '0px';
