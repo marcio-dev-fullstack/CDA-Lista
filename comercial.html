@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CDA LISTA - Proposta de Parceria Comercial Exclusiva</title>
+    <style>
+        :root {
+            --primary-color: #0f172a; /* Slate 900 */
+            --secondary-color: #2563eb; /* Blue 600 */
+            --accent-color: #f59e0b; /* Amber 500 */
+            --text-dark: #1e293b; /* Slate 800 */
+            --text-light: #64748b; /* Slate 500 */
+            --bg-light: #f8fafc; /* Slate 50 */
+            --white: #ffffff;
+            --border-color: #e2e8f0; /* Slate 200 */
+            --green-success: #16a34a;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+            line-height: 1.6;
+            padding: 40px 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: var(--white);
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+        }
+
+        /* Header */
+        .header-banner {
+            background: linear-gradient(135deg, var(--primary-color) 0%, #1e3a8a 100%);
+            color: var(--white);
+            padding: 50px 40px;
+            text-align: center;
+            position: relative;
+        }
+
+        .header-banner::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--secondary-color), var(--accent-color));
+        }
+
+        .header-banner h1 {
+            font-size: 2.6rem;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            margin-bottom: 10px;
+        }
+
+        .header-banner h1 span {
+            color: var(--accent-color);
+        }
+
+        .header-banner p {
+            font-size: 1.2rem;
+            color: #94a3b8;
+            font-weight: 400;
+        }
+
+        .meta-info {
+            display: flex;
+            justify-content: space-between;
+            background: #f1f5f9;
+            padding: 15px 40px;
+            border-bottom: 1px solid var(--border-color);
+            font-size: 0.9rem;
+            color: var(--text-light);
+        }
+
+        .content {
+            padding: 40px;
+        }
+
+        h2 {
+            font-size: 1.4rem;
+            color: var(--primary-color);
+            margin-top: 30px;
+            margin-bottom: 15px;
+            padding-left: 12px;
+            border-left: 4px solid var(--secondary-color);
+        }
+
+        p {
+            margin-bottom: 15px;
+            color: #334155;
+            font-size: 1.05rem;
+            text-align: justify;
+        }
+
+        strong {
+            color: var(--primary-color);
+        }
+
+        /* Box de Destaque Comercial do Investidor */
+        .deal-box {
+            background: #fffbeb;
+            border: 2px solid #fef3c7;
+            border-radius: 8px;
+            padding: 25px;
+            margin: 30px 0;
+        }
+
+        .deal-title {
+            font-size: 1.3rem;
+            color: #b45309;
+            font-weight: bold;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .deal-grid {
+            display: flex;
+            gap: 20px;
+            margin-top: 15px;
+        }
+
+        .deal-card {
+            flex: 1;
+            background: var(--white);
+            border: 1px solid #fde68a;
+            padding: 20px;
+            border-radius: 6px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+        }
+
+        .deal-card h4 {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            color: var(--text-light);
+            margin-bottom: 5px;
+            letter-spacing: 0.5px;
+        }
+
+        .deal-card .price {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--primary-color);
+        }
+
+        .deal-card .price span {
+            font-size: 0.9rem;
+            font-weight: normal;
+            color: var(--text-light);
+        }
+
+        /* Lista de Direitos Exclusivos */
+        .rights-list {
+            list-style: none;
+            margin: 20px 0;
+        }
+
+        .rights-list li {
+            margin-bottom: 12px;
+            padding-left: 25px;
+            position: relative;
+            font-size: 1.05rem;
+            color: #334155;
+        }
+
+        .rights-list li::before {
+            content: "🔒";
+            position: absolute;
+            left: 0;
+            top: 2px;
+            font-size: 1rem;
+        }
+
+        /* Layout Preview Simples */
+        .layout-preview {
+            background: #f1f5f9;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 15px;
+            margin: 25px 0;
+        }
+
+        .mock-site {
+            background: var(--white);
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            padding: 10px;
+        }
+
+        .mock-top {
+            background: #fef3c7;
+            border: 1px dashed var(--accent-color);
+            color: #b45309;
+            padding: 10px;
+            text-align: center;
+            font-weight: bold;
+            font-size: 0.85rem;
+            margin-bottom: 10px;
+        }
+
+        .mock-body {
+            display: flex;
+            gap: 10px;
+        }
+
+        .mock-side {
+            width: 25%;
+            background: #eff6ff;
+            border: 1px dashed var(--secondary-color);
+            color: var(--secondary-color);
+            padding: 15px 5px;
+            text-align: center;
+            font-weight: bold;
+            font-size: 0.8rem;
+        }
+
+        .mock-main {
+            width: 75%;
+            background: #f8fafc;
+            border: 1px solid var(--border-color);
+            padding: 10px;
+            font-size: 0.8rem;
+            color: var(--text-light);
+        }
+
+        /* CTA */
+        .footer-cta {
+            background: #f1f5f9;
+            padding: 40px;
+            text-align: center;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .btn-whatsapp {
+            display: inline-block;
+            background: var(--green-success);
+            color: var(--white);
+            text-decoration: none;
+            padding: 14px 35px;
+            font-weight: bold;
+            border-radius: 6px;
+            margin-top: 15px;
+            box-shadow: 0 4px 12px rgba(22, 163, 74, 0.3);
+            font-size: 1.1rem;
+        }
+
+        .footer-info {
+            margin-top: 25px;
+            font-size: 0.85rem;
+            color: var(--text-light);
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header-banner">
+        <h1>CDA <span>LISTA</span></h1>
+        <p>Proposta Comercial de Parceria e Exploração Exclusiva</p>
+    </div>
+
+    <div class="meta-info">
+        <div><strong>Modelo:</strong> Patrocínio Master c/ Direito de Exploração Comercial</div>
+        <div><strong>Data:</strong> 27 de Maio de 2026</div>
+    </div>
+
+    <div class="content">
+        <h2>1. O Modelo de Negócio CDA LISTA</h2>
+        <p>O <strong>CDA LISTA</strong> é um guia digital corporativo de alta performance focado <strong>estritamente na divulgação comercial de empresas e prestadores de serviços locais</strong>. Para garantir a privacidade dos cidadãos e a pureza comercial do ecossistema, a plataforma não realiza a inclusão de celulares ou contatos de pessoas físicas.</p>
+        <p>Esta proposta visa estabelecer um **parceiro único e exclusivo** na cidade, concedendo o direito total de exploração publicitária e controle de inserções na lista comercial.</p>
+
+        <h2>2. A Proposta de Exclusividade (Monetização)</h2>
+        <p>Buscamos um único **Patrocinador Master** para a plataforma. Ao assumir este posicionamento, o investidor adquire o monopólio visual do site e torna-se o único canal autorizado a gerenciar e comercializar as vagas do guia comercial.</p>
+
+        <!-- Box de Valores Comerciais -->
+        <div class="deal-box">
+            <div class="deal-title">💸 Estrutura de Investimento e Lucro</div>
+            <p style="margin-bottom: 15px; color: #78350f;">O modelo garante previsibilidade de custo para você e margem livre de lucro na venda direta aos lojistas:</p>
+            
+            <div class="deal-grid">
+                <div class="deal-card">
+                    <h4>Seu Investimento Único</h4>
+                    <div class="price">R$ 999,90<span> / mês</span></div>
+                    <p style="font-size: 0.85rem; margin-top: 5px; color: var(--text-light);">Custo fixo mensal para manter a plataforma exclusiva no seu nome.</p>
+                </div>
+                <div class="deal-card" style="border-color: #bbf7d0; background: #f0fdf4;">
+                    <h4>Valor por Comerciante</h4>
+                    <div class="price" style="color: var(--green-success);">R$ 29,99<span> / mês</span></div>
+                    <p style="font-size: 0.85rem; margin-top: 5px; color: var(--text-light);">Preço sugerido de revenda por empresa cadastrada na sua lista.</p>
+                </div>
+            </div>
+        </div>
+
+        <h2>3. Direitos Exclusivos do Patrocinador</h2>
+        <p>Ao assinar o plano único de <strong>R$ 99,90/mês</strong>, o investidor terá direitos irrestritos assegurados:</p>
+        <ul class="rights-list">
+            <li><strong>Monopólio Visual:</strong> Inclusão fixa da sua marca ou empresa parceira em todas as áreas de destaque do topo e das barras laterais do site.</li>
+            <li><strong>Controle de Entrada:</strong> Apenas o Patrocinador Master terá o direito legal de incluir, editar ou remover contatos, links e informações dos comerciantes locais na lista.</li>
+            <li><strong>Lucro 100% Livre:</strong> Toda receita gerada a partir das cobranças individuais de R$ 29,99 por comerciante pertence inteiramente ao Patrocinador Master, sem taxas ou repasses para a plataforma.</li>
+        </ul>
+
+        <h2>4. Demonstração dos Seus Espaços Visuais</h2>
+        <div class="layout-preview">
+            <div class="mock-site">
+                <!-- Banner de Topo -->
+                <div class="mock-top">
+                    [ SUA LOGO - PATROCINADOR MASTER EXCLUSIVO ]
+                </div>
+                
+                <div class="mock-body">
+                    <!-- Banner Lateral -->
+                    <div class="mock-side">
+                        SUA LOGO<br>AQUI TAMBÉM
+                    </div>
+                    
+                    <!-- Lista de Empresas -->
+                    <div class="mock-main">
+                        <strong>Lista Comercial Privada (Gerenciada por Você)</strong><br>
+                        🔹 Comerciante 01 (R$ 29,99/mês &rarr; Seu Lucro)<br>
+                        🔹 Comerciante 02 (R$ 29,99/mês &rarr; Seu Lucro)<br>
+                        🔹 Comerciante 03 (R$ 29,99/mês &rarr; Seu Lucro)
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Footer / CTA -->
+    <div class="footer-cta">
+        <h3>Ganta este Monopólio Comercial</h3>
+        <p style="margin-top: 10px; font-size: 0.95rem; color: var(--text-light);">Esta oferta de exclusividade é única para a cidade. Uma vez preenchida a vaga do patrocinador, o mercado de cadastros fecha para terceiros.</p>
+        
+        <a href="#" class="btn-whatsapp">Aceitar Exclusividade Comercial</a>
+
+        <div class="footer-info">
+            <strong>CDA LISTA &copy; 2026</strong><br>
+            Plataforma Comercial de Lista Privada
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

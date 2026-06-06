@@ -1,0 +1,1469 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ARAGUASIA - Rio Araguaia | Conceição do Araguaia - PA</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;800;900&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #1a5f3c;
+            --primary-dark: #0d3d26;
+            --secondary: #2e8b57;
+            --accent: #e8b931;
+            --accent-hover: #d4a520;
+            --accent-light: #f5d76e;
+            --water: #1e88a8;
+            --water-light: #4fc3f7;
+            --sand: #f5e6c8;
+            --dark: #1a1a2e;
+            --light: #f8fafc;
+            --text: #2d3748;
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            color: var(--text);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+        }
+
+        /* ===== HEADER / NAV ===== */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            background: rgba(13, 61, 38, 0.95);
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        header.scrolled {
+            background: rgba(13, 61, 38, 0.98);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 40px;
+            height: 80px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            text-decoration: none;
+        }
+
+        .logo-icon {
+            width: 52px;
+            height: 52px;
+            background: var(--accent);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 26px;
+            color: var(--primary-dark);
+            box-shadow: 0 4px 15px rgba(232, 185, 49, 0.4);
+            transition: transform 0.3s ease;
+        }
+
+        .logo:hover .logo-icon {
+            transform: rotate(15deg) scale(1.1);
+        }
+
+        .logo-text {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2rem;
+            font-weight: 900;
+            color: #fff;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            line-height: 1;
+        }
+
+        .logo-text .sia {
+            color: var(--accent);
+            font-weight: 900;
+            letter-spacing: 4px;
+            text-shadow: 
+                0 0 10px rgba(232, 185, 49, 0.3),
+                0 0 30px rgba(232, 185, 49, 0.2);
+            position: relative;
+        }
+
+        .logo-text .sia::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: var(--accent);
+            border-radius: 2px;
+            box-shadow: 0 2px 8px rgba(232, 185, 49, 0.5);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 40px;
+        }
+
+        .nav-links a {
+            color: rgba(255,255,255,0.9);
+            text-decoration: none;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            font-size: 0.95rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            position: relative;
+            padding: 5px 0;
+            transition: color 0.3s;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            background: none;
+            border: none;
+        }
+
+        .menu-toggle span {
+            width: 28px;
+            height: 3px;
+            background: #fff;
+            border-radius: 2px;
+            transition: 0.3s;
+        }
+
+        /* ===== HERO ===== */
+        .hero {
+            height: 100vh;
+            min-height: 700px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=1920&q=80') center/cover no-repeat;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(13, 61, 38, 0.85) 0%, rgba(30, 136, 168, 0.6) 50%, rgba(13, 61, 38, 0.8) 100%);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            color: #fff;
+            max-width: 900px;
+            padding: 0 20px;
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background: var(--accent);
+            color: var(--primary-dark);
+            padding: 8px 24px;
+            border-radius: 30px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 30px;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 25px;
+            text-shadow: 2px 2px 20px rgba(0,0,0,0.3);
+        }
+
+        .hero h1 span {
+            color: var(--accent);
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            font-weight: 300;
+            max-width: 700px;
+            margin: 0 auto 40px;
+            opacity: 0.95;
+            line-height: 1.8;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 16px 40px;
+            border-radius: 50px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 0.95rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn-primary {
+            background: var(--accent);
+            color: var(--primary-dark);
+        }
+
+        .btn-primary:hover {
+            background: var(--accent-hover);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(232, 185, 49, 0.4);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: #fff;
+            border: 2px solid rgba(255,255,255,0.5);
+        }
+
+        .btn-outline:hover {
+            background: rgba(255,255,255,0.1);
+            border-color: #fff;
+            transform: translateY(-3px);
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: bounce 2s infinite;
+        }
+
+        .scroll-indicator svg {
+            width: 30px;
+            height: 30px;
+            fill: rgba(255,255,255,0.7);
+        }
+
+        /* ===== SECTIONS COMMON ===== */
+        section {
+            padding: 100px 0;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 30px;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 70px;
+        }
+
+        .section-header h2 {
+            font-size: clamp(2rem, 4vw, 2.8rem);
+            color: var(--primary-dark);
+            margin-bottom: 15px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-header h2::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 4px;
+            background: var(--accent);
+            margin: 15px auto 0;
+            border-radius: 2px;
+        }
+
+        .section-header p {
+            font-size: 1.15rem;
+            color: #666;
+            max-width: 700px;
+            margin: 20px auto 0;
+        }
+
+        /* ===== SOBRE O RIO ===== */
+        .sobre {
+            background: var(--light);
+        }
+
+        .sobre-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .sobre-image {
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+        }
+
+        .sobre-image img {
+            width: 100%;
+            height: 450px;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .sobre-image:hover img {
+            transform: scale(1.05);
+        }
+
+        .sobre-image::before {
+            content: '';
+            position: absolute;
+            top: -20px;
+            left: -20px;
+            width: 100px;
+            height: 100px;
+            border: 4px solid var(--accent);
+            border-radius: 20px;
+            z-index: -1;
+        }
+
+        .sobre-content h3 {
+            font-size: 1.8rem;
+            color: var(--primary-dark);
+            margin-bottom: 20px;
+        }
+
+        .sobre-content p {
+            margin-bottom: 20px;
+            font-size: 1.05rem;
+            color: #555;
+        }
+
+        .stats-row {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin-top: 40px;
+        }
+
+        .stat-box {
+            background: #fff;
+            padding: 25px 15px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            border-bottom: 4px solid var(--accent);
+        }
+
+        .stat-box .number {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--primary);
+        }
+
+        .stat-box .label {
+            font-size: 0.85rem;
+            color: #777;
+            margin-top: 5px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* ===== BIODIVERSIDADE ===== */
+        .biodiversidade {
+            background: var(--primary-dark);
+            color: #fff;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .biodiversidade::before {
+            content: '';
+            position: absolute;
+            top: -100px;
+            right: -100px;
+            width: 400px;
+            height: 400px;
+            background: rgba(232, 185, 49, 0.05);
+            border-radius: 50%;
+        }
+
+        .biodiversidade .section-header h2 {
+            color: #fff;
+        }
+
+        .biodiversidade .section-header p {
+            color: rgba(255,255,255,0.7);
+        }
+
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .card {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 20px;
+            padding: 40px 30px;
+            text-align: center;
+            transition: all 0.4s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            background: rgba(255,255,255,0.1);
+            border-color: var(--accent);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+        }
+
+        .card-icon {
+            width: 80px;
+            height: 80px;
+            background: var(--accent);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 25px;
+            font-size: 2.5rem;
+        }
+
+        .card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            color: #fff;
+        }
+
+        .card p {
+            color: rgba(255,255,255,0.7);
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+
+        /* ===== CONCEIÇÃO ===== */
+        .conceicao {
+            background: var(--sand);
+        }
+
+        .conceicao-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .conceicao-content h3 {
+            font-size: 1.8rem;
+            color: var(--primary-dark);
+            margin-bottom: 20px;
+        }
+
+        .conceicao-content p {
+            margin-bottom: 20px;
+            font-size: 1.05rem;
+            color: #555;
+        }
+
+        .pontos-list {
+            list-style: none;
+            margin-top: 30px;
+        }
+
+        .pontos-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+            padding: 15px 0;
+            border-bottom: 1px solid rgba(0,0,0,0.1);
+        }
+
+        .pontos-list li:last-child {
+            border-bottom: none;
+        }
+
+        .pontos-list .icon {
+            width: 40px;
+            height: 40px;
+            min-width: 40px;
+            background: var(--primary);
+            color: #fff;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+        }
+
+        .pontos-list h4 {
+            font-size: 1.1rem;
+            color: var(--primary-dark);
+            margin-bottom: 5px;
+        }
+
+        .pontos-list p {
+            font-size: 0.95rem;
+            color: #666;
+            margin: 0;
+        }
+
+        .conceicao-image {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        .conceicao-image img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 15px;
+            transition: transform 0.3s;
+        }
+
+        .conceicao-image img:hover {
+            transform: scale(1.05);
+        }
+
+        .conceicao-image img:first-child {
+            grid-column: span 2;
+            height: 280px;
+        }
+
+        /* ===== GALERIA ===== */
+        .galeria {
+            background: var(--dark);
+            color: #fff;
+        }
+
+        .galeria .section-header h2 {
+            color: #fff;
+        }
+
+        .galeria .section-header p {
+            color: rgba(255,255,255,0.7);
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-auto-rows: 250px;
+            gap: 15px;
+        }
+
+        .gallery-item {
+            position: relative;
+            border-radius: 15px;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .gallery-item .overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(13, 61, 38, 0.9) 0%, transparent 60%);
+            display: flex;
+            align-items: flex-end;
+            padding: 20px;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .gallery-item:hover .overlay {
+            opacity: 1;
+        }
+
+        .gallery-item h4 {
+            font-size: 1rem;
+            color: #fff;
+        }
+
+        .gallery-item.tall {
+            grid-row: span 2;
+        }
+
+        .gallery-item.wide {
+            grid-column: span 2;
+        }
+
+        /* ===== CONSERVAÇÃO ===== */
+        .conservacao {
+            background: linear-gradient(135deg, #f8fafc 0%, #e8f5e9 100%);
+        }
+
+        .conservacao-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        .conservacao-card {
+            background: #fff;
+            border-radius: 20px;
+            padding: 40px 30px;
+            text-align: center;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+            border-top: 5px solid var(--primary);
+        }
+
+        .conservacao-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.12);
+        }
+
+        .conservacao-card .icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+
+        .conservacao-card h3 {
+            color: var(--primary-dark);
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+        }
+
+        .conservacao-card p {
+            color: #666;
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+
+        /* ===== VÍDEOS ===== */
+        .videos {
+            background: var(--primary);
+            color: #fff;
+            text-align: center;
+        }
+
+        .videos h2 {
+            color: #fff;
+            margin-bottom: 20px;
+        }
+
+        .videos p {
+            color: rgba(255,255,255,0.8);
+            max-width: 700px;
+            margin: 0 auto 50px;
+            font-size: 1.1rem;
+        }
+
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .video-card {
+            background: rgba(255,255,255,0.1);
+            border-radius: 20px;
+            overflow: hidden;
+            transition: transform 0.3s;
+        }
+
+        .video-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .video-thumb {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(135deg, var(--primary-dark), var(--secondary));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .play-btn {
+            width: 70px;
+            height: 70px;
+            background: var(--accent);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .play-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 30px rgba(232, 185, 49, 0.5);
+        }
+
+        .play-btn svg {
+            width: 28px;
+            height: 28px;
+            fill: var(--primary-dark);
+            margin-left: 5px;
+        }
+
+        .video-info {
+            padding: 25px;
+            text-align: left;
+        }
+
+        .video-info h4 {
+            font-size: 1.1rem;
+            margin-bottom: 8px;
+        }
+
+        .video-info p {
+            font-size: 0.9rem;
+            color: rgba(255,255,255,0.7);
+            margin: 0;
+        }
+
+        /* ===== NEWSLETTER ===== */
+        .newsletter {
+            background: var(--accent);
+            padding: 80px 0;
+            text-align: center;
+        }
+
+        .newsletter h2 {
+            color: var(--primary-dark);
+            font-size: 2rem;
+            margin-bottom: 15px;
+        }
+
+        .newsletter p {
+            color: var(--primary-dark);
+            opacity: 0.8;
+            margin-bottom: 30px;
+            font-size: 1.1rem;
+        }
+
+        .newsletter-form {
+            display: flex;
+            gap: 15px;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .newsletter-form input {
+            flex: 1;
+            padding: 16px 25px;
+            border: none;
+            border-radius: 50px;
+            font-size: 1rem;
+            outline: none;
+            font-family: 'Open Sans', sans-serif;
+        }
+
+        .newsletter-form .btn {
+            padding: 16px 35px;
+            background: var(--primary-dark);
+            color: #fff;
+        }
+
+        .newsletter-form .btn:hover {
+            background: var(--dark);
+        }
+
+        /* ===== FOOTER ===== */
+        footer {
+            background: var(--dark);
+            color: rgba(255,255,255,0.7);
+            padding: 80px 0 30px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 50px;
+            margin-bottom: 60px;
+        }
+
+        .footer-brand .logo-text-footer {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 900;
+            color: #fff;
+            letter-spacing: 2px;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .footer-brand .logo-text-footer .sia {
+            color: var(--accent);
+            font-weight: 900;
+        }
+
+        .footer-brand p {
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+        }
+
+        .social-links a {
+            width: 42px;
+            height: 42px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            text-decoration: none;
+            transition: all 0.3s;
+            font-size: 1.1rem;
+        }
+
+        .social-links a:hover {
+            background: var(--accent);
+            color: var(--primary-dark);
+            transform: translateY(-3px);
+        }
+
+        .footer-col h4 {
+            color: #fff;
+            font-size: 1.1rem;
+            margin-bottom: 25px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .footer-col ul {
+            list-style: none;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 12px;
+        }
+
+        .footer-col ul li a {
+            color: rgba(255,255,255,0.6);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-col ul li a:hover {
+            color: var(--accent);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255,255,255,0.1);
+            padding-top: 30px;
+            text-align: center;
+            font-size: 0.9rem;
+        }
+
+        .footer-bottom a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        /* ===== ANIMATIONS ===== */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateX(-50%) translateY(0);
+            }
+            40% {
+                transform: translateX(-50%) translateY(-15px);
+            }
+            60% {
+                transform: translateX(-50%) translateY(-8px);
+            }
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 992px) {
+            .sobre-grid,
+            .conceicao-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .conceicao-image {
+                order: -1;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .conservacao-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .gallery-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .gallery-item.wide {
+                grid-column: span 2;
+            }
+        }
+
+        @media (max-width: 768px) {
+            nav {
+                padding: 0 20px;
+            }
+
+            .logo-text {
+                font-size: 1.5rem;
+            }
+
+            .nav-links {
+                position: fixed;
+                top: 80px;
+                right: -100%;
+                width: 100%;
+                height: calc(100vh - 80px);
+                background: var(--primary-dark);
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                gap: 30px;
+                transition: right 0.3s ease;
+            }
+
+            .nav-links.active {
+                right: 0;
+            }
+
+            .nav-links a {
+                font-size: 1.2rem;
+            }
+
+            .menu-toggle {
+                display: flex;
+            }
+
+            section {
+                padding: 60px 0;
+            }
+
+            .stats-row {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .social-links {
+                justify-content: center;
+            }
+
+            .newsletter-form {
+                flex-direction: column;
+            }
+
+            .gallery-grid {
+                grid-template-columns: 1fr;
+                grid-auto-rows: 200px;
+            }
+
+            .gallery-item.tall,
+            .gallery-item.wide {
+                grid-row: span 1;
+                grid-column: span 1;
+            }
+        }
+
+        /* ===== SCROLL REVEAL ===== */
+        .reveal {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s ease;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- HEADER / NAV -->
+    <header id="header">
+        <nav>
+            <a href="#" class="logo">
+                <div class="logo-icon">🌿</div>
+                <div class="logo-text">ARAGUA<span class="sia">SIA</span></div>
+            </a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#inicio">Início</a></li>
+                <li><a href="#fotos">Fotos</a></li>
+                <li><a href="#videos">Vídeos</a></li>
+            </ul>
+            <button class="menu-toggle" id="menuToggle" aria-label="Menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </nav>
+    </header>
+
+    <!-- HERO -->
+    <section class="hero" id="inicio">
+        <div class="hero-bg"></div>
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <div class="hero-badge">🌊 Rio Araguaia - Pará</div>
+            <h1>Preservemos a <span>Vida</span> que Corre em Nossas Águas</h1>
+            <p>O Rio Araguaia é um dos maiores e mais importantes cursos d'água do Brasil. Com mais de 2.600 km de extensão, ele abriga uma biodiversidade única e conecta os biomas do Cerrado e da Amazônia, sendo um dos poucos rios com fluxo livre do país.</p>
+            <div class="hero-buttons">
+                <a href="#sobre" class="btn btn-primary">Conhecer o Rio</a>
+                <a href="#conservacao" class="btn btn-outline">Ações de Conservação</a>
+            </div>
+        </div>
+        <div class="scroll-indicator">
+            <svg viewBox="0 0 24 24"><path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/></svg>
+        </div>
+    </section>
+
+    <!-- SOBRE O RIO -->
+    <section class="sobre" id="sobre">
+        <div class="container">
+            <div class="section-header reveal">
+                <h2>Sobre o Rio Araguaia</h2>
+                <p>Um dos últimos grandes rios de fluxo livre da América do Sul, berço de incontáveis espécies e lar de comunidades tradicionais</p>
+            </div>
+            <div class="sobre-grid reveal">
+                <div class="sobre-image">
+                    <img src="https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?w=800&q=80" alt="Rio Araguaia ao entardecer">
+                </div>
+                <div class="sobre-content">
+                    <h3>O Pulso Verde do Centro-Oeste</h3>
+                    <p>O Rio Araguaia nasce no Planalto Central, em Goiás, e percorre mais de <strong>2.600 quilômetros</strong> até desaguar no Rio Tocantins. Ele faz a delimitação geográfica entre os estados do <strong>Pará e Tocantins</strong>, sendo considerado um dos rios mais importantes do Brasil.</p>
+                    <p>O Araguaia é reconhecido por sua <strong>biodiversidade única</strong>, abrigando espécies como o pirarucu, tucunaré, surubim, tartarugas-da-amazônia e tracajás. Suas águas abrigam também aves migratórias e mamíferos ameaçados de extinção, como o cervo-do-pantanal e a onça-pintada.</p>
+                    <p>É um rio de <strong>fluxo livre</strong> — um dos poucos remanescentes no país — o que o torna vital para a conectividade entre os biomas do Cerrado e da Amazônia, permitindo a migração de peixes e a manutenção de ecossistemas aquáticos saudáveis.</p>
+
+                    <div class="stats-row">
+                        <div class="stat-box">
+                            <div class="number">2.600+</div>
+                            <div class="label">Km de Extensão</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="number">200+</div>
+                            <div class="label">Espécies de Peixes</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="number">100+</div>
+                            <div class="label">Municípios na Bacia</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- BIODIVERSIDADE -->
+    <section class="biodiversidade">
+        <div class="container">
+            <div class="section-header reveal">
+                <h2>Biodiversidade do Araguaia</h2>
+                <p>Um ecossistema rico em vida, que abriga espécies emblemáticas da fauna e flora brasileira</p>
+            </div>
+            <div class="cards-grid">
+                <div class="card reveal">
+                    <div class="card-icon">🐟</div>
+                    <h3>Ictiofauna</h3>
+                    <p>O Araguaia abriga mais de 200 espécies de peixes, incluindo o pirarucu, tucunaré, surubim, pirarara, pacu e jarqui. O pirarucu, espécie ameaçada, é um dos maiores peixes de água doce do mundo.</p>
+                </div>
+                <div class="card reveal">
+                    <div class="card-icon">🐢</div>
+                    <h3>Quelônios</h3>
+                    <p>Tartarugas-da-amazônia (<em>Podocnemis expansa</em>) e tracajás (<em>Podocnemis unifilis</em>) encontram no Araguaia um habitat crucial para reprodução. Projetos de repovoamento já soltaram milhares de indivíduos.</p>
+                </div>
+                <div class="card reveal">
+                    <div class="card-icon">🦜</div>
+                    <h3>Aves</h3>
+                    <p>O rio e suas margens abrigam centenas de espécies de aves, incluindo araras, tucanos, garças e aves migratórias que utilizam o ecossistema como corredor entre biomas.</p>
+                </div>
+                <div class="card reveal">
+                    <div class="card-icon">🌳</div>
+                    <h3>Vegetação</h3>
+                    <p>Matas ciliares, ipucas (ilhas de mata temporariamente alagáveis), campos e florestas de galeria compõem a vegetação ripária, essencial para a estabilidade dos solos e qualidade da água.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONCEIÇÃO DO ARAGUAIA -->
+    <section class="conceicao" id="fotos">
+        <div class="container">
+            <div class="section-header reveal">
+                <h2>Conceição do Araguaia - PA</h2>
+                <p>Um município paraense banhado pelas águas do Araguaia, rico em cultura, natureza e tradição ribeirinha</p>
+            </div>
+            <div class="conceicao-grid reveal">
+                <div class="conceicao-content">
+                    <h3>Portal do Araguaia Paraense</h3>
+                    <p>Conceição do Araguaia é uma cidade localizada no sudeste do Pará, às margens do Rio Araguaia. Com uma população acolhedora e forte vínculo com o rio, o município é conhecido por suas <strong>praias fluviais</strong>, pesca artesanal e festas tradicionais.</p>
+                    <p>A cidade é um importante ponto de veraneio na região norte, atraindo turistas que buscam o contato com a natureza, passeios de barco, pesca esportiva e o famoso <strong>peixe frito à beira do rio</strong>.</p>
+
+                    <ul class="pontos-list">
+                        <li>
+                            <div class="icon">🏖️</div>
+                            <div>
+                                <h4>Praia da Gaivota</h4>
+                                <p>A principal praia fluvial da cidade, com águas calmas e areia clara. Área tradicional de veraneio com quiosques e infraestrutura.</p>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="icon">🌅</div>
+                            <div>
+                                <h4>Orla do Rio Araguaia</h4>
+                                <p>Perfeita para contemplar o pôr do sol, caminhar e sentir a brisa do rio. Ponto de encontro dos moradores e visitantes.</p>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="icon">⛪</div>
+                            <div>
+                                <h4>Catedral Nossa Senhora da Conceição</h4>
+                                <p>Patrimônio religioso e histórico da cidade, símbolo da fé e tradição local.</p>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="icon">🎣</div>
+                            <div>
+                                <h4>Pesca Artesanal</h4>
+                                <p>A pesca sustentável é a atividade econômica base, preservando tradições ribeirinhas e gerando renda para as famílias.</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="conceicao-image">
+                    <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800&q=80" alt="Praia fluvial">
+                    <img src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=400&q=80" alt="Pôr do sol no rio">
+                    <img src="https://images.unsplash.com/photo-1518837695005-2083093ee35b?w=400&q=80" alt="Natureza amazônica">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- GALERIA -->
+    <section class="galeria">
+        <div class="container">
+            <div class="section-header reveal">
+                <h2>Galeria de Imagens</h2>
+                <p>Registros que capturam a essência e a beleza do Rio Araguaia e sua região</p>
+            </div>
+            <div class="gallery-grid reveal">
+                <div class="gallery-item wide">
+                    <img src="https://images.unsplash.com/photo-1439066615861-d1af74d74000?w=800&q=80" alt="Rio ao amanhecer">
+                    <div class="overlay"><h4>Amanhecer no Araguaia</h4></div>
+                </div>
+                <div class="gallery-item tall">
+                    <img src="https://images.unsplash.com/photo-1501854140801-50d01698950b?w=600&q=80" alt="Floresta amazônica">
+                    <div class="overlay"><h4>Mata Ciliar</h4></div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1582967788606-a171f1080ca8?w=400&q=80" alt="Pescador artesanal">
+                    <div class="overlay"><h4>Pesca Artesanal</h4></div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=400&q=80" alt="Aves do rio">
+                    <div class="overlay"><h4>Fauna Aquática</h4></div>
+                </div>
+                <div class="gallery-item wide">
+                    <img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=800&q=80" alt="Paisagem do Araguaia">
+                    <div class="overlay"><h4>Panorama do Vale</h4></div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1535083252457-6080fe29be45?w=400&q=80" alt="Comunidade ribeirinha">
+                    <div class="overlay"><h4>Vida Ribeirinha</h4></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONSERVAÇÃO -->
+    <section class="conservacao" id="conservacao">
+        <div class="container">
+            <div class="section-header reveal">
+                <h2>Ações de Conservação</h2>
+                <p>Iniciativas que protegem o Araguaia e garantem um futuro sustentável para o rio e suas comunidades</p>
+            </div>
+            <div class="conservacao-grid">
+                <div class="conservacao-card reveal">
+                    <div class="icon">🧬</div>
+                    <h3>Reprodução em Laboratório</h3>
+                    <p>Pesquisadores da UFG desenvolvem técnicas de reprodução de espécies nativas em cativeiro, repovando lagos e tanques com milhares de peixes juvenis para garantir a continuidade das espécies.</p>
+                </div>
+                <div class="conservacao-card reveal">
+                    <div class="icon">🐢</div>
+                    <h3>Projeto Quelônios</h3>
+                    <p>O Instituto Ambiental Xambioá, em parceria com o Ideflor-Bio, já soltou mais de 6 mil tartarugas-da-amazônia e tracajás, revertendo o risco de extinção dessas espécies na região.</p>
+                </div>
+                <div class="conservacao-card reveal">
+                    <div class="icon">🌿</div>
+                    <h3>Corredor Ecológico</h3>
+                    <p>O MPF e a TNC Brasil trabalham na criação de um corredor ecológico às margens do rio, protegendo a biodiversidade e as comunidades tradicionais e indígenas do entorno.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- VÍDEOS -->
+    <section class="videos" id="videos">
+        <div class="container">
+            <div class="section-header reveal">
+                <h2>Vídeos</h2>
+                <p>Conheça mais sobre o Rio Araguaia e Conceição do Araguaia através de nossos registros audiovisuais</p>
+            </div>
+            <div class="video-grid reveal">
+                <div class="video-card">
+                    <div class="video-thumb">
+                        <div class="play-btn">
+                            <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                        </div>
+                    </div>
+                    <div class="video-info">
+                        <h4>O Rio Araguaia: Um Tesouro Nacional</h4>
+                        <p>Documentário sobre a importância ecológica e cultural do rio</p>
+                    </div>
+                </div>
+                <div class="video-card">
+                    <div class="video-thumb">
+                        <div class="play-btn">
+                            <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                        </div>
+                    </div>
+                    <div class="video-info">
+                        <h4>Praias de Conceição do Araguaia</h4>
+                        <p>Tour pelas principais praias e pontos turísticos da cidade</p>
+                    </div>
+                </div>
+                <div class="video-card">
+                    <div class="video-thumb">
+                        <div class="play-btn">
+                            <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                        </div>
+                    </div>
+                    <div class="video-info">
+                        <h4>Conservação dos Quelônios</h4>
+                        <p>Ação de soltura de tartarugas no Rio Araguaia</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- NEWSLETTER -->
+    <section class="newsletter">
+        <div class="container">
+            <h2>Receba Novidades</h2>
+            <p>Cadastre-se para receber informações sobre o Rio Araguaia, ações de conservação e eventos em Conceição do Araguaia</p>
+            <form class="newsletter-form" onsubmit="event.preventDefault(); alert('Obrigado por se cadastrar! Em breve você receberá nossas novidades.');">
+                <input type="email" placeholder="Seu melhor e-mail" required>
+                <button type="submit" class="btn">Cadastrar</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <div class="logo-text-footer">ARAGUA<span class="sia">SIA</span></div>
+                    <p>Plataforma dedicada à preservação e valorização do Rio Araguaia e da cidade de Conceição do Araguaia - PA. Junte-se a nós na missão de proteger este patrimônio natural.</p>
+                    <div class="social-links">
+                        <a href="#" aria-label="Facebook">f</a>
+                        <a href="#" aria-label="Instagram">📷</a>
+                        <a href="#" aria-label="YouTube">▶</a>
+                        <a href="#" aria-label="WhatsApp">💬</a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h4>Navegação</h4>
+                    <ul>
+                        <li><a href="#inicio">Início</a></li>
+                        <li><a href="#sobre">Sobre o Rio</a></li>
+                        <li><a href="#fotos">Fotos</a></li>
+                        <li><a href="#videos">Vídeos</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Conservação</h4>
+                    <ul>
+                        <li><a href="#">Projeto Quelônios</a></li>
+                        <li><a href="#">Reprodução de Peixes</a></li>
+                        <li><a href="#">Matas Ciliares</a></li>
+                        <li><a href="#">Educação Ambiental</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Contato</h4>
+                    <ul>
+                        <li><a href="#">Conceição do Araguaia, PA</a></li>
+                        <li><a href="#">contato@araguasia.org</a></li>
+                        <li><a href="#">+55 (91) 0000-0000</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2026 ARAGUASIA. Todos os direitos reservados. Feito com 💚 para o Rio Araguaia.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Header scroll effect
+        const header = document.getElementById('header');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // Mobile menu toggle
+        const menuToggle = document.getElementById('menuToggle');
+        const navLinks = document.getElementById('navLinks');
+
+        menuToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+
+        // Close menu on link click
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+            });
+        });
+
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Scroll reveal animation
+        const revealElements = document.querySelectorAll('.reveal');
+
+        const revealOnScroll = () => {
+            revealElements.forEach(element => {
+                const elementTop = element.getBoundingClientRect().top;
+                const windowHeight = window.innerHeight;
+
+                if (elementTop < windowHeight - 100) {
+                    element.classList.add('active');
+                }
+            });
+        };
+
+        window.addEventListener('scroll', revealOnScroll);
+        window.addEventListener('load', revealOnScroll);
+    </script>
+
+</body>
+</html>

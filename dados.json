@@ -1,0 +1,46 @@
+[
+  {
+    "id": "1",
+    "nome": "MR Treinamentos",
+    "categoria": "Educação",
+    "endereco": "Conceição do Araguaia - PA",
+    "whatsapp": "94992500073",
+    "telefone": "(94) 99250-0073",
+    "site": "https://mrtreinamentos.online",
+    "descricao": "Treinamentos de Segurança do Trabalho e NRs.",
+    "logo": "img/mr.jpg"
+  },
+  {
+    "id": "2",
+    "nome": "MAZZ",
+    "categoria": "Educação",
+    "endereco": "Conceição do Araguaia - PA",
+    "whatsapp": "94992500073",
+    "telefone": "(94) 99250-0073",
+    "site": "https://mazz.net.br",
+    "descricao": "Tecnologia e Educação.",
+    "logo": "img/mazz.png"
+  },
+  {
+    "id": "3",
+    "nome": "RAZGO",
+    "categoria": "Tecnologia",
+    "endereco": "Conceição do Araguaia - PA",
+    "whatsapp": "94992500073",
+    "telefone": "(94) 99250-0073",
+    "site": "https://razgo.com.br",
+    "descricao": "Desenvolvimento web.",
+    "logo": "img/razgo.jpg"
+  },
+  {
+    "id": "4",
+    "nome": "KM Projetos de Engenharia",
+    "categoria": "Engenharia",
+    "endereco": "Conceição do Araguaia - PA",
+    "whatsapp": "94992500073",
+    "telefone": "(94) 99250-0073",
+    "site": "https://kmprojetos.eng.br",
+    "descricao": "Projetos Civis, Ambientais e Segurança do Trabalho.",
+    "logo": "img/km.png"
+  }
+]

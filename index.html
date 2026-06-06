@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CDA Telelista - Guia Comercial de Conceição do Araguaia</title>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/fuse.js@7.0.0"></script>
+
+  <meta name="description" content="Empresas, WhatsApp e telefones de Conceição do Araguaia - PA" />
+
+  <style>
+    body {
+      background: #f5f7fb;
+    }
+
+    .card-hover:hover {
+      transform: translateY(-4px);
+      transition: 0.2s;
+    }
+
+    .gradient {
+      background: linear-gradient(135deg, #0f172a, #1e3a8a);
+    }
+  </style>
+</head>
+<body>
+
+  <header class="gradient text-white shadow-lg">
+    <div class="max-w-7xl mx-auto px-4 py-10">
+      <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
+
+        <div>
+          <h1 class="text-4xl font-black">CDA Telelista</h1>
+          <p class="text-blue-100 mt-2 text-lg">
+            Empresas de Conceição do Araguaia - PA
+          </p>
+        </div>
+
+        <div class="w-full md:w-[420px]">
+          <input
+            id="search"
+            type="text"
+            placeholder="Buscar empresa, categoria ou bairro..."
+            class="w-full rounded-2xl px-5 py-4 text-gray-900 outline-none text-lg"
+          />
+        </div>
+
+      </div>
+    </div>
+  </header>
+
+  <main class="max-w-7xl mx-auto px-4 py-8">
+
+    <section class="mb-8">
+      <div class="flex flex-wrap gap-3" id="categories"></div>
+    </section>
+
+    <section>
+      <div class="flex items-center justify-between mb-6">
+        <h2 class="text-2xl font-bold text-gray-800">
+          Empresas encontradas
+        </h2>
+
+        <span id="resultCount" class="bg-blue-100 text-blue-900 px-4 py-2 rounded-full font-semibold">
+          0 empresas
+        </span>
+      </div>
+
+      <div id="results" class="grid md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+    </section>
+
+  </main>
+
+  <footer class="mt-16 bg-slate-900 text-white">
+    <div class="max-w-7xl mx-auto px-4 py-10">
+      <div class="grid md:grid-cols-3 gap-8">
+
+        <div>
+          <h3 class="font-bold text-xl mb-3">CDAlista</h3>
+          <p class="text-slate-300">
+            Portal empresarial de Conceição do Araguaia.
+          </p>
+        </div>
+
+        <div>
+          <h3 class="font-bold text-xl mb-3">Categorias</h3>
+          <ul class="space-y-2 text-slate-300">
+            <li>Farmácias</li>
+            <li>Supermercados</li>
+            <li>Auto Peças</li>
+            <li>Hotéis</li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </footer>
+
+  <script>
+
+    const empresas = [
+      {
+        empresa: 'Drogaria Brasil',
+        categoria: 'Farmácia',
+        telefone: '94992532003',
+        endereco: 'Av. JK - Centro',
+        bairro: 'Centro',
+        instagram: 'https://instagram.com/',
+        descricao: 'Farmácia e medicamentos em Conceição do Araguaia'
+      },
+      {
+        empresa: 'Supermercado Kaçula',
+        categoria: 'Supermercado',
+        telefone: '94991234567',
+        endereco: 'Av. Brasília',
+        bairro: 'Centro',
+        instagram: '',
+        descricao: 'Mercado completo com variedades'
+      },
+      {
+        empresa: 'Auto Peças Muriçoca',
+        categoria: 'Auto Peças',
+        telefone: '94991584082',
+        endereco: 'Av. Araguaia',
+        bairro: 'Centro',
+        instagram: '',
+        descricao: 'Peças automotivas e acessórios'
+      },
+      {
+        empresa: 'Araguaia Plaza Hotel',
+        categoria: 'Hotel',
+        telefone: '94991838388',
+        endereco: 'Centro',
+        bairro: 'Centro',
+        instagram: '',
+        descricao: 'Hotel em Conceição do Araguaia'
+      },
+      {
+        empresa: 'CONTAV Contabilidade',
+        categoria: 'Contabilidade',
+        telefone: '94991534533',
+        endereco: 'Av. Sete de Setembro',
+        bairro: 'Centro',
+        instagram: '',
+        descricao: 'Serviços contábeis empresariais'
+      },
+      {
+        empresa: 'Construmais Materiais',
+        categoria: 'Construção',
+        telefone: '94991112233',
+        endereco: 'Av. Goiás',
+        bairro: 'Emerêncio',
+        instagram: '',
+        descricao: 'Materiais para construção civil'
+      }
+    ]
+
+    const results = document.getElementById('results')
+    const search = document.getElementById('search')
+    const resultCount = document.getElementById('resultCount')
+    const categories = document.getElementById('categories')
+
+    const fuse = new Fuse(empresas, {
+      keys: ['empresa', 'categoria', 'bairro', 'descricao'],
+      threshold: 0.35
+    })
+
+    const categorias = [...new Set(empresas.map(e => e.categoria))]
+
+    function createCategories() {
+      categories.innerHTML = `
+        <button
+          onclick="render(empresas)"
+          class="bg-slate-900 text-white px-5 py-2 rounded-full font-semibold hover:opacity-90"
+        >
+          Todas
+        </button>
+      `
+
+      categorias.forEach(cat => {
+        categories.innerHTML += `
+          <button
+            onclick="filterCategory('${cat}')"
+            class="bg-white border border-gray-300 px-5 py-2 rounded-full font-semibold hover:bg-blue-50"
+          >
+            ${cat}
+          </button>
+        `
+      })
+    }
+
+    function filterCategory(cat) {
+      const filtered = empresas.filter(e => e.categoria === cat)
+      render(filtered)
+    }
+
+    function formatPhone(phone) {
+      return phone.replace(/(\d{2})(\d{5})(\d{4})/, '($1) $2-$3')
+    }
+
+    function render(data) {
+      results.innerHTML = ''
+
+      resultCount.innerText = `${data.length} empresas`
+
+      if (!data.length) {
+        results.innerHTML = `
+          <div class="col-span-full bg-white rounded-3xl p-10 text-center shadow">
+            <h2 class="text-2xl font-bold text-gray-700 mb-2">
+              Nenhuma empresa encontrada
+            </h2>
+            <p class="text-gray-500">
+              Tente outra busca.
+            </p>
+          </div>
+        `
+        return
+      }
+
+      data.forEach(item => {
+        results.innerHTML += `
+          <div class="bg-white rounded-3xl p-6 shadow-md card-hover border border-gray-100">
+
+            <div class="flex items-start justify-between gap-3">
+              <div>
+                <h2 class="text-2xl font-black text-slate-800">
+                  ${item.empresa}
+                </h2>
+
+                <span class="inline-block mt-3 bg-blue-100 text-blue-900 px-3 py-1 rounded-full text-sm font-semibold">
+                  ${item.categoria}
+                </span>
+              </div>
+            </div>
+
+            <p class="mt-5 text-gray-600 leading-relaxed">
+              ${item.descricao}
+            </p>
+
+            <div class="mt-6 space-y-3 text-gray-700">
+
+              <div class="flex items-center gap-3">
+                <span>📍</span>
+                <span>${item.endereco}</span>
+              </div>
+
+              <div class="flex items-center gap-3">
+                <span>☎️</span>
+                <span>${formatPhone(item.telefone)}</span>
+              </div>
+
+            </div>
+
+            <div class="mt-8 flex gap-3 flex-wrap">
+
+              <a
+                href="https://wa.me/55${item.telefone}"
+                target="_blank"
+                class="bg-green-500 hover:bg-green-600 text-white px-5 py-3 rounded-2xl font-bold"
+              >
+                WhatsApp
+              </a>
+
+              <button
+                onclick="copyPhone('${item.telefone}')"
+                class="bg-slate-900 hover:bg-slate-800 text-white px-5 py-3 rounded-2xl font-bold"
+              >
+                Copiar número
+              </button>
+
+            </div>
+
+          </div>
+        `
+      })
+    }
+
+    function copyPhone(phone) {
+      navigator.clipboard.writeText(phone)
+      alert('Número copiado!')
+    }
+
+    search.addEventListener('input', (e) => {
+      const term = e.target.value.trim()
+
+      if (!term) {
+        render(empresas)
+        return
+      }
+
+      const result = fuse.search(term).map(r => r.item)
+      render(result)
+    })
+
+    createCategories()
+    render(empresas)
+
+  </script>
+
+</body>
+</html>
