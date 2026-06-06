@@ -1,0 +1,1 @@
+git add . && git commit -m "Atualização de arquivos .md e novos conteúdos" && git push -u origin main --force
