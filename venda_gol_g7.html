@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VW Gol G7 2018/2019 - R$ 45.000 | Conceição do Araguaia - PA</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #1a1a2e;
+            --secondary: #16213e;
+            --accent: #e94560;
+            --accent-hover: #c73a51;
+            --gold: #f5a623;
+            --light: #f8f9fa;
+            --dark: #0f0f1a;
+            --text: #333;
+            --text-light: #666;
+            --white: #ffffff;
+            --shadow: 0 10px 40px rgba(0,0,0,0.15);
+            --shadow-sm: 0 4px 15px rgba(0,0,0,0.08);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', sans-serif; background: var(--light); color: var(--text); line-height: 1.6; }
+
+        /* TOP BAR - VERA + ZAP */
+        .top-bar {
+            background: linear-gradient(135deg, var(--accent), var(--accent-hover));
+            padding: 14px 20px;
+            position: sticky; top: 0; z-index: 2000;
+            box-shadow: 0 4px 20px rgba(233,69,96,0.4);
+        }
+        .top-bar-inner {
+            max-width: 1200px; margin: 0 auto;
+            display: flex; justify-content: space-between; align-items: center;
+            flex-wrap: wrap; gap: 10px;
+        }
+        .top-bar-name {
+            display: flex; align-items: center; gap: 12px;
+        }
+        .top-bar-name i {
+            font-size: 1.6rem; color: var(--white);
+            animation: bounce 2s infinite;
+        }
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
+        }
+        .top-bar-name h1 {
+            color: var(--white); font-size: 1.6rem; font-weight: 900;
+            letter-spacing: 2px; text-transform: uppercase;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        }
+        .top-bar-name span {
+            color: rgba(255,255,255,0.8); font-size: 0.75rem;
+            font-weight: 500; margin-left: 8px;
+        }
+        .top-bar-zap {
+            display: flex; align-items: center; gap: 12px;
+            background: rgba(255,255,255,0.15);
+            padding: 10px 24px; border-radius: 50px;
+            border: 2px solid rgba(255,255,255,0.3);
+            text-decoration: none; color: var(--white);
+            transition: all 0.3s;
+        }
+        .top-bar-zap:hover {
+            background: var(--white); color: var(--accent);
+            transform: scale(1.05);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+        }
+        .top-bar-zap i { font-size: 1.4rem; }
+        .top-bar-zap-text { text-align: left; }
+        .top-bar-zap-text .label {
+            font-size: 0.7rem; font-weight: 600; text-transform: uppercase;
+            letter-spacing: 1px; opacity: 0.9;
+        }
+        .top-bar-zap-text .number {
+            font-size: 1.15rem; font-weight: 800; letter-spacing: 0.5px;
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            padding: 15px 0;
+            position: sticky; top: 68px; z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.3);
+        }
+        .header-inner { max-width: 1200px; margin: 0 auto; padding: 0 20px; display: flex; justify-content: space-between; align-items: center; }
+        .logo { display: flex; align-items: center; gap: 12px; }
+        .logo i { font-size: 2rem; color: var(--accent); }
+        .logo-text h1 { color: var(--white); font-size: 1.4rem; font-weight: 800; letter-spacing: -0.5px; }
+        .logo-text span { color: var(--accent); font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 2px; }
+        .header-contact { display: flex; align-items: center; gap: 15px; }
+        .header-contact a { color: var(--white); text-decoration: none; font-weight: 600; font-size: 0.95rem; display: flex; align-items: center; gap: 8px; transition: color 0.3s; }
+        .header-contact a:hover { color: var(--accent); }
+        .header-contact i { font-size: 1.2rem; }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--dark) 0%, var(--primary) 50%, var(--secondary) 100%);
+            padding: 60px 20px 80px;
+            position: relative; overflow: hidden;
+        }
+        .hero::before {
+            content: ''; position: absolute; top: -50%; right: -20%; width: 600px; height: 600px;
+            background: radial-gradient(circle, rgba(233,69,96,0.15) 0%, transparent 70%);
+            animation: pulse 4s ease-in-out infinite;
+        }
+        @keyframes pulse { 0%, 100% { transform: scale(1); opacity: 0.5; } 50% { transform: scale(1.1); opacity: 0.8; } }
+        .hero-inner { max-width: 1200px; margin: 0 auto; position: relative; z-index: 1; }
+        .hero-badge {
+            display: inline-flex; align-items: center; gap: 8px;
+            background: rgba(233,69,96,0.2); border: 1px solid var(--accent);
+            color: var(--accent); padding: 8px 20px; border-radius: 50px;
+            font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px;
+            margin-bottom: 25px; animation: fadeInDown 0.8s ease;
+        }
+        @keyframes fadeInDown { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0); } }
+        .hero h2 { color: var(--white); font-size: 3.2rem; font-weight: 900; line-height: 1.1; margin-bottom: 15px; letter-spacing: -1px; }
+        .hero h2 span { color: var(--accent); }
+        .hero-subtitle { color: rgba(255,255,255,0.7); font-size: 1.15rem; font-weight: 400; margin-bottom: 30px; max-width: 600px; }
+        .hero-price {
+            display: inline-flex; align-items: baseline; gap: 10px;
+            background: linear-gradient(135deg, var(--accent), var(--accent-hover));
+            padding: 18px 40px; border-radius: 16px;
+            box-shadow: 0 10px 40px rgba(233,69,96,0.4);
+            animation: fadeInUp 0.8s ease 0.3s both;
+        }
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+        .hero-price .currency { color: rgba(255,255,255,0.8); font-size: 1.3rem; font-weight: 600; }
+        .hero-price .amount { color: var(--white); font-size: 3rem; font-weight: 900; }
+        .hero-price .installment { color: rgba(255,255,255,0.7); font-size: 0.85rem; margin-left: 10px; }
+
+        /* Gallery */
+        .gallery-section { padding: 0 20px; margin-top: -40px; position: relative; z-index: 2; }
+        .gallery-inner { max-width: 1200px; margin: 0 auto; }
+        .gallery-grid {
+            display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
+        }
+        .gallery-item {
+            border-radius: 20px; overflow: hidden;
+            box-shadow: var(--shadow); position: relative;
+            aspect-ratio: 4/3; cursor: pointer;
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s;
+        }
+        .gallery-item:hover { transform: translateY(-10px) scale(1.02); box-shadow: 0 25px 60px rgba(0,0,0,0.25); }
+        .gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s; }
+        .gallery-item:hover img { transform: scale(1.1); }
+        .gallery-label {
+            position: absolute; bottom: 0; left: 0; right: 0;
+            background: linear-gradient(transparent, rgba(0,0,0,0.8));
+            color: var(--white); padding: 30px 20px 15px;
+            font-weight: 700; font-size: 1rem; text-transform: uppercase; letter-spacing: 1px;
+        }
+        .gallery-info {
+            display: flex; justify-content: center; gap: 40px; margin-top: 25px;
+            flex-wrap: wrap;
+        }
+        .info-pill {
+            display: flex; align-items: center; gap: 10px;
+            background: var(--white); padding: 12px 25px; border-radius: 50px;
+            box-shadow: var(--shadow-sm); font-weight: 600; color: var(--text);
+        }
+        .info-pill i { color: var(--accent); font-size: 1.1rem; }
+
+        /* Section Styling */
+        .section { padding: 60px 20px; }
+        .section-inner { max-width: 1200px; margin: 0 auto; }
+        .section-header { text-align: center; margin-bottom: 45px; }
+        .section-header h3 {
+            font-size: 2.2rem; font-weight: 800; color: var(--primary);
+            display: inline-flex; align-items: center; gap: 15px;
+        }
+        .section-header h3 i { color: var(--accent); font-size: 1.8rem; }
+        .section-header p { color: var(--text-light); margin-top: 10px; font-size: 1.05rem; }
+        .divider {
+            width: 80px; height: 4px; background: linear-gradient(90deg, var(--accent), var(--gold));
+            border-radius: 2px; margin: 15px auto 0;
+        }
+
+        /* Specs Grid */
+        .specs-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 25px;
+        }
+        .spec-card {
+            background: var(--white); border-radius: 20px; padding: 30px;
+            box-shadow: var(--shadow-sm); transition: all 0.3s;
+            border: 1px solid rgba(0,0,0,0.04);
+        }
+        .spec-card:hover { transform: translateY(-5px); box-shadow: var(--shadow); border-color: var(--accent); }
+        .spec-card-header {
+            display: flex; align-items: center; gap: 12px; margin-bottom: 20px;
+            padding-bottom: 15px; border-bottom: 2px solid var(--light);
+        }
+        .spec-card-header i { font-size: 1.5rem; color: var(--accent); width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; background: rgba(233,69,96,0.1); border-radius: 12px; }
+        .spec-card-header h4 { font-size: 1.15rem; font-weight: 700; color: var(--primary); }
+        .spec-table { width: 100%; border-collapse: collapse; }
+        .spec-table tr { border-bottom: 1px solid #f0f0f0; }
+        .spec-table tr:last-child { border-bottom: none; }
+        .spec-table td { padding: 12px 0; font-size: 0.92rem; }
+        .spec-table td:first-child { color: var(--text-light); font-weight: 500; width: 55%; }
+        .spec-table td:last-child { color: var(--primary); font-weight: 700; text-align: right; }
+        .spec-highlight { color: var(--accent) !important; font-size: 1rem !important; }
+
+        /* Features */
+        .features-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px;
+        }
+        .feature-card {
+            background: var(--white); border-radius: 16px; padding: 25px;
+            box-shadow: var(--shadow-sm); display: flex; align-items: flex-start; gap: 15px;
+            transition: all 0.3s; border-left: 4px solid var(--accent);
+        }
+        .feature-card:hover { transform: translateX(8px); box-shadow: var(--shadow); }
+        .feature-card i { font-size: 1.3rem; color: var(--accent); margin-top: 3px; }
+        .feature-card span { font-weight: 600; color: var(--primary); font-size: 0.95rem; }
+
+        /* Highlights Banner */
+        .highlights-banner {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: 24px; padding: 50px 40px; margin: 20px 0;
+            position: relative; overflow: hidden;
+        }
+        .highlights-banner::before {
+            content: ''; position: absolute; top: -30%; right: -10%; width: 300px; height: 300px;
+            background: radial-gradient(circle, rgba(233,69,96,0.2) 0%, transparent 70%);
+        }
+        .highlights-banner h4 { color: var(--white); font-size: 1.6rem; font-weight: 800; margin-bottom: 25px; position: relative; }
+        .highlights-list {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px;
+            position: relative;
+        }
+        .highlight-item {
+            display: flex; align-items: center; gap: 12px;
+            color: rgba(255,255,255,0.9); font-size: 0.95rem;
+        }
+        .highlight-item i { color: var(--gold); font-size: 1rem; }
+
+        /* CTA Section */
+        .cta-section {
+            background: linear-gradient(135deg, var(--accent), var(--accent-hover));
+            border-radius: 24px; padding: 60px 40px; text-align: center;
+            position: relative; overflow: hidden; margin: 20px 0;
+        }
+        .cta-section::before {
+            content: ''; position: absolute; top: -50%; left: -20%; width: 500px; height: 500px;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+        }
+        .cta-section h3 { color: var(--white); font-size: 2.2rem; font-weight: 900; margin-bottom: 10px; position: relative; }
+        .cta-section p { color: rgba(255,255,255,0.85); font-size: 1.1rem; margin-bottom: 30px; position: relative; }
+        .cta-buttons { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; position: relative; }
+        .cta-btn {
+            display: inline-flex; align-items: center; gap: 12px;
+            padding: 18px 40px; border-radius: 16px; font-size: 1.1rem;
+            font-weight: 700; text-decoration: none; transition: all 0.3s;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+        .cta-btn-primary { background: var(--white); color: var(--accent); }
+        .cta-btn-primary:hover { transform: translateY(-3px); box-shadow: 0 15px 40px rgba(0,0,0,0.3); }
+        .cta-btn-secondary { background: rgba(255,255,255,0.15); color: var(--white); border: 2px solid rgba(255,255,255,0.3); }
+        .cta-btn-secondary:hover { background: rgba(255,255,255,0.25); transform: translateY(-3px); }
+
+        /* Location */
+        .location-card {
+            background: var(--white); border-radius: 20px; padding: 30px;
+            box-shadow: var(--shadow-sm); text-align: center; max-width: 500px; margin: 0 auto;
+        }
+        .location-card i { font-size: 3rem; color: var(--accent); margin-bottom: 15px; }
+        .location-card h4 { color: var(--primary); font-size: 1.3rem; font-weight: 700; margin-bottom: 5px; }
+        .location-card p { color: var(--text-light); font-size: 1rem; }
+
+        /* Footer */
+        .footer {
+            background: var(--dark); color: rgba(255,255,255,0.6);
+            padding: 30px 20px; text-align: center; font-size: 0.85rem;
+        }
+        .footer a { color: var(--accent); text-decoration: none; }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .top-bar-inner { justify-content: center; text-align: center; }
+            .top-bar-name h1 { font-size: 1.3rem; }
+            .top-bar-zap { padding: 8px 18px; }
+            .top-bar-zap-text .number { font-size: 1rem; }
+            .hero h2 { font-size: 2rem; }
+            .hero-price .amount { font-size: 2rem; }
+            .gallery-grid { grid-template-columns: 1fr; }
+            .specs-grid { grid-template-columns: 1fr; }
+            .section-header h3 { font-size: 1.6rem; }
+            .cta-section { padding: 40px 20px; }
+            .cta-section h3 { font-size: 1.6rem; }
+            .header-contact span { display: none; }
+        }
+
+        /* Scroll Animation */
+        .animate-on-scroll { opacity: 0; transform: translateY(30px); transition: all 0.6s ease; }
+        .animate-on-scroll.visible { opacity: 1; transform: translateY(0); }
+    </style>
+</head>
+<body>
+
+    <!-- TOP BAR - VERA + ZAP DESTAQUE -->
+    <div class="top-bar">
+        <div class="top-bar-inner">
+            <div class="top-bar-name">
+                <i class="fas fa-user-circle"></i>
+                <h1>VERA <span>Vendedora</span></h1>
+            </div>
+            <a href="https://wa.me/5594984425011?text=Olá%20VERA!%20Tenho%20interesse%20no%20VW%20Gol%20G7%202018/2019" class="top-bar-zap" target="_blank">
+                <i class="fab fa-whatsapp"></i>
+                <div class="top-bar-zap-text">
+                    <div class="label">Chame no WhatsApp</div>
+                    <div class="number">(94) 98442-5011</div>
+                </div>
+            </a>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="header-inner">
+            <div class="logo">
+                <i class="fas fa-car"></i>
+                <div class="logo-text">
+                    <h1>AutoVendas</h1>
+                    <span>Veículos Seminovos</span>
+                </div>
+            </div>
+            <div class="header-contact">
+                <a href="tel:+5594984425011"><i class="fas fa-phone"></i> <span>(94) 98442-5011</span></a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero -->
+    <section class="hero">
+        <div class="hero-inner">
+            <div class="hero-badge"><i class="fas fa-star"></i> Oportunidade Única</div>
+            <h2>VW Gol G7 <span>2018/2019</span></h2>
+            <p class="hero-subtitle">O hatch mais vendido do Brasil, em excelente estado de conservação. Pronto para rodar!</p>
+            <div class="hero-price">
+                <span class="currency">R$</span>
+                <span class="amount">45.000</span>
+                <span class="installment">à vista</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery -->
+    <section class="gallery-section">
+        <div class="gallery-inner">
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <img src="frente.jpg" alt="Frente do VW Gol G7">
+                    <div class="gallery-label"><i class="fas fa-camera"></i> Frente</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="lateral.jpg" alt="Lateral do VW Gol G7">
+                    <div class="gallery-label"><i class="fas fa-camera"></i> Lateral</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="traseira.jpg" alt="Traseira do VW Gol G7">
+                    <div class="gallery-label"><i class="fas fa-camera"></i> Traseira</div>
+                </div>
+            </div>
+            <div class="gallery-info">
+                <div class="info-pill"><i class="fas fa-palette"></i> Cor: Prata</div>
+                <div class="info-pill"><i class="fas fa-id-card"></i> Placa: DF — Brasília</div>
+                <div class="info-pill"><i class="fas fa-car-side"></i> Hatch 4 Portas</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Specs -->
+    <section class="section">
+        <div class="section-inner">
+            <div class="section-header animate-on-scroll">
+                <h3><i class="fas fa-cogs"></i> Ficha Técnica</h3>
+                <p>Especificações oficiais da Volkswagen do Brasil</p>
+                <div class="divider"></div>
+            </div>
+            <div class="specs-grid">
+                <div class="spec-card animate-on-scroll">
+                    <div class="spec-card-header">
+                        <i class="fas fa-engine"></i>
+                        <h4>Motor & Desempenho</h4>
+                    </div>
+                    <table class="spec-table">
+                        <tr><td>Código do motor</td><td>EA-211</td></tr>
+                        <tr><td>Cilindros</td><td>3 em linha (1.0) / 4 em linha (1.6)</td></tr>
+                        <tr><td>Cilindrada</td><td>999 cm³ / 1.598 cm³</td></tr>
+                        <tr><td>Válvulas</td><td>12 (DOHC) / 8–16</td></tr>
+                        <tr><td>Combustível</td><td class="spec-highlight">TotalFlex</td></tr>
+                        <tr><td>Potência (Etanol)</td><td class="spec-highlight">82 cv / 104–120 cv</td></tr>
+                        <tr><td>Torque (Etanol)</td><td class="spec-highlight">10,4 kgfm / 15,6 kgfm</td></tr>
+                        <tr><td>0–100 km/h</td><td>12,3 s / ~9,8 s</td></tr>
+                        <tr><td>Vel. máxima</td><td>167–176 km/h / 188 km/h</td></tr>
+                    </table>
+                </div>
+
+                <div class="spec-card animate-on-scroll">
+                    <div class="spec-card-header">
+                        <i class="fas fa-ruler-combined"></i>
+                        <h4>Dimensões & Capacidade</h4>
+                    </div>
+                    <table class="spec-table">
+                        <tr><td>Comprimento</td><td>3.892–3.897 mm</td></tr>
+                        <tr><td>Largura</td><td>1.656 mm</td></tr>
+                        <tr><td>Altura</td><td>1.464 mm</td></tr>
+                        <tr><td>Entre-eixos</td><td>2.465–2.467 mm</td></tr>
+                        <tr><td>Vão livre do solo</td><td>163 mm</td></tr>
+                        <tr><td>Peso</td><td>998–1.036 kg</td></tr>
+                        <tr><td>Porta-malas</td><td class="spec-highlight">285 litros</td></tr>
+                        <tr><td>Tanque</td><td class="spec-highlight">55 litros</td></tr>
+                        <tr><td>Lugares</td><td>5</td></tr>
+                    </table>
+                </div>
+
+                <div class="spec-card animate-on-scroll">
+                    <div class="spec-card-header">
+                        <i class="fas fa-gas-pump"></i>
+                        <h4>Consumo (INMETRO)</h4>
+                    </div>
+                    <table class="spec-table">
+                        <tr><td>Gasolina — Cidade</td><td class="spec-highlight">13,3 km/L</td></tr>
+                        <tr><td>Gasolina — Estrada</td><td class="spec-highlight">14,4 km/L</td></tr>
+                        <tr><td>Etanol — Cidade</td><td>9,1 km/L</td></tr>
+                        <tr><td>Etanol — Estrada</td><td>10,1 km/L</td></tr>
+                    </table>
+                    <div class="spec-card-header" style="margin-top: 20px;">
+                        <i class="fas fa-cog"></i>
+                        <h4>Transmissão</h4>
+                    </div>
+                    <table class="spec-table">
+                        <tr><td>Tração</td><td>Dianteira</td></tr>
+                        <tr><td>Câmbio</td><td>Manual 5 marchas / Auto. 6 marchas</td></tr>
+                    </table>
+                </div>
+
+                <div class="spec-card animate-on-scroll">
+                    <div class="spec-card-header">
+                        <i class="fas fa-wrench"></i>
+                        <h4>Suspensão & Freios</h4>
+                    </div>
+                    <table class="spec-table">
+                        <tr><td>Suspensão dianteira</td><td>McPherson independente</td></tr>
+                        <tr><td>Suspensão traseira</td><td>Eixo de torção</td></tr>
+                        <tr><td>Freios dianteiros</td><td>Disco ventilado</td></tr>
+                        <tr><td>Freios traseiros</td><td>Tambor</td></tr>
+                        <tr><td>Direção</td><td>Hidráulica</td></tr>
+                        <tr><td>Rodas</td><td>Aço aro 14"</td></tr>
+                        <tr><td>Pneus</td><td>175/70 R14</td></tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Safety & Features -->
+    <section class="section" style="background: var(--white);">
+        <div class="section-inner">
+            <div class="section-header animate-on-scroll">
+                <h3><i class="fas fa-shield-alt"></i> Segurança & Equipamentos</h3>
+                <p>Tudo que você precisa para dirigir com tranquilidade</p>
+                <div class="divider"></div>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card animate-on-scroll"><i class="fas fa-check-circle"></i><span>ABS com EBD</span></div>
+                <div class="feature-card animate-on-scroll"><i class="fas fa-check-circle"></i><span>2 Airbags frontais</span></div>
+                <div class="feature-card animate-on-scroll"><i class="fas fa-check-circle"></i><span>Cinto de 3 pontos (todos os ocupantes)</span></div>
+                <div class="feature-card animate-on-scroll"><i class="fas fa-check-circle"></i><span>Trava elétrica central</span></div>
+                <div class="feature-card animate-on-scroll"><i class="fas fa-check-circle"></i><span>Vidros elétricos dianteiros</span></div>
+                <div class="feature-card animate-on-scroll"><i class="fas fa-check-circle"></i><span>Limpador e lavador traseiro</span></div>
+                <div class="feature-card animate-on-scroll"><i class="fas fa-check-circle"></i><span>Desembaçador traseiro</span></div>
+                <div class="feature-card animate-on-scroll"><i class="fas fa-check-circle"></i><span>Alerta de frenagem de emergência</span></div>
+                <div class="feature-card animate-on-scroll"><i class="fas fa-check-circle"></i><span>Direção hidráulica</span></div>
+                <div class="feature-card animate-on-scroll"><i class="fas fa-check-circle"></i><span>Ar-condicionado com filtro de pólen</span></div>
+                <div class="feature-card animate-on-scroll"><i class="fas fa-check-circle"></i><span>Bancos em tecido com regulagem de altura</span></div>
+                <div class="feature-card animate-on-scroll"><i class="fas fa-check-circle"></i><span>Encosto de cabeça (diant. e tras.)</span></div>
+                <div class="feature-card animate-on-scroll"><i class="fas fa-check-circle"></i><span>Chave tipo canivete</span></div>
+                <div class="feature-card animate-on-scroll"><i class="fas fa-check-circle"></i><span>Central multimídia com CarPlay/Android Auto</span></div>
+                <div class="feature-card animate-on-scroll"><i class="fas fa-check-circle"></i><span>Entrada USB</span></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Highlights -->
+    <section class="section">
+        <div class="section-inner">
+            <div class="highlights-banner animate-on-scroll">
+                <h4><i class="fas fa-award"></i> Destaques do Gol G7</h4>
+                <div class="highlights-list">
+                    <div class="highlight-item"><i class="fas fa-star"></i> 7ª Geração — Design renovado</div>
+                    <div class="highlight-item"><i class="fas fa-star"></i> Motor 1.0 de 3 cilindros mais econômico</div>
+                    <div class="highlight-item"><i class="fas fa-star"></i> Lanternas 3D estilo Gol BX clássico</div>
+                    <div class="highlight-item"><i class="fas fa-star"></i> Painel totalmente redesenhado</div>
+                    <div class="highlight-item"><i class="fas fa-star"></i> Central multimídia touchscreen</div>
+                    <div class="highlight-item"><i class="fas fa-star"></i> Conectividade Apple CarPlay & Android Auto</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="section">
+        <div class="section-inner">
+            <div class="cta-section animate-on-scroll">
+                <h3><i class="fab fa-whatsapp"></i> Não perca essa oportunidade!</h3>
+                <p>Fale com a <strong>VERA</strong> agora mesmo e agende uma visita para conhecer o carro pessoalmente.</p>
+                <div class="cta-buttons">
+                    <a href="https://wa.me/5594984425011?text=Olá%20VERA!%20Tenho%20interesse%20no%20VW%20Gol%20G7%202018/2019%20por%20R$%2045.000" class="cta-btn cta-btn-primary" target="_blank">
+                        <i class="fab fa-whatsapp"></i> Chamar a VERA no WhatsApp
+                    </a>
+                    <a href="tel:+5594984425011" class="cta-btn cta-btn-secondary">
+                        <i class="fas fa-phone"></i> Ligar Agora
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Location -->
+    <section class="section" style="background: var(--white);">
+        <div class="section-inner">
+            <div class="section-header animate-on-scroll">
+                <h3><i class="fas fa-map-marker-alt"></i> Localização</h3>
+                <p>Venha conferir o veículo com a VERA</p>
+                <div class="divider"></div>
+            </div>
+            <div class="location-card animate-on-scroll">
+                <i class="fas fa-map-marked-alt"></i>
+                <h4>Conceição do Araguaia — PA</h4>
+                <p>Pará, Brasil</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p><i class="fas fa-car"></i> VW Gol G7 2018/2019 — R$ 45.000 | VERA: <a href="tel:+5594984425011">(94) 98442-5011</a></p>
+        <p style="margin-top: 8px; font-size: 0.75rem;">Especificações técnicas baseadas em dados oficiais da Volkswagen do Brasil.</p>
+    </footer>
+
+    <script>
+        // Scroll Animation
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.animate-on-scroll').forEach(el => observer.observe(el));
+
+        // Gallery Lightbox (simple)
+        document.querySelectorAll('.gallery-item').forEach(item => {
+            item.addEventListener('click', function() {
+                this.style.transform = 'scale(1.05)';
+                setTimeout(() => { this.style.transform = ''; }, 200);
+            });
+        });
+    </script>
+</body>
+</html>
